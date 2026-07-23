@@ -1,5 +1,7 @@
+import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 import { getHotelBySlug, toPublicHotel } from "@/lib/hotels";
+import { unlockCookieName } from "@/lib/unlock";
 import { HotelHeader } from "@/components/hotel/HotelHeader";
 import { TukaIntro } from "@/components/hotel/TukaIntro";
 import { HotelExperience } from "@/components/hotel/HotelExperience";
@@ -13,8 +15,9 @@ export default async function HotelPage({
   const hotel = await getHotelBySlug(hotelSlug);
   if (!hotel) notFound();
 
-  // Signup-based unlock (cookie check) lands in the gate-logic build step.
-  const publicHotel = toPublicHotel(hotel, false);
+  const cookieStore = await cookies();
+  const isUnlocked = cookieStore.get(unlockCookieName(hotelSlug))?.value === "1";
+  const publicHotel = toPublicHotel(hotel, isUnlocked);
 
   const brandStyle = {
     "--brand-primary": publicHotel.brandColors.primary,
