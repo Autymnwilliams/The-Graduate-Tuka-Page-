@@ -1,5 +1,3 @@
-"use client";
-
 function LockedRecSkeleton() {
   return (
     <div
@@ -16,15 +14,7 @@ function LockedRecSkeleton() {
   );
 }
 
-export function GateBanner({
-  lockedCount,
-  onCtaClick,
-  href,
-}: {
-  lockedCount: number;
-  onCtaClick: () => void;
-  href: string;
-}) {
+export function GateBanner({ lockedCount, href }: { lockedCount: number; href: string }) {
   if (lockedCount <= 0) return null;
 
   const skeletonCount = Math.min(lockedCount, 3);
@@ -40,7 +30,6 @@ export function GateBanner({
         </p>
         <a
           href={href}
-          onClick={onCtaClick}
           className="rounded-full bg-[var(--brand-primary)] px-6 py-2.5 text-sm font-semibold text-[var(--brand-secondary)]"
         >
           Sign up to see them all

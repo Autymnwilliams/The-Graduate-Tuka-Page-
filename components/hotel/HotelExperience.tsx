@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { PublicHotel, Rec } from "@/lib/types";
+import { track } from "@/lib/analytics-client";
 import { SearchBar } from "./SearchBar";
 import { MapSection } from "./MapSection";
 import { RecCard } from "./RecCard";
@@ -27,9 +28,35 @@ export function HotelExperience({ hotel }: { hotel: PublicHotel }) {
     [hotel.visibleRecs, query],
   );
 
-  function handleSelectRec(id: string) {
+  useEffect(() => {
+    if (hotel.lockedCount > 0) {
+      track("gate_hit", hotel.slug, { lockedCount: hotel.lockedCount });
+    }
+    // Fire once per page load, not on every re-render.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (!query.trim()) return;
+    const timer = setTimeout(() => {
+      track("search_used", hotel.slug, { query, resultCount: filteredRecs.length });
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [query, filteredRecs.length, hotel.slug]);
+
+  function selectRec(id: string) {
     setSelectedRecId(id);
     cardRefs.current.get(id)?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  function handleCardSelect(id: string) {
+    track("rec_click", hotel.slug, { recId: id });
+    selectRec(id);
+  }
+
+  function handlePinSelect(id: string) {
+    track("pin_click", hotel.slug, { recId: id });
+    selectRec(id);
   }
 
   return (
@@ -39,7 +66,7 @@ export function HotelExperience({ hotel }: { hotel: PublicHotel }) {
         recs={filteredRecs}
         center={hotel.coordinates}
         selectedRecId={selectedRecId}
-        onSelectRec={handleSelectRec}
+        onSelectRec={handlePinSelect}
       />
       <div className="flex flex-1 flex-col gap-3 p-4 sm:p-6">
         {filteredRecs.length === 0 ? (
@@ -52,7 +79,7 @@ export function HotelExperience({ hotel }: { hotel: PublicHotel }) {
               key={rec.id}
               rec={rec}
               isSelected={selectedRecId === rec.id}
-              onSelect={handleSelectRec}
+              onSelect={handleCardSelect}
               cardRef={(el) => {
                 if (el) cardRefs.current.set(rec.id, el);
                 else cardRefs.current.delete(rec.id);
@@ -60,11 +87,7 @@ export function HotelExperience({ hotel }: { hotel: PublicHotel }) {
             />
           ))
         )}
-        <GateBanner
-          lockedCount={hotel.lockedCount}
-          onCtaClick={() => {}}
-          href={`/${hotel.slug}/signup`}
-        />
+        <GateBanner lockedCount={hotel.lockedCount} href={`/${hotel.slug}/signup`} />
       </div>
     </div>
   );

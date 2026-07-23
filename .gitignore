@@ -37,6 +37,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# local dev-only analytics log (see lib/analytics.ts)
+/data/events.json
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
