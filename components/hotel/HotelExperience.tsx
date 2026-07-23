@@ -35,7 +35,12 @@ export function HotelExperience({ hotel }: { hotel: PublicHotel }) {
   return (
     <div className="flex flex-1 flex-col">
       <SearchBar value={query} onChange={setQuery} />
-      <MapSection recs={filteredRecs} selectedRecId={selectedRecId} onSelectRec={handleSelectRec} />
+      <MapSection
+        recs={filteredRecs}
+        center={hotel.coordinates}
+        selectedRecId={selectedRecId}
+        onSelectRec={handleSelectRec}
+      />
       <div className="flex flex-1 flex-col gap-3 p-4 sm:p-6">
         {filteredRecs.length === 0 ? (
           <p className="py-8 text-center text-sm text-zinc-500 dark:text-zinc-400">
