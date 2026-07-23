@@ -74,6 +74,9 @@ function MapboxMap({ recs, center, selectedRecId, onSelectRec }: MapSectionProps
       style: "mapbox://styles/mapbox/streets-v12",
       center: [center.lng, center.lat],
       zoom: 13,
+      // Single-finger touch drags scroll the page instead of panning the map —
+      // otherwise guests scrolling past the map on mobile get stuck panning it instead.
+      cooperativeGestures: true,
     });
     map.addControl(new mapboxgl.NavigationControl(), "top-right");
     map.on("error", () => setMapFailed(true));
