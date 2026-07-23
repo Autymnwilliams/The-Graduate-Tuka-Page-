@@ -1,0 +1,131 @@
+{
+  "id": "guesthouse-andersonville",
+  "slug": "guesthouse",
+  "name": "The Guesthouse Hotel",
+  "neighborhood": "Andersonville, Chicago",
+  "logoUrl": "/assets/guesthouse/logo.png",
+  "heroImageUrl": "/assets/guesthouse/hero.jpg",
+  "brandColors": { "primary": "#1a3c34", "secondary": "#f4ede4" },
+  "coordinates": { "lat": 41.98, "lng": -87.6688 },
+  "welcomeMessage": "Curated by our team — the spots we actually send friends to.",
+  "freeRecLimit": 6,
+  "categories": ["dining", "coffee", "nightlife", "hidden-gems", "family-friendly", "shopping"],
+  "recs": [
+    {
+      "id": "rec_001",
+      "name": "Hopleaf Bar",
+      "category": "dining",
+      "coordinates": { "lat": 41.9738, "lng": -87.6692 },
+      "address": "5148 N Clark St",
+      "photoUrl": "/assets/guesthouse/recs/hopleaf.jpg",
+      "shortDescription": "Belgian beer and the mussels everyone in the neighborhood argues about.",
+      "staffNote": "Ask for a table in the back room if it's busy up front.",
+      "priceLevel": "$$",
+      "tags": ["local-favorite", "date-night"],
+      "isFeatured": true
+    },
+    {
+      "id": "rec_002",
+      "name": "Marty's Martini Bar",
+      "category": "nightlife",
+      "coordinates": { "lat": 41.9793, "lng": -87.6656 },
+      "address": "1511 W Balmoral Ave",
+      "photoUrl": "/assets/guesthouse/recs/martys.jpg",
+      "shortDescription": "A tiny, cash-only bar with the best martini in the neighborhood — no TVs, no phones at the bar.",
+      "staffNote": "Get there before 9pm on weekends, it fills up fast.",
+      "priceLevel": "$$",
+      "tags": ["date-night", "cozy"],
+      "isFeatured": true
+    },
+    {
+      "id": "rec_003",
+      "name": "Kopi, A Traveler's Cafe",
+      "category": "coffee",
+      "coordinates": { "lat": 41.9788, "lng": -87.6689 },
+      "address": "5317 N Clark St",
+      "photoUrl": "/assets/guesthouse/recs/kopi.jpg",
+      "shortDescription": "Global tea and coffee spot with floor cushions and a genuinely great chai.",
+      "priceLevel": "$",
+      "tags": ["work-friendly", "cozy"],
+      "isFeatured": true
+    },
+    {
+      "id": "rec_004",
+      "name": "Women & Children First",
+      "category": "shopping",
+      "coordinates": { "lat": 41.9786, "lng": -87.6688 },
+      "address": "5233 N Clark St",
+      "photoUrl": "/assets/guesthouse/recs/wcf.jpg",
+      "shortDescription": "Legendary feminist bookstore with an incredible staff-picks wall.",
+      "priceLevel": "$",
+      "tags": ["local-favorite"]
+    },
+    {
+      "id": "rec_005",
+      "name": "Big Jones",
+      "category": "dining",
+      "coordinates": { "lat": 41.9812, "lng": -87.669 },
+      "address": "5347 N Clark St",
+      "photoUrl": "/assets/guesthouse/recs/bigjones.jpg",
+      "shortDescription": "Southern comfort food done seriously — the fried chicken and biscuits are worth the wait.",
+      "staffNote": "Weekend brunch reservations go fast, book ahead.",
+      "priceLevel": "$$",
+      "tags": ["brunch", "local-favorite"]
+    },
+    {
+      "id": "rec_006",
+      "name": "M.Henry",
+      "category": "family-friendly",
+      "coordinates": { "lat": 41.9915, "lng": -87.6598 },
+      "address": "5911 N Broadway",
+      "photoUrl": "/assets/guesthouse/recs/mhenry.jpg",
+      "shortDescription": "A brunch institution — think French toast the size of your head, kid-friendly and unpretentious.",
+      "priceLevel": "$$",
+      "tags": ["brunch", "family-friendly"]
+    },
+    {
+      "id": "rec_007",
+      "name": "Middle Eastern Bakery & Grocery",
+      "category": "shopping",
+      "coordinates": { "lat": 41.9757, "lng": -87.6656 },
+      "address": "1512 W Foster Ave",
+      "photoUrl": "/assets/guesthouse/recs/middleeastern.jpg",
+      "shortDescription": "Fresh pita, olives, and spices — pick up a picnic here before heading to the lake.",
+      "priceLevel": "$",
+      "tags": ["hidden-gem"]
+    },
+    {
+      "id": "rec_008",
+      "name": "Simon's Tavern",
+      "category": "nightlife",
+      "coordinates": { "lat": 41.9784, "lng": -87.6688 },
+      "address": "5210 N Clark St",
+      "photoUrl": "/assets/guesthouse/recs/simons.jpg",
+      "shortDescription": "Dive bar with a nautical theme and a glögg (Swedish mulled wine) worth the trip alone.",
+      "priceLevel": "$",
+      "tags": ["dive-bar", "local-favorite"]
+    },
+    {
+      "id": "rec_009",
+      "name": "Andersonville Galleria",
+      "category": "hidden-gems",
+      "coordinates": { "lat": 41.9793, "lng": -87.6689 },
+      "address": "5247 N Clark St",
+      "photoUrl": "/assets/guesthouse/recs/galleria.jpg",
+      "shortDescription": "A co-op of over 100 local artists and makers, tucked behind an unassuming storefront.",
+      "priceLevel": "$",
+      "tags": ["hidden-gem", "gifts"]
+    },
+    {
+      "id": "rec_010",
+      "name": "Hamburger Mary's",
+      "category": "dining",
+      "coordinates": { "lat": 41.9822, "lng": -87.6691 },
+      "address": "5400 N Clark St",
+      "photoUrl": "/assets/guesthouse/recs/hamburgermarys.jpg",
+      "shortDescription": "Burgers, drag brunch, and a party atmosphere — Andersonville's loudest good time.",
+      "priceLevel": "$$",
+      "tags": ["date-night", "lively"]
+    }
+  ]
+}
