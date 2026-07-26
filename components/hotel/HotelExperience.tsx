@@ -24,7 +24,6 @@ function matchesQuery(rec: Rec, query: string): boolean {
 export function HotelExperience({ hotel }: { hotel: PublicHotel }) {
   const [query, setQuery] = useState("");
   const [selectedRecId, setSelectedRecId] = useState<string | null>(null);
-  const [expanded, setExpanded] = useState(false);
   const cardRefs = useRef(new Map<string, HTMLElement>());
 
   const filteredRecs = useMemo(
@@ -54,7 +53,6 @@ export function HotelExperience({ hotel }: { hotel: PublicHotel }) {
 
   function selectRec(id: string, scrollCardIntoView: boolean) {
     setSelectedRecId(id);
-    setExpanded(false);
     if (scrollCardIntoView) {
       cardRefs.current.get(id)?.scrollIntoView({ behavior: "smooth", block: "center" });
     }
@@ -90,16 +88,7 @@ export function HotelExperience({ hotel }: { hotel: PublicHotel }) {
           </div>
         </div>
         {selectedRec && (
-          <RecDetailSheet
-            rec={selectedRec}
-            hotel={hotel}
-            expanded={expanded}
-            onClose={() => {
-              setSelectedRecId(null);
-              setExpanded(false);
-            }}
-            onToggleExpand={() => setExpanded((prev) => !prev)}
-          />
+          <RecDetailSheet rec={selectedRec} hotel={hotel} onClose={() => setSelectedRecId(null)} />
         )}
       </div>
 
@@ -114,6 +103,7 @@ export function HotelExperience({ hotel }: { hotel: PublicHotel }) {
           filteredRecs.map((rec) => (
             <RecCard
               key={rec.id}
+              hotelSlug={hotel.slug}
               rec={rec}
               isSelected={selectedRecId === rec.id}
               onSelect={handleCardSelect}

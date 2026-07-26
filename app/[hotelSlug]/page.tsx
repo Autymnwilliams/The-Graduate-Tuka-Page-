@@ -16,7 +16,7 @@ export default async function HotelPage({
 
   const cookieStore = await cookies();
   const isUnlocked = cookieStore.get(unlockCookieName(hotelSlug))?.value === "1";
-  const publicHotel = toPublicHotel(hotel, isUnlocked);
+  const publicHotel = await toPublicHotel(hotel, isUnlocked);
 
   await recordEvent({
     type: "page_view",

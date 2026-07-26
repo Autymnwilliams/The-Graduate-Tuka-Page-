@@ -1,19 +1,23 @@
-import type { Rec } from "@/lib/types";
+import Link from "next/link";
+import type { RecWithStats } from "@/lib/types";
 import { categoryLabel } from "@/lib/categoryIcon";
+import { Stars } from "./Stars";
 
 export interface RecCardProps {
-  rec: Rec;
+  hotelSlug: string;
+  rec: RecWithStats;
   isSelected: boolean;
   onSelect: (id: string) => void;
   cardRef?: (el: HTMLElement | null) => void;
 }
 
-export function RecCard({ rec, isSelected, onSelect, cardRef }: RecCardProps) {
+export function RecCard({ hotelSlug, rec, isSelected, onSelect, cardRef }: RecCardProps) {
   return (
-    <article
+    <Link
       ref={cardRef}
+      href={`/${hotelSlug}/recs/${rec.id}`}
       onClick={() => onSelect(rec.id)}
-      className={`flex cursor-pointer gap-3 rounded-2xl border p-3 transition-colors ${
+      className={`flex gap-3 rounded-2xl border p-3 transition-colors ${
         isSelected ? "border-[var(--tuka-ink)] bg-zinc-50" : "border-zinc-200 bg-white"
       }`}
     >
@@ -35,7 +39,20 @@ export function RecCard({ rec, isSelected, onSelect, cardRef }: RecCardProps) {
           {rec.isFeatured && <span className="text-xs font-medium text-amber-700">Featured</span>}
         </div>
         <p className="mt-1 line-clamp-2 text-sm text-zinc-600">{rec.shortDescription}</p>
+        <div className="mt-1 flex items-center gap-3 text-xs text-zinc-500">
+          {rec.stats.avgRating !== null && (
+            <span className="flex items-center gap-1">
+              <Stars rating={rec.stats.avgRating} /> {rec.stats.avgRating.toFixed(1)} (
+              {rec.stats.reviewCount})
+            </span>
+          )}
+          {rec.stats.likeCount > 0 && (
+            <span className="flex items-center gap-1">
+              <span aria-hidden>❤️</span> {rec.stats.likeCount}
+            </span>
+          )}
+        </div>
       </div>
-    </article>
+    </Link>
   );
 }

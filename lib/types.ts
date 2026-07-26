@@ -42,6 +42,16 @@ export interface Hotel {
   recs: Rec[];
 }
 
+export interface RecStats {
+  likeCount: number;
+  reviewCount: number;
+  avgRating: number | null;
+}
+
+export interface RecWithStats extends Rec {
+  stats: RecStats;
+}
+
 /** Client-safe hotel payload — recs beyond the free tier are stripped, not just hidden. */
 export interface PublicHotel {
   id: string;
@@ -53,9 +63,20 @@ export interface PublicHotel {
   coordinates: Coordinates;
   welcomeMessage: string;
   categories: string[];
-  visibleRecs: Rec[];
+  visibleRecs: RecWithStats[];
   lockedCount: number;
   isUnlocked: boolean;
+}
+
+export interface Review {
+  id: string;
+  hotelSlug: string;
+  recId: string;
+  guestName: string;
+  rating: number;
+  text: string;
+  stayLength?: string;
+  createdAt: string;
 }
 
 export type AnalyticsEventType =
@@ -65,7 +86,9 @@ export type AnalyticsEventType =
   | "search_used"
   | "gate_hit"
   | "signup_started"
-  | "signup_completed";
+  | "signup_completed"
+  | "review_submitted"
+  | "rec_liked";
 
 export interface AnalyticsEvent {
   type: AnalyticsEventType;
