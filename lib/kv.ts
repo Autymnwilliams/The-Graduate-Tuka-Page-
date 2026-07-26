@@ -1,11 +1,11 @@
-import { Redis } from "@upstash/redis";
+import { MongoClient, type Collection } from "mongodb";
 
-const REST_URL = process.env.KV_REST_API_URL ?? process.env.UPSTASH_REDIS_REST_URL;
-const REST_TOKEN = process.env.KV_REST_API_TOKEN ?? process.env.UPSTASH_REDIS_REST_TOKEN;
+const MONGODB_URI = process.env.MONGODB_URI;
 
 /**
- * Minimal subset of Redis commands this app needs, so the rest of the code
- * doesn't care whether it's talking to real Upstash or the in-memory stand-in.
+ * Minimal subset of Redis-style commands this app needs, so the rest of the
+ * code doesn't care whether it's talking to real MongoDB or the in-memory
+ * stand-in.
  */
 interface KvClient {
   rpush(key: string, value: string): Promise<number>;
@@ -57,51 +57,85 @@ class MemoryKv implements KvClient {
   }
 }
 
-class UpstashKv implements KvClient {
-  constructor(private redis: Redis) {}
+interface KvDoc {
+  _id: string;
+  values: string[];
+}
+
+class MongoKv implements KvClient {
+  private listsReady: Promise<Collection<KvDoc>>;
+  private setsReady: Promise<Collection<KvDoc>>;
+
+  constructor(uri: string) {
+    const client = new MongoClient(uri);
+    const connected = client.connect().then(() => client.db());
+    this.listsReady = connected.then((db) => db.collection<KvDoc>("kv_lists"));
+    this.setsReady = connected.then((db) => db.collection<KvDoc>("kv_sets"));
+  }
 
   async rpush(key: string, value: string) {
-    return this.redis.rpush(key, value);
+    const lists = await this.listsReady;
+    const result = await lists.findOneAndUpdate(
+      { _id: key },
+      { $push: { values: value } },
+      { upsert: true, returnDocument: "after" },
+    );
+    return result?.values.length ?? 1;
   }
 
   async lrange(key: string, start: number, stop: number) {
-    return this.redis.lrange<string>(key, start, stop);
+    const lists = await this.listsReady;
+    const doc = await lists.findOne({ _id: key });
+    const values = doc?.values ?? [];
+    const end = stop === -1 ? values.length : stop + 1;
+    return values.slice(start, end);
   }
 
   async sadd(key: string, member: string) {
-    return this.redis.sadd(key, member);
+    const sets = await this.setsReady;
+    const result = await sets.updateOne(
+      { _id: key },
+      { $addToSet: { values: member } },
+      { upsert: true },
+    );
+    return result.modifiedCount > 0 || result.upsertedCount > 0 ? 1 : 0;
   }
 
   async srem(key: string, member: string) {
-    return this.redis.srem(key, member);
+    const sets = await this.setsReady;
+    const result = await sets.updateOne({ _id: key }, { $pull: { values: member } });
+    return result.modifiedCount > 0 ? 1 : 0;
   }
 
   async sismember(key: string, member: string) {
-    const result = await this.redis.sismember(key, member);
-    return result === 1;
+    const sets = await this.setsReady;
+    const doc = await sets.findOne({ _id: key, values: member });
+    return doc !== null;
   }
 
   async scard(key: string) {
-    return this.redis.scard(key);
+    const sets = await this.setsReady;
+    const doc = await sets.findOne({ _id: key });
+    return doc?.values.length ?? 0;
   }
 }
 
 let client: KvClient | null = null;
 
 /**
- * Real Upstash Redis when KV_REST_API_URL/TOKEN (or UPSTASH_REDIS_REST_*) are
- * configured; an in-memory stand-in otherwise. The in-memory version resets on
- * every server restart/cold start — fine for local dev, not meant for
- * production. Set up Vercel KV (or an Upstash database) before launch.
+ * Real MongoDB when MONGODB_URI is configured; an in-memory stand-in
+ * otherwise. The in-memory version resets on every server restart/cold
+ * start — fine for local dev, not meant for production. Set up a MongoDB
+ * Atlas (free tier is plenty for a pilot) database before launch.
  */
 export function getKv(): KvClient {
   if (client) return client;
 
-  if (REST_URL && REST_TOKEN) {
-    client = new UpstashKv(new Redis({ url: REST_URL, token: REST_TOKEN }));
+  if (MONGODB_URI) {
+    client = new MongoKv(MONGODB_URI);
   } else {
     console.warn(
-      "[kv] KV_REST_API_URL/TOKEN not set — using in-memory storage that resets on restart. Fine for local dev, not for production.",
+      "[kv] MONGODB_URI not set — using in-memory storage that resets on restart. Fine for local dev, not for production.",
     );
     client = new MemoryKv();
   }
