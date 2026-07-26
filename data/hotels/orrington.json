@@ -5,7 +5,6 @@
   "neighborhood": "Downtown Evanston, IL",
   "logoUrl": "/assets/orrington/logo.png",
   "heroImageUrl": "/assets/orrington/hero.jpg",
-  "brandColors": { "primary": "#0a2f5c", "secondary": "#f0ebe0" },
   "coordinates": { "lat": 42.0469, "lng": -87.6877 },
   "welcomeMessage": "Recommended by our front desk team — the spots we send friends and family to when they visit Evanston.",
   "freeRecLimit": 6,

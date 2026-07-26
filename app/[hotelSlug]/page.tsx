@@ -25,13 +25,8 @@ export default async function HotelPage({
     data: { isUnlocked },
   });
 
-  const brandStyle = {
-    "--brand-primary": publicHotel.brandColors.primary,
-    "--brand-secondary": publicHotel.brandColors.secondary,
-  } as React.CSSProperties;
-
   return (
-    <div className="flex flex-1 flex-col" style={brandStyle}>
+    <div className="flex flex-1 flex-col">
       <HotelExperience hotel={publicHotel} />
     </div>
   );

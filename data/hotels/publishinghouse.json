@@ -5,7 +5,6 @@
   "neighborhood": "Wicker Park / Ukrainian Village, Chicago",
   "logoUrl": "/assets/publishinghouse/logo.png",
   "heroImageUrl": "/assets/publishinghouse/hero.jpg",
-  "brandColors": { "primary": "#5c2a1a", "secondary": "#efe6d8" },
   "coordinates": { "lat": 41.9034, "lng": -87.6624 },
   "welcomeMessage": "Handpicked by our innkeepers — the same spots we tell our regulars about.",
   "freeRecLimit": 6,

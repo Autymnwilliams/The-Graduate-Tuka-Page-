@@ -47,7 +47,6 @@ export function toPublicHotel(hotel: Hotel, isUnlocked: boolean): PublicHotel {
     neighborhood: hotel.neighborhood,
     logoUrl: hotel.logoUrl,
     heroImageUrl: hotel.heroImageUrl,
-    brandColors: hotel.brandColors,
     coordinates: hotel.coordinates,
     welcomeMessage: hotel.welcomeMessage,
     categories: hotel.categories,

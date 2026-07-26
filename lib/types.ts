@@ -27,11 +27,6 @@ export interface Rec {
   isFeatured?: boolean;
 }
 
-export interface BrandColors {
-  primary: string;
-  secondary: string;
-}
-
 /** Full hotel record as stored on disk. Never send this whole object to the client. */
 export interface Hotel {
   id: string;
@@ -40,7 +35,6 @@ export interface Hotel {
   neighborhood: string;
   logoUrl: string;
   heroImageUrl: string;
-  brandColors: BrandColors;
   coordinates: Coordinates;
   welcomeMessage: string;
   freeRecLimit: number;
@@ -56,7 +50,6 @@ export interface PublicHotel {
   neighborhood: string;
   logoUrl: string;
   heroImageUrl: string;
-  brandColors: BrandColors;
   coordinates: Coordinates;
   welcomeMessage: string;
   categories: string[];

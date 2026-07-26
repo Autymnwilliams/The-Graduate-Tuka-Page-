@@ -32,9 +32,9 @@ function MapFallback({
   onSelectRec,
 }: Pick<MapSectionProps, "recs" | "selectedRecId" | "onSelectRec">) {
   return (
-    <div className="h-full w-full bg-zinc-100 dark:bg-zinc-900">
+    <div className="h-full w-full bg-zinc-100">
       <div className="flex h-full flex-col items-center justify-center gap-2 p-4 text-center">
-        <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
+        <p className="text-sm font-medium text-zinc-500">
           Map unavailable — {recs.length} pin{recs.length === 1 ? "" : "s"}
         </p>
         <div className="flex flex-wrap justify-center gap-2">
@@ -45,8 +45,8 @@ function MapFallback({
               onClick={() => onSelectRec(rec.id)}
               className={`rounded-full border px-3 py-1 text-xs transition-colors ${
                 selectedRecId === rec.id
-                  ? "border-[var(--brand-primary)] bg-[var(--brand-primary)] text-[var(--brand-secondary)]"
-                  : "border-zinc-300 bg-white text-zinc-600 dark:border-zinc-700 dark:bg-zinc-950 dark:text-zinc-400"
+                  ? "border-[var(--tuka-ink)] bg-[var(--tuka-ink)] text-white"
+                  : "border-zinc-300 bg-white text-zinc-600"
               }`}
             >
               {categoryIcon(rec.category)} {rec.name}

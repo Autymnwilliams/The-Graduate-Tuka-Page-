@@ -107,7 +107,7 @@ export function HotelExperience({ hotel }: { hotel: PublicHotel }) {
 
       <div className="flex flex-1 flex-col gap-3 p-4 sm:p-6">
         {filteredRecs.length === 0 ? (
-          <p className="py-8 text-center text-sm text-zinc-500 dark:text-zinc-400">
+          <p className="py-8 text-center text-sm text-zinc-500">
             No recs match &ldquo;{query}&rdquo;.
           </p>
         ) : (
