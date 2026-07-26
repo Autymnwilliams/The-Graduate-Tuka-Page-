@@ -7,7 +7,7 @@ export default function Home() {
       <p className="max-w-md text-zinc-600 dark:text-zinc-400">
         This site is reached via a hotel-specific link, e.g.{" "}
         <code className="rounded bg-zinc-200 px-1.5 py-0.5 text-sm dark:bg-zinc-800">
-          /guesthouse
+          /orrington
         </code>
         .
       </p>

@@ -21,6 +21,7 @@ export interface Rec {
   photoUrl: string;
   shortDescription: string;
   staffNote?: string;
+  staffName?: string;
   priceLevel: string;
   tags: string[];
   isFeatured?: boolean;

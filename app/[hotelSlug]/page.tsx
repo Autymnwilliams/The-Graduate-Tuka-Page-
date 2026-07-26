@@ -3,8 +3,6 @@ import { notFound } from "next/navigation";
 import { getHotelBySlug, toPublicHotel } from "@/lib/hotels";
 import { unlockCookieName } from "@/lib/unlock";
 import { recordEvent } from "@/lib/analytics";
-import { HotelHeader } from "@/components/hotel/HotelHeader";
-import { TukaIntro } from "@/components/hotel/TukaIntro";
 import { HotelExperience } from "@/components/hotel/HotelExperience";
 
 export default async function HotelPage({
@@ -34,8 +32,6 @@ export default async function HotelPage({
 
   return (
     <div className="flex flex-1 flex-col" style={brandStyle}>
-      <HotelHeader hotel={publicHotel} />
-      <TukaIntro welcomeMessage={publicHotel.welcomeMessage} />
       <HotelExperience hotel={publicHotel} />
     </div>
   );

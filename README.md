@@ -20,4 +20,4 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
-Hotel pages live at `/{hotelSlug}` (e.g. `/guesthouse`), with a signup screen at `/{hotelSlug}/signup`.
+Hotel pages live at `/{hotelSlug}` (e.g. `/orrington`), with a signup screen at `/{hotelSlug}/signup`.

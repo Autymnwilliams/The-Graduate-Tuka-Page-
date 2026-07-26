@@ -6,16 +6,19 @@ export function SearchBar({
   onChange: (value: string) => void;
 }) {
   return (
-    <div className="sticky top-0 z-20 border-b border-zinc-200 bg-white px-4 py-3 sm:px-6 dark:border-zinc-800 dark:bg-zinc-950">
+    <div className="flex items-center rounded-full bg-white/90 px-4 py-3 shadow-lg backdrop-blur-sm dark:bg-zinc-950/90">
       <input
         type="search"
         inputMode="search"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="Search recs by name, category, or tag..."
-        className="w-full rounded-full border border-zinc-300 bg-zinc-50 px-4 py-2.5 text-base text-zinc-900 outline-none focus:border-[var(--brand-primary)] focus:ring-2 focus:ring-[var(--brand-primary)]/30 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"
+        placeholder="What are you looking for?"
+        className="w-full bg-transparent text-base text-zinc-900 outline-none placeholder:text-zinc-500 dark:text-zinc-100 dark:placeholder:text-zinc-400"
         aria-label="Search recommendations"
       />
+      <span aria-hidden className="text-zinc-400">
+        🔍
+      </span>
     </div>
   );
 }

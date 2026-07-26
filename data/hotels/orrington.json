@@ -1,0 +1,121 @@
+{
+  "id": "hilton-orrington-evanston",
+  "slug": "orrington",
+  "name": "Hilton Orrington/Evanston",
+  "neighborhood": "Downtown Evanston, IL",
+  "logoUrl": "/assets/orrington/logo.png",
+  "heroImageUrl": "/assets/orrington/hero.jpg",
+  "brandColors": { "primary": "#0a2f5c", "secondary": "#f0ebe0" },
+  "coordinates": { "lat": 42.0469, "lng": -87.6877 },
+  "welcomeMessage": "Recommended by our front desk team — the spots we send friends and family to when they visit Evanston.",
+  "freeRecLimit": 6,
+  "categories": ["dining", "coffee", "nightlife", "hidden-gems", "family-friendly", "shopping"],
+  "recs": [
+    {
+      "id": "rec_001",
+      "name": "La Cocinita",
+      "category": "dining",
+      "coordinates": { "lat": 42.0459, "lng": -87.6825 },
+      "address": "521 Davis St, Evanston, IL 60201",
+      "photoUrl": "/assets/orrington/recs/lacocinita.jpg",
+      "shortDescription": "A beloved Venezuelan spot known for fresh arepas, empanadas, and plantains, with plenty of gluten-free and vegan options. Recognized by Food Network and the Wall Street Journal.",
+      "staffNote": "This is my go-to spot I send people when they're looking for a casual but great meal. Their staff is incredible and I highly recommend the tostones.",
+      "staffName": "Lauren, front desk",
+      "priceLevel": "$$",
+      "tags": ["delicious", "venezuelan", "happy-hour"],
+      "isFeatured": true
+    },
+    {
+      "id": "rec_002",
+      "name": "Joy Yee",
+      "category": "dining",
+      "coordinates": { "lat": 42.0459, "lng": -87.6828 },
+      "address": "533 Davis St, Evanston, IL 60201",
+      "photoUrl": "/assets/orrington/recs/joyyee.jpg",
+      "shortDescription": "The Evanston go-to for pan-Asian food, huge portions, and famously massive smoothies — the mango lychee is unreal.",
+      "staffNote": "Get the beef cubes over tomato rice, you won't regret it.",
+      "staffName": "Sarah, front desk",
+      "priceLevel": "$$",
+      "tags": ["pan-asian", "big-portions", "group-friendly"],
+      "isFeatured": true
+    },
+    {
+      "id": "rec_003",
+      "name": "Colectivo Coffee",
+      "category": "coffee",
+      "coordinates": { "lat": 42.04, "lng": -87.681 },
+      "address": "1935 Chicago Ave, Evanston, IL 60201",
+      "photoUrl": "/assets/orrington/recs/colectivo.jpg",
+      "shortDescription": "A big, sunny roastery-cafe with great espresso and plenty of seating for working or catching up.",
+      "priceLevel": "$",
+      "tags": ["work-friendly", "cozy"],
+      "isFeatured": true
+    },
+    {
+      "id": "rec_004",
+      "name": "Habibi Mediterranean Grill",
+      "category": "dining",
+      "coordinates": { "lat": 42.05, "lng": -87.6845 },
+      "address": "1830 Sherman Ave, Evanston, IL 60201",
+      "photoUrl": "/assets/orrington/recs/habibi.jpg",
+      "shortDescription": "Fast-casual Mediterranean with generous portions — shawarma and falafel plates that punch well above their price.",
+      "priceLevel": "$",
+      "tags": ["quick-bite", "local-favorite"]
+    },
+    {
+      "id": "rec_005",
+      "name": "Clarke's Off Campus",
+      "category": "family-friendly",
+      "coordinates": { "lat": 42.05, "lng": -87.68 },
+      "address": "720 Clark St, Evanston, IL 60201",
+      "photoUrl": "/assets/orrington/recs/clarkes.jpg",
+      "shortDescription": "A classic Evanston diner for breakfast and brunch — pancakes, omelets, and a warm, unpretentious dining room.",
+      "priceLevel": "$",
+      "tags": ["brunch", "family-friendly"]
+    },
+    {
+      "id": "rec_006",
+      "name": "Bat 17",
+      "category": "nightlife",
+      "coordinates": { "lat": 42.051, "lng": -87.687 },
+      "address": "1122 Florence Ave, Evanston, IL 60201",
+      "photoUrl": "/assets/orrington/recs/bat17.jpg",
+      "shortDescription": "A laid-back neighborhood sports bar with a deep beer list and pool tables — a good pick for a relaxed night out.",
+      "priceLevel": "$$",
+      "tags": ["casual", "sports-bar"]
+    },
+    {
+      "id": "rec_007",
+      "name": "Bookends & Beginnings",
+      "category": "hidden-gems",
+      "coordinates": { "lat": 42.0475, "lng": -87.6849 },
+      "address": "1712 1/2 Sherman Ave, Evanston, IL 60201",
+      "photoUrl": "/assets/orrington/recs/bookends.jpg",
+      "shortDescription": "An independent bookstore tucked into an alley off Sherman Ave — genuinely one of the best browsing experiences in Evanston.",
+      "priceLevel": "$",
+      "tags": ["hidden-gem", "local-favorite"]
+    },
+    {
+      "id": "rec_008",
+      "name": "The Spice House",
+      "category": "shopping",
+      "coordinates": { "lat": 42.0455, "lng": -87.6849 },
+      "address": "1512 Sherman Ave, Evanston, IL 60201",
+      "photoUrl": "/assets/orrington/recs/spicehouse.jpg",
+      "shortDescription": "Evanston-founded spice shop with fresh-ground blends — a great, packable gift for the foodies back home.",
+      "priceLevel": "$",
+      "tags": ["gifts", "local-favorite"]
+    },
+    {
+      "id": "rec_009",
+      "name": "Insomnia Cookies",
+      "category": "dining",
+      "coordinates": { "lat": 42.0478, "lng": -87.6849 },
+      "address": "1719 Sherman Ave, Evanston, IL 60201",
+      "photoUrl": "/assets/orrington/recs/insomnia.jpg",
+      "shortDescription": "Warm cookies delivered (or picked up) late — open well past midnight for exactly the craving you'd expect.",
+      "priceLevel": "$",
+      "tags": ["late-night", "dessert"]
+    }
+  ]
+}
