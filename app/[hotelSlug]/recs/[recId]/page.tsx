@@ -5,7 +5,7 @@ import { unlockCookieName } from "@/lib/unlock";
 import { GUEST_ID_COOKIE } from "@/lib/guest";
 import { getReviews } from "@/lib/reviews";
 import { getLikeCount, isLikedByGuest } from "@/lib/likes";
-import { walkMinutes } from "@/lib/distance";
+import { walkingRouteMinutes } from "@/lib/directions";
 import { categoryLabel } from "@/lib/categoryIcon";
 import { RecEngagement } from "@/components/hotel/RecEngagement";
 import { DirectionsLink } from "@/components/hotel/DirectionsLink";
@@ -46,13 +46,12 @@ export default async function RecPage({
   }
 
   const guestId = cookieStore.get(GUEST_ID_COOKIE)?.value;
-  const [reviews, likeCount, initialLiked] = await Promise.all([
+  const [reviews, likeCount, initialLiked, minutes] = await Promise.all([
     getReviews(hotelSlug, recId),
     getLikeCount(hotelSlug, recId),
     guestId ? isLikedByGuest(hotelSlug, recId, guestId) : Promise.resolve(false),
+    walkingRouteMinutes(hotel.coordinates, rec.coordinates),
   ]);
-
-  const minutes = walkMinutes(hotel.coordinates, rec.coordinates);
 
   return (
     <main className="mx-auto flex w-full max-w-lg flex-1 flex-col px-5 py-4">
