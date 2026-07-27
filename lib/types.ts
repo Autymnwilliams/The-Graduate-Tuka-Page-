@@ -36,7 +36,6 @@ export interface Hotel {
   logoUrl: string;
   heroImageUrl: string;
   coordinates: Coordinates;
-  welcomeMessage: string;
   freeRecLimit: number;
   categories: string[];
   recs: Rec[];
@@ -61,7 +60,6 @@ export interface PublicHotel {
   logoUrl: string;
   heroImageUrl: string;
   coordinates: Coordinates;
-  welcomeMessage: string;
   categories: string[];
   visibleRecs: RecWithStats[];
   lockedCount: number;

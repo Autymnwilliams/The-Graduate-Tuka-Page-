@@ -6,7 +6,6 @@
   "logoUrl": "/assets/orrington/logo.png",
   "heroImageUrl": "/assets/orrington/hero.jpg",
   "coordinates": { "lat": 42.0469, "lng": -87.6877 },
-  "welcomeMessage": "Recommended by our front desk team — the spots we send friends and family to when they visit Evanston.",
   "freeRecLimit": 10,
   "categories": ["dining", "coffee", "nightlife", "shopping", "outdoors", "culture"],
   "recs": [

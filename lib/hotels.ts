@@ -61,7 +61,6 @@ export async function toPublicHotel(hotel: Hotel, isUnlocked: boolean): Promise<
     logoUrl: hotel.logoUrl,
     heroImageUrl: hotel.heroImageUrl,
     coordinates: hotel.coordinates,
-    welcomeMessage: hotel.welcomeMessage,
     categories: hotel.categories,
     visibleRecs,
     lockedCount,

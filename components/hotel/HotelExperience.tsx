@@ -10,7 +10,6 @@ import { HotelHeader } from "./HotelHeader";
 import { RecCard } from "./RecCard";
 import { RecDetailSheet } from "./RecDetailSheet";
 import { GateBanner } from "./GateBanner";
-import { TukaIntro } from "./TukaIntro";
 
 function matchesQuery(rec: Rec, query: string): boolean {
   const q = query.trim().toLowerCase();
@@ -93,8 +92,6 @@ export function HotelExperience({ hotel }: { hotel: PublicHotel }) {
           <RecDetailSheet rec={selectedRec} hotel={hotel} onClose={() => setSelectedRecId(null)} />
         )}
       </div>
-
-      <TukaIntro welcomeMessage={hotel.welcomeMessage} />
 
       <div className="flex flex-1 flex-col gap-3 p-4 sm:p-6">
         {filteredRecs.length === 0 ? (
