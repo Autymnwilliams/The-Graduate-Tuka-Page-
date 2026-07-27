@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { PublicHotel, Rec } from "@/lib/types";
 import { track } from "@/lib/analytics-client";
+import { matchesCategorySynonym } from "@/lib/searchSynonyms";
 import { SearchBar } from "./SearchBar";
 import { MapSection } from "./MapSection";
 import { HotelHeader } from "./HotelHeader";
@@ -17,7 +18,8 @@ function matchesQuery(rec: Rec, query: string): boolean {
   return (
     rec.name.toLowerCase().includes(q) ||
     rec.category.toLowerCase().includes(q) ||
-    rec.tags.some((tag) => tag.toLowerCase().includes(q))
+    rec.tags.some((tag) => tag.toLowerCase().includes(q)) ||
+    matchesCategorySynonym(rec.category.toLowerCase(), q)
   );
 }
 
