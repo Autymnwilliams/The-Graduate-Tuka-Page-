@@ -9,6 +9,8 @@ const CATEGORY_SYNONYMS: Record<string, string[]> = {
   "hidden-gems": ["gem", "gems", "hidden gem", "local favorite"],
   "family-friendly": ["kids", "family", "children", "kid-friendly"],
   shopping: ["shop", "shops", "store", "stores", "retail"],
+  outdoors: ["park", "parks", "beach", "nature", "walk", "walking", "outdoor", "arboretum", "trail", "lakefront"],
+  culture: ["museum", "art", "music", "live music", "gallery", "arts"],
 };
 
 export function matchesCategorySynonym(category: string, query: string): boolean {

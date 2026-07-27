@@ -5,6 +5,8 @@ const CATEGORY_ICONS: Record<string, string> = {
   "hidden-gems": "💎",
   "family-friendly": "👪",
   shopping: "🛍️",
+  outdoors: "🌳",
+  culture: "🎭",
 };
 
 export function categoryIcon(category: string): string {
