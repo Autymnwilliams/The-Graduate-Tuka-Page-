@@ -9,6 +9,7 @@ const MONGODB_URI = process.env.MONGODB_URI;
  */
 interface KvClient {
   rpush(key: string, value: string): Promise<number>;
+  rpushMany(key: string, values: string[]): Promise<number>;
   lrange(key: string, start: number, stop: number): Promise<string[]>;
   sadd(key: string, member: string): Promise<number>;
   saddMany(key: string, members: string[]): Promise<number>;
@@ -24,6 +25,13 @@ class MemoryKv implements KvClient {
   async rpush(key: string, value: string) {
     const list = this.lists.get(key) ?? [];
     list.push(value);
+    this.lists.set(key, list);
+    return list.length;
+  }
+
+  async rpushMany(key: string, values: string[]) {
+    const list = this.lists.get(key) ?? [];
+    list.push(...values);
     this.lists.set(key, list);
     return list.length;
   }
@@ -93,6 +101,17 @@ class MongoKv implements KvClient {
       { upsert: true, returnDocument: "after" },
     );
     return result?.values.length ?? 1;
+  }
+
+  async rpushMany(key: string, values: string[]) {
+    if (values.length === 0) return 0;
+    const lists = await this.listsReady;
+    const result = await lists.findOneAndUpdate(
+      { _id: key },
+      { $push: { values: { $each: values } } },
+      { upsert: true, returnDocument: "after" },
+    );
+    return result?.values.length ?? values.length;
   }
 
   async lrange(key: string, start: number, stop: number) {
