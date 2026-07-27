@@ -18,7 +18,7 @@ export interface Rec {
   category: RecCategory;
   coordinates: Coordinates;
   address: string;
-  photoUrl: string;
+  photoUrls: string[];
   shortDescription: string;
   staffNote?: string;
   staffName?: string;

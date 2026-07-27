@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 import { getHotelBySlug, isRecVisible } from "@/lib/hotels";
-import { unlockCookieName } from "@/lib/unlock";
+import { unlockCookieName, GATE_DISABLED } from "@/lib/unlock";
 import { GUEST_ID_COOKIE } from "@/lib/guest";
 import { getReviews } from "@/lib/reviews";
 import { getLikeCount, isLikedByGuest } from "@/lib/likes";
@@ -9,7 +9,7 @@ import { walkingRouteMinutes } from "@/lib/directions";
 import { categoryLabel } from "@/lib/categoryIcon";
 import { RecEngagement } from "@/components/hotel/RecEngagement";
 import { DirectionsLink } from "@/components/hotel/DirectionsLink";
-import { RecPhoto } from "@/components/hotel/RecPhoto";
+import { RecGallery } from "@/components/hotel/RecGallery";
 
 export default async function RecPage({
   params,
@@ -24,7 +24,7 @@ export default async function RecPage({
   if (!rec) notFound();
 
   const cookieStore = await cookies();
-  const isUnlocked = cookieStore.get(unlockCookieName(hotelSlug))?.value === "1";
+  const isUnlocked = GATE_DISABLED || cookieStore.get(unlockCookieName(hotelSlug))?.value === "1";
 
   if (!isRecVisible(hotel, recId, isUnlocked)) {
     return (
@@ -101,11 +101,11 @@ export default async function RecPage({
         </span>
       </DirectionsLink>
 
-      <RecPhoto
-        src={rec.photoUrl}
+      <RecGallery
+        photoUrls={rec.photoUrls}
         alt={rec.name}
         category={rec.category}
-        className="mt-4 h-56 w-full rounded-xl bg-zinc-200 object-cover"
+        className="mt-4 h-56 w-full rounded-xl bg-zinc-200"
       />
 
       <div className="mt-4">

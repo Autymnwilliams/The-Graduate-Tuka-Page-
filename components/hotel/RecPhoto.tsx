@@ -9,14 +9,14 @@ export function RecPhoto({
   category,
   className,
 }: {
-  src: string;
+  src?: string;
   alt: string;
   category: string;
   className?: string;
 }) {
   const [errored, setErrored] = useState(false);
 
-  if (errored) {
+  if (!src || errored) {
     return (
       <div className={`flex items-center justify-center bg-zinc-100 text-3xl ${className ?? ""}`} aria-hidden>
         {categoryIcon(category)}

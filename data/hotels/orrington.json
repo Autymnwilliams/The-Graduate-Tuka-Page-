@@ -5,339 +5,591 @@
   "neighborhood": "Downtown Evanston, IL",
   "logoUrl": "/assets/orrington/logo.png",
   "heroImageUrl": "/assets/orrington/hero.jpg",
-  "coordinates": { "lat": 42.0469, "lng": -87.6877 },
+  "coordinates": {
+    "lat": 42.0469,
+    "lng": -87.6877
+  },
   "freeRecLimit": 10,
-  "categories": ["dining", "coffee", "nightlife", "shopping", "outdoors", "culture"],
+  "categories": [
+    "dining",
+    "coffee",
+    "nightlife",
+    "shopping",
+    "outdoors",
+    "culture"
+  ],
   "recs": [
     {
       "id": "rec_001",
       "name": "Campagnola",
       "category": "dining",
-      "coordinates": { "lat": 42.033, "lng": -87.6822 },
+      "coordinates": {
+        "lat": 42.033,
+        "lng": -87.6822
+      },
       "address": "815 Chicago Ave, Evanston, IL 60202",
-      "photoUrl": "/assets/orrington/recs/campagnola.jpg",
+      "photoUrls": [],
       "shortDescription": "A longtime Evanston favorite for seasonal, farm-to-table Italian cooking in a warm, brick-walled dining room. Great for a special dinner or celebrating an occasion just a few blocks from campus.",
       "priceLevel": "$$$",
-      "tags": ["upscale", "date-night", "italian", "wine-list"]
+      "tags": [
+        "upscale",
+        "date-night",
+        "italian",
+        "wine-list"
+      ]
     },
     {
       "id": "rec_002",
       "name": "Backlot Coffee",
       "category": "coffee",
-      "coordinates": { "lat": 42.0693, "lng": -87.6968 },
+      "coordinates": {
+        "lat": 42.0693,
+        "lng": -87.6968
+      },
       "address": "2006 Central St, Evanston, IL 60201",
-      "photoUrl": "/assets/orrington/recs/backlotcoffee.jpg",
+      "photoUrls": [],
       "shortDescription": "An independently owned Evanston coffeehouse with a loyal following — great pastries, friendly baristas, and a laid-back community feel. A favorite among both locals and Northwestern students.",
       "priceLevel": "$",
-      "tags": ["local-roaster", "study-spot", "pastries", "community-vibe"]
+      "tags": [
+        "local-roaster",
+        "study-spot",
+        "pastries",
+        "community-vibe"
+      ]
     },
     {
       "id": "rec_003",
       "name": "Ward Eight",
       "category": "nightlife",
-      "coordinates": { "lat": 42.0413, "lng": -87.6849 },
+      "coordinates": {
+        "lat": 42.0413,
+        "lng": -87.6849
+      },
       "address": "629 Howard St, Evanston, IL 60202",
-      "photoUrl": "/assets/orrington/recs/wardeight.jpg",
+      "photoUrls": [],
       "shortDescription": "A cozy, unpretentious cocktail lounge with expertly crafted drinks and a relaxed vibe. Consistently ranked among Evanston's best bars for guests who want a proper cocktail without the fuss.",
       "priceLevel": "$$",
-      "tags": ["craft-cocktails", "intimate", "date-night", "small-plates"]
+      "tags": [
+        "craft-cocktails",
+        "intimate",
+        "date-night",
+        "small-plates"
+      ]
     },
     {
       "id": "rec_004",
       "name": "Clark Street Beach & Lighthouse",
       "category": "outdoors",
-      "coordinates": { "lat": 42.0489341, "lng": -87.6728082 },
+      "coordinates": {
+        "lat": 42.0489341,
+        "lng": -87.6728082
+      },
       "address": "1811 Sheridan Rd, Evanston, IL 60201",
-      "photoUrl": "/assets/orrington/recs/clarkstreetbeach.jpg",
+      "photoUrls": [],
       "shortDescription": "The closest public beach to downtown Evanston, with soft sand, lake views, and the iconic Evanston Lighthouse nearby. A great spot for a morning walk or sunset visit.",
       "priceLevel": "Free",
-      "tags": ["lake-views", "beach", "walkable", "lighthouse"]
+      "tags": [
+        "lake-views",
+        "beach",
+        "walkable",
+        "lighthouse"
+      ]
     },
     {
       "id": "rec_005",
       "name": "Bookends & Beginnings",
       "category": "shopping",
-      "coordinates": { "lat": 42.0478, "lng": -87.6879 },
+      "coordinates": {
+        "lat": 42.0478,
+        "lng": -87.6879
+      },
       "address": "1620 Orrington Ave, Evanston, IL 60201",
-      "photoUrl": "/assets/orrington/recs/bookends.jpg",
+      "photoUrls": [],
       "shortDescription": "A beloved two-story independent bookstore in the heart of downtown Evanston, with new and used books, gifts, literary events, and a cozy in-store bar. A must for book-loving guests — and it's practically next door to the hotel.",
       "priceLevel": "$",
-      "tags": ["independent-bookstore", "gifts", "events", "wine-bar"]
+      "tags": [
+        "independent-bookstore",
+        "gifts",
+        "events",
+        "wine-bar"
+      ]
     },
     {
       "id": "rec_006",
       "name": "Block Museum of Art",
       "category": "culture",
-      "coordinates": { "lat": 42.0525192, "lng": -87.6728296 },
+      "coordinates": {
+        "lat": 42.0525192,
+        "lng": -87.6728296
+      },
       "address": "40 Arts Circle Dr, Evanston, IL 60208",
-      "photoUrl": "/assets/orrington/recs/blockmuseum.jpg",
+      "photoUrls": [],
       "shortDescription": "Northwestern's public art museum, free and open to all, with a global exhibition program spanning eras and cultures. An easy, no-cost cultural stop for guests exploring campus.",
       "priceLevel": "Free",
-      "tags": ["free-admission", "on-campus", "rotating-exhibits", "art"]
+      "tags": [
+        "free-admission",
+        "on-campus",
+        "rotating-exhibits",
+        "art"
+      ]
     },
     {
       "id": "rec_007",
       "name": "Koi Fine Asian Cuisine & Lounge",
       "category": "dining",
-      "coordinates": { "lat": 42.0459, "lng": -87.6809 },
+      "coordinates": {
+        "lat": 42.0459,
+        "lng": -87.6809
+      },
       "address": "624 Davis St, Evanston, IL 60201",
-      "photoUrl": "/assets/orrington/recs/koi.jpg",
+      "photoUrls": [],
       "shortDescription": "Stylish pan-Asian restaurant and lounge with sushi, a full Asian-fusion menu, and a fireplace patio that guests love in the evenings. Good for a dinner that feels a bit more elevated.",
       "priceLevel": "$$",
-      "tags": ["sushi", "lounge", "upscale-casual", "cocktails"]
+      "tags": [
+        "sushi",
+        "lounge",
+        "upscale-casual",
+        "cocktails"
+      ]
     },
     {
       "id": "rec_008",
       "name": "Reprise Coffee Roasters",
       "category": "coffee",
-      "coordinates": { "lat": 42.0398, "lng": -87.6796 },
+      "coordinates": {
+        "lat": 42.0398,
+        "lng": -87.6796
+      },
       "address": "710 Main St, Evanston, IL 60202",
-      "photoUrl": "/assets/orrington/recs/reprise.jpg",
+      "photoUrls": [],
       "shortDescription": "Evanston's specialty coffee roaster, known for its award-winning lattes and calm, rustic atmosphere. A great stop for guests who take their coffee seriously.",
       "priceLevel": "$",
-      "tags": ["specialty-coffee", "roastery", "award-winning-lattes", "quiet"]
+      "tags": [
+        "specialty-coffee",
+        "roastery",
+        "award-winning-lattes",
+        "quiet"
+      ]
     },
     {
       "id": "rec_009",
       "name": "Temperance Beer Company",
       "category": "nightlife",
-      "coordinates": { "lat": 42.0398, "lng": -87.6836 },
+      "coordinates": {
+        "lat": 42.0398,
+        "lng": -87.6836
+      },
       "address": "2000 Dempster St, Evanston, IL 60202",
-      "photoUrl": "/assets/orrington/recs/temperance.jpg",
+      "photoUrls": [],
       "shortDescription": "Evanston's first and oldest brewery, pouring house-made IPAs and seasonal beers in a lively taproom. Hosts brewery tours and events, making it a fun stop for beer-curious guests.",
       "priceLevel": "$$",
-      "tags": ["craft-beer", "brewery-tours", "taproom", "casual"]
+      "tags": [
+        "craft-beer",
+        "brewery-tours",
+        "taproom",
+        "casual"
+      ]
     },
     {
       "id": "rec_010",
       "name": "Dawes Park & Arrington Lagoon",
       "category": "outdoors",
-      "coordinates": { "lat": 42.0498, "lng": -87.6764 },
+      "coordinates": {
+        "lat": 42.0498,
+        "lng": -87.6764
+      },
       "address": "1700 Sheridan Rd, Evanston, IL 60201",
-      "photoUrl": "/assets/orrington/recs/dawespark.jpg",
+      "photoUrls": [],
       "shortDescription": "A scenic lakefront park with a lagoon, walking paths, and a pier — home to ducks, geese, and one of Evanston's most photogenic outdoor spots. Turns into an ice rink in winter.",
       "priceLevel": "Free",
-      "tags": ["lakefront-park", "walking-path", "picnic", "ice-skating"]
+      "tags": [
+        "lakefront-park",
+        "walking-path",
+        "picnic",
+        "ice-skating"
+      ]
     },
     {
       "id": "rec_011",
       "name": "Kabul House",
       "category": "dining",
-      "coordinates": { "lat": 42.0397, "lng": -87.6885 },
+      "coordinates": {
+        "lat": 42.0397,
+        "lng": -87.6885
+      },
       "address": "2424 Dempster St, Evanston, IL 60202",
-      "photoUrl": "/assets/orrington/recs/kabulhouse.jpg",
+      "photoUrls": [],
       "shortDescription": "Authentic Afghan cuisine in a warm, welcoming setting — think kabobs, mantu dumplings, and fragrant rice dishes. A great pick for guests looking for something they can't easily find elsewhere.",
       "priceLevel": "$$",
-      "tags": ["afghan-cuisine", "family-owned", "unique", "vegetarian-options"]
+      "tags": [
+        "afghan-cuisine",
+        "family-owned",
+        "unique",
+        "vegetarian-options"
+      ]
     },
     {
       "id": "rec_012",
       "name": "Tapas Barcelona",
       "category": "dining",
-      "coordinates": { "lat": 42.0311, "lng": -87.6822 },
+      "coordinates": {
+        "lat": 42.0311,
+        "lng": -87.6822
+      },
       "address": "1615 Chicago Ave, Evanston, IL 60201",
-      "photoUrl": "/assets/orrington/recs/tapasbarcelona.jpg",
+      "photoUrls": [],
       "shortDescription": "Lively Spanish tapas spot perfect for groups who want to share small plates and sangria. Popular for its energetic weekend atmosphere and flamenco nights.",
       "priceLevel": "$$",
-      "tags": ["tapas", "sangria", "share-plates", "lively"]
+      "tags": [
+        "tapas",
+        "sangria",
+        "share-plates",
+        "lively"
+      ]
     },
     {
       "id": "rec_013",
       "name": "Blue Horse Tavern",
       "category": "dining",
-      "coordinates": { "lat": 42.0468641, "lng": -87.6863442 },
+      "coordinates": {
+        "lat": 42.0468641,
+        "lng": -87.6863442
+      },
       "address": "1026 Davis St, Evanston, IL 60201",
-      "photoUrl": "/assets/orrington/recs/bluehorsetavern.jpg",
+      "photoUrls": [],
       "shortDescription": "No-frills neighborhood tavern known for a deep bourbon and whiskey list alongside solid American comfort food — burgers, ribs, and hearty pub fare. A reliable, unpretentious go-to.",
       "priceLevel": "$$",
-      "tags": ["whiskey-selection", "casual", "burgers", "neighborhood-bar"]
+      "tags": [
+        "whiskey-selection",
+        "casual",
+        "burgers",
+        "neighborhood-bar"
+      ]
     },
     {
       "id": "rec_014",
       "name": "Union Squared",
       "category": "dining",
-      "coordinates": { "lat": 42.0416, "lng": -87.6822 },
+      "coordinates": {
+        "lat": 42.0416,
+        "lng": -87.6822
+      },
       "address": "1307 Chicago Ave, Evanston, IL 60201",
-      "photoUrl": "/assets/orrington/recs/unionsquared.jpg",
+      "photoUrls": [],
       "shortDescription": "Square-cut, Detroit-style pizza piled high with toppings like Mike's hot honey and pickled jalapeños. Quick, affordable, and popular with the Northwestern crowd — outdoor terrace seating in nice weather.",
       "priceLevel": "$",
-      "tags": ["detroit-style-pizza", "casual", "counter-service", "outdoor-terrace"]
+      "tags": [
+        "detroit-style-pizza",
+        "casual",
+        "counter-service",
+        "outdoor-terrace"
+      ]
     },
     {
       "id": "rec_015",
       "name": "Frida's Breakfast & Lunch",
       "category": "dining",
-      "coordinates": { "lat": 42.0478, "lng": -87.6841 },
+      "coordinates": {
+        "lat": 42.0478,
+        "lng": -87.6841
+      },
       "address": "618 Church St, Evanston, IL 60201",
-      "photoUrl": "/assets/orrington/recs/fridas.jpg",
+      "photoUrls": [],
       "shortDescription": "A cozy, no-fuss breakfast-and-lunch spot for guests who want a great morning meal before heading out for the day. Known for generous portions and friendly service.",
       "priceLevel": "$",
-      "tags": ["brunch", "breakfast", "casual", "family-friendly"]
+      "tags": [
+        "brunch",
+        "breakfast",
+        "casual",
+        "family-friendly"
+      ]
     },
     {
       "id": "rec_016",
       "name": "Soul & Smoke",
       "category": "dining",
-      "coordinates": { "lat": 42.0374, "lng": -87.6871 },
+      "coordinates": {
+        "lat": 42.0374,
+        "lng": -87.6871
+      },
       "address": "1601 Payne St, Evanston, IL 60201",
-      "photoUrl": "/assets/orrington/recs/soulandsmoke.jpg",
+      "photoUrls": [],
       "shortDescription": "Serious, competition-style barbecue with smoked brisket, ribs, and all the classic sides. A great casual option for guests craving something hearty and Southern-inspired.",
       "priceLevel": "$$",
-      "tags": ["barbecue", "smoked-meats", "casual", "takeout-friendly"]
+      "tags": [
+        "barbecue",
+        "smoked-meats",
+        "casual",
+        "takeout-friendly"
+      ]
     },
     {
       "id": "rec_017",
       "name": "Habibi Mediterranean Grill",
       "category": "dining",
-      "coordinates": { "lat": 42.0478, "lng": -87.6845 },
+      "coordinates": {
+        "lat": 42.0478,
+        "lng": -87.6845
+      },
       "address": "825 Church St, Evanston, IL 60201",
-      "photoUrl": "/assets/orrington/recs/habibi.jpg",
+      "photoUrls": [],
       "shortDescription": "Fresh, flavorful Mediterranean grill fare — shawarma, falafel, hummus plates — in a casual, fast-friendly setting. A dependable lighter option near downtown Evanston.",
       "priceLevel": "$",
-      "tags": ["mediterranean", "healthy", "casual", "vegetarian-friendly"]
+      "tags": [
+        "mediterranean",
+        "healthy",
+        "casual",
+        "vegetarian-friendly"
+      ]
     },
     {
       "id": "rec_018",
       "name": "Taco Diablo",
       "category": "dining",
-      "coordinates": { "lat": 42.0468641, "lng": -87.6863442 },
+      "coordinates": {
+        "lat": 42.0468641,
+        "lng": -87.6863442
+      },
       "address": "1026 Davis St, Evanston, IL 60201",
-      "photoUrl": "/assets/orrington/recs/tacodiablo.jpg",
+      "photoUrls": [],
       "shortDescription": "A local go-to for tacos and margaritas in a fun, colorful space. Frequently mentioned alongside Evanston's other neighborhood favorites as a reliable casual dinner spot.",
       "priceLevel": "$$",
-      "tags": ["tacos", "margaritas", "casual", "local-favorite"]
+      "tags": [
+        "tacos",
+        "margaritas",
+        "casual",
+        "local-favorite"
+      ]
     },
     {
       "id": "rec_019",
       "name": "Brothers K Coffeehouse",
       "category": "coffee",
-      "coordinates": { "lat": 42.0398, "lng": -87.6793 },
+      "coordinates": {
+        "lat": 42.0398,
+        "lng": -87.6793
+      },
       "address": "500 Main St, Evanston, IL 60202",
-      "photoUrl": "/assets/orrington/recs/brotherskcoffeehouse.jpg",
+      "photoUrls": [],
       "shortDescription": "A mellow, well-loved coffeehouse with a cozy diner-esque feel, serving coffee from around the world plus teas, smoothies, and pastries. Great for settling in with a book or laptop.",
       "priceLevel": "$",
-      "tags": ["cozy", "coffeehouse", "since-2005", "relaxed"]
+      "tags": [
+        "cozy",
+        "coffeehouse",
+        "since-2005",
+        "relaxed"
+      ]
     },
     {
       "id": "rec_020",
       "name": "Cupitol Coffee & Eatery",
       "category": "coffee",
-      "coordinates": { "lat": 42.0442, "lng": -87.6839 },
+      "coordinates": {
+        "lat": 42.0442,
+        "lng": -87.6839
+      },
       "address": "812 Grove St, Evanston, IL 60201",
-      "photoUrl": "/assets/orrington/recs/cupitol.jpg",
+      "photoUrls": [],
       "shortDescription": "A bright, spacious café serving lattes, croissants, and a full food menu — equally good for a quick coffee or a longer brunch sit-down.",
       "priceLevel": "$$",
-      "tags": ["coffee-and-food", "pastries", "bright-space", "brunch"]
+      "tags": [
+        "coffee-and-food",
+        "pastries",
+        "bright-space",
+        "brunch"
+      ]
     },
     {
       "id": "rec_021",
       "name": "Sketchbook Brewing Evanston",
       "category": "nightlife",
-      "coordinates": { "lat": 42.033, "lng": -87.6816 },
+      "coordinates": {
+        "lat": 42.033,
+        "lng": -87.6816
+      },
       "address": "821 Chicago Ave, Evanston, IL 60202",
-      "photoUrl": "/assets/orrington/recs/sketchbookbrewing.jpg",
+      "photoUrls": [],
       "shortDescription": "A intimate brewery outpost with a dozen beers on tap and an easy-to-reach location near transit. Good for a casual group hangout after a day of exploring.",
       "priceLevel": "$$",
-      "tags": ["brewery", "easy-access", "group-friendly", "rotating-taps"]
+      "tags": [
+        "brewery",
+        "easy-access",
+        "group-friendly",
+        "rotating-taps"
+      ]
     },
     {
       "id": "rec_022",
       "name": "Five & Dime",
       "category": "nightlife",
-      "coordinates": { "lat": 42.0468641, "lng": -87.6863442 },
+      "coordinates": {
+        "lat": 42.0468641,
+        "lng": -87.6863442
+      },
       "address": "1026 Davis St, Evanston, IL 60201",
-      "photoUrl": "/assets/orrington/recs/fiveanddime.jpg",
+      "photoUrls": [],
       "shortDescription": "A go-to for casual dinners and drinks, with one of Evanston's best rooftop patios for warm-weather evenings. Known for shareable American fare and a relaxed, fun atmosphere.",
       "priceLevel": "$$",
-      "tags": ["rooftop", "cocktails", "american-fare", "outdoor-seating"]
+      "tags": [
+        "rooftop",
+        "cocktails",
+        "american-fare",
+        "outdoor-seating"
+      ]
     },
     {
       "id": "rec_023",
       "name": "Northwestern Campus & Shakespeare Garden",
       "category": "outdoors",
-      "coordinates": { "lat": 42.0512, "lng": -87.6749 },
+      "coordinates": {
+        "lat": 42.0512,
+        "lng": -87.6749
+      },
       "address": "2121 Sheridan Rd, Evanston, IL 60201",
-      "photoUrl": "/assets/orrington/recs/shakespearegarden.jpg",
+      "photoUrls": [],
       "shortDescription": "Northwestern's lakefront campus is worth a stroll on its own, and the Shakespeare Garden — planted with flora referenced in the Bard's works — is a hidden, quiet gem for literature-minded guests.",
       "priceLevel": "Free",
-      "tags": ["lakefront-campus", "free", "gardens", "architecture"]
+      "tags": [
+        "lakefront-campus",
+        "free",
+        "gardens",
+        "architecture"
+      ]
     },
     {
       "id": "rec_024",
       "name": "Ladd Arboretum",
       "category": "outdoors",
-      "coordinates": { "lat": 42.0533, "lng": -87.7004 },
+      "coordinates": {
+        "lat": 42.0533,
+        "lng": -87.7004
+      },
       "address": "2024 N McCormick Blvd, Evanston, IL 60201",
-      "photoUrl": "/assets/orrington/recs/laddarboretum.jpg",
+      "photoUrls": [],
       "shortDescription": "A peaceful stretch of green space along the North Shore Channel, popular for walking, jogging, and birdwatching. A nice escape from downtown Evanston's bustle.",
       "priceLevel": "Free",
-      "tags": ["green-space", "walking-trails", "quiet", "birdwatching"]
+      "tags": [
+        "green-space",
+        "walking-trails",
+        "quiet",
+        "birdwatching"
+      ]
     },
     {
       "id": "rec_025",
       "name": "Amaranth Books",
       "category": "shopping",
-      "coordinates": { "lat": 42.0459, "lng": -87.6801 },
+      "coordinates": {
+        "lat": 42.0459,
+        "lng": -87.6801
+      },
       "address": "828 Davis St, Evanston, IL 60201",
-      "photoUrl": "/assets/orrington/recs/amaranthbooks.jpg",
+      "photoUrls": [],
       "shortDescription": "A 30-plus-year Evanston institution for used and rare books, plus classical music CDs and DVDs. Great for guests who love browsing for something unexpected.",
       "priceLevel": "$",
-      "tags": ["used-books", "rare-books", "vintage", "local-institution"]
+      "tags": [
+        "used-books",
+        "rare-books",
+        "vintage",
+        "local-institution"
+      ]
     },
     {
       "id": "rec_026",
       "name": "Evanston SPACE",
       "category": "culture",
-      "coordinates": { "lat": 42.0398, "lng": -87.6822 },
+      "coordinates": {
+        "lat": 42.0398,
+        "lng": -87.6822
+      },
       "address": "1245 Chicago Ave, Evanston, IL 60202",
-      "photoUrl": "/assets/orrington/recs/evanstonspace.jpg",
+      "photoUrls": [],
       "shortDescription": "A beloved, intimate live music venue hosting touring and local acts across genres. A great option for guests looking for something to do in the evening beyond dinner.",
       "priceLevel": "$$",
-      "tags": ["live-music-venue", "intimate-shows", "diverse-lineup", "evening-activity"]
+      "tags": [
+        "live-music-venue",
+        "intimate-shows",
+        "diverse-lineup",
+        "evening-activity"
+      ]
     },
     {
       "id": "rec_027",
       "name": "Millennium Park & The Bean",
       "category": "outdoors",
-      "coordinates": { "lat": 41.8826, "lng": -87.6226 },
+      "coordinates": {
+        "lat": 41.8826,
+        "lng": -87.6226
+      },
       "address": "201 E Randolph St, Chicago, IL 60602",
-      "photoUrl": "/assets/orrington/recs/millenniumpark.jpg",
+      "photoUrls": [],
       "shortDescription": "Home to Cloud Gate (aka 'The Bean'), Crown Fountain, and the Pritzker Pavilion — one of Chicago's most iconic and unmissable free attractions, about 30 minutes from Evanston.",
       "priceLevel": "Free",
-      "tags": ["iconic", "free", "photo-spot", "public-art", "day-trip"]
+      "tags": [
+        "iconic",
+        "free",
+        "photo-spot",
+        "public-art",
+        "day-trip"
+      ]
     },
     {
       "id": "rec_028",
       "name": "Chicago Riverwalk",
       "category": "outdoors",
-      "coordinates": { "lat": 41.8879, "lng": -87.627 },
+      "coordinates": {
+        "lat": 41.8879,
+        "lng": -87.627
+      },
       "address": "112 E Wacker Dr, Chicago, IL 60601",
-      "photoUrl": "/assets/orrington/recs/chicagoriverwalk.jpg",
+      "photoUrls": [],
       "shortDescription": "A 1.25-mile riverfront path lined with bars, restaurants, and boat tour docks, with great views of the city's famous architecture. Ideal for an afternoon or evening downtown.",
       "priceLevel": "Free",
-      "tags": ["waterfront-walk", "restaurants", "kayaking", "architecture-views", "day-trip"]
+      "tags": [
+        "waterfront-walk",
+        "restaurants",
+        "kayaking",
+        "architecture-views",
+        "day-trip"
+      ]
     },
     {
       "id": "rec_029",
       "name": "Art Institute of Chicago",
       "category": "culture",
-      "coordinates": { "lat": 41.87944, "lng": -87.62389 },
+      "coordinates": {
+        "lat": 41.87944,
+        "lng": -87.62389
+      },
       "address": "111 S Michigan Ave, Chicago, IL 60603",
-      "photoUrl": "/assets/orrington/recs/artinstitute.jpg",
+      "photoUrls": [],
       "shortDescription": "One of the world's premier art museums, with an outstanding Impressionist and modern art collection alongside the iconic lion statues out front. Worth a half-day for art-loving guests.",
       "priceLevel": "$$",
-      "tags": ["world-class-museum", "impressionist-art", "iconic", "day-trip"]
+      "tags": [
+        "world-class-museum",
+        "impressionist-art",
+        "iconic",
+        "day-trip"
+      ]
     },
     {
       "id": "rec_030",
       "name": "Gibsons Italia",
       "category": "dining",
-      "coordinates": { "lat": 41.8867238, "lng": -87.6394951 },
+      "coordinates": {
+        "lat": 41.8867238,
+        "lng": -87.6394951
+      },
       "address": "233 N Canal St, Chicago, IL 60606",
-      "photoUrl": "/assets/orrington/recs/gibsonsitalia.jpg",
+      "photoUrls": [],
       "shortDescription": "A polished River North Italian spot with sweeping Chicago River and skyline views — a strong pick for guests wanting an upscale dinner while in the city for the day.",
       "priceLevel": "$$$$",
-      "tags": ["upscale-italian", "skyline-views", "river-north", "day-trip"]
+      "tags": [
+        "upscale-italian",
+        "skyline-views",
+        "river-north",
+        "day-trip"
+      ]
     }
   ]
 }

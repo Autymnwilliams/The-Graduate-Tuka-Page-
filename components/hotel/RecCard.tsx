@@ -23,7 +23,7 @@ export function RecCard({ hotelSlug, rec, isSelected, onSelect, cardRef }: RecCa
       }`}
     >
       <RecPhoto
-        src={rec.photoUrl}
+        src={rec.photoUrls[0]}
         alt={rec.name}
         category={rec.category}
         className="h-20 w-20 shrink-0 rounded-xl bg-zinc-200 object-cover"

@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 import { getHotelBySlug, toPublicHotel } from "@/lib/hotels";
-import { unlockCookieName } from "@/lib/unlock";
+import { unlockCookieName, GATE_DISABLED } from "@/lib/unlock";
 import { recordEvent } from "@/lib/analytics";
 import { HotelExperience } from "@/components/hotel/HotelExperience";
 
@@ -15,7 +15,7 @@ export default async function HotelPage({
   if (!hotel) notFound();
 
   const cookieStore = await cookies();
-  const isUnlocked = cookieStore.get(unlockCookieName(hotelSlug))?.value === "1";
+  const isUnlocked = GATE_DISABLED || cookieStore.get(unlockCookieName(hotelSlug))?.value === "1";
   const publicHotel = await toPublicHotel(hotel, isUnlocked);
 
   await recordEvent({

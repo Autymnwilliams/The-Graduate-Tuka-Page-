@@ -83,3 +83,7 @@ a {
   border-radius: 9999px;
   object-fit: cover;
 }
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
