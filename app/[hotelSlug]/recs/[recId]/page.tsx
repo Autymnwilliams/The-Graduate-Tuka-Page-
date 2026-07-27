@@ -83,7 +83,7 @@ export default async function RecPage({
       </div>
 
       <DirectionsLink
-        coordinates={rec.coordinates}
+        address={rec.address}
         className="mt-4 flex items-center justify-between rounded-xl bg-[var(--tuka-ink)] px-4 py-3 text-white"
       >
         <span>
