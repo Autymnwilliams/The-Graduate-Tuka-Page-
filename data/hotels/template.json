@@ -1,10 +1,10 @@
 {
-  "id": "hilton-orrington-evanston",
-  "slug": "orrington",
+  "id": "template-hotel",
+  "slug": "template",
   "name": "Insert Hotel Name",
   "neighborhood": "Downtown Evanston, IL",
-  "logoUrl": "/assets/orrington/logo.png",
-  "heroImageUrl": "/assets/orrington/hero.jpg",
+  "logoUrl": "/assets/template/logo.png",
+  "heroImageUrl": "/assets/template/hero.jpg",
   "coordinates": {
     "lat": 42.0469,
     "lng": -87.6877
