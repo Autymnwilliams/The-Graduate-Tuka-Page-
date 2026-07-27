@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { RecWithStats } from "@/lib/types";
 import { categoryLabel } from "@/lib/categoryIcon";
+import { RecPhoto } from "./RecPhoto";
 import { Stars } from "./Stars";
 
 export interface RecCardProps {
@@ -21,10 +22,10 @@ export function RecCard({ hotelSlug, rec, isSelected, onSelect, cardRef }: RecCa
         isSelected ? "border-[var(--tuka-ink)] bg-zinc-50" : "border-zinc-200 bg-white"
       }`}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element -- per-hotel asset path, not a static import */}
-      <img
+      <RecPhoto
         src={rec.photoUrl}
         alt={rec.name}
+        category={rec.category}
         className="h-20 w-20 shrink-0 rounded-xl bg-zinc-200 object-cover"
       />
       <div className="min-w-0 flex-1">

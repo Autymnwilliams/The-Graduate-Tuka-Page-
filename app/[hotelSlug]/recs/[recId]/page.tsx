@@ -9,6 +9,7 @@ import { walkingRouteMinutes } from "@/lib/directions";
 import { categoryLabel } from "@/lib/categoryIcon";
 import { RecEngagement } from "@/components/hotel/RecEngagement";
 import { DirectionsLink } from "@/components/hotel/DirectionsLink";
+import { RecPhoto } from "@/components/hotel/RecPhoto";
 
 export default async function RecPage({
   params,
@@ -100,10 +101,10 @@ export default async function RecPage({
         </span>
       </DirectionsLink>
 
-      {/* eslint-disable-next-line @next/next/no-img-element -- per-hotel asset path, not a static import */}
-      <img
+      <RecPhoto
         src={rec.photoUrl}
         alt={rec.name}
+        category={rec.category}
         className="mt-4 h-56 w-full rounded-xl bg-zinc-200 object-cover"
       />
 
