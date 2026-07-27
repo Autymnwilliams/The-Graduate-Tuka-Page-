@@ -7,8 +7,8 @@
   "heroImageUrl": "/assets/publishinghouse/hero.jpg",
   "coordinates": { "lat": 41.9034, "lng": -87.6624 },
   "welcomeMessage": "Handpicked by our innkeepers — the same spots we tell our regulars about.",
-  "freeRecLimit": 6,
-  "categories": ["dining", "nightlife", "hidden-gems", "shopping", "coffee"],
+  "freeRecLimit": 3,
+  "categories": ["dining", "nightlife", "hidden-gems", "shopping"],
   "recs": [
     {
       "id": "rec_001",
@@ -21,19 +21,6 @@
       "staffNote": "No reservations — put your name in and grab a drink at the bar next door while you wait.",
       "priceLevel": "$$",
       "tags": ["local-favorite", "patio"],
-      "isFeatured": true
-    },
-    {
-      "id": "rec_002",
-      "name": "The Violet Hour",
-      "category": "nightlife",
-      "coordinates": { "lat": 41.9095, "lng": -87.6773 },
-      "address": "1520 N Damen Ave",
-      "photoUrl": "/assets/publishinghouse/recs/violethour.jpg",
-      "shortDescription": "An unmarked door leads to one of the city's best cocktail bars — genuinely serious drinks.",
-      "staffNote": "Look for the mail slot in the wall, that's the door.",
-      "priceLevel": "$$$",
-      "tags": ["date-night", "speakeasy"],
       "isFeatured": true
     },
     {
@@ -58,29 +45,6 @@
       "shortDescription": "Inventive tacos in a cozy, plant-filled space — the brunch menu is worth the visit alone.",
       "priceLevel": "$$",
       "tags": ["brunch", "local-favorite"]
-    },
-    {
-      "id": "rec_005",
-      "name": "Podhalanka",
-      "category": "dining",
-      "coordinates": { "lat": 41.9032, "lng": -87.6656 },
-      "address": "1549 W Division St",
-      "photoUrl": "/assets/publishinghouse/recs/podhalanka.jpg",
-      "shortDescription": "Old-school Polish diner — pierogi, borscht, and a warm welcome that hasn't changed in decades.",
-      "staffNote": "Cash only, and worth the ATM trip.",
-      "priceLevel": "$",
-      "tags": ["hidden-gem", "comfort-food"]
-    },
-    {
-      "id": "rec_006",
-      "name": "The Bristol",
-      "category": "dining",
-      "coordinates": { "lat": 41.9199, "lng": -87.6776 },
-      "address": "2152 N Damen Ave",
-      "photoUrl": "/assets/publishinghouse/recs/thebristol.jpg",
-      "shortDescription": "Seasonal, ingredient-driven menu in a warm, unfussy dining room — a special-occasion favorite.",
-      "priceLevel": "$$$",
-      "tags": ["date-night"]
     },
     {
       "id": "rec_007",
