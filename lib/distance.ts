@@ -2,6 +2,7 @@ import type { Coordinates } from "./types";
 
 const EARTH_RADIUS_MILES = 3958.8;
 const AVERAGE_WALK_MPH = 3;
+const AVERAGE_DRIVE_MPH = 25;
 
 function toRadians(degrees: number): number {
   return (degrees * Math.PI) / 180;
@@ -23,4 +24,10 @@ export function milesBetween(a: Coordinates, b: Coordinates): number {
 export function walkMinutes(a: Coordinates, b: Coordinates): number {
   const miles = milesBetween(a, b);
   return Math.max(1, Math.round((miles / AVERAGE_WALK_MPH) * 60));
+}
+
+/** Rough driving time in whole minutes (rounded up), minimum 1. */
+export function driveMinutes(a: Coordinates, b: Coordinates): number {
+  const miles = milesBetween(a, b);
+  return Math.max(1, Math.round((miles / AVERAGE_DRIVE_MPH) * 60));
 }

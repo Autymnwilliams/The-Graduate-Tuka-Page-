@@ -5,7 +5,7 @@ import { unlockCookieName, GATE_DISABLED } from "@/lib/unlock";
 import { GUEST_ID_COOKIE } from "@/lib/guest";
 import { getReviews } from "@/lib/reviews";
 import { getLikeCount, isLikedByGuest } from "@/lib/likes";
-import { walkingRouteMinutes } from "@/lib/directions";
+import { travelTime } from "@/lib/directions";
 import { categoryLabel } from "@/lib/categoryIcon";
 import { RecEngagement } from "@/components/hotel/RecEngagement";
 import { DirectionsLink } from "@/components/hotel/DirectionsLink";
@@ -47,13 +47,14 @@ export default async function RecPage({
   }
 
   const guestId = cookieStore.get(GUEST_ID_COOKIE)?.value;
-  const [reviews, likeCount, initialLiked, minutes, photoUrls] = await Promise.all([
+  const [reviews, likeCount, initialLiked, { minutes, mode }, photoUrls] = await Promise.all([
     getReviews(hotelSlug, recId),
     getLikeCount(hotelSlug, recId),
     guestId ? isLikedByGuest(hotelSlug, recId, guestId) : Promise.resolve(false),
-    walkingRouteMinutes(hotel.coordinates, rec.coordinates),
+    travelTime(hotel.coordinates, rec.coordinates),
     resolveRecPhotoUrls(hotelSlug, rec),
   ]);
+  const modeLabel = mode === "drive" ? "drive" : "walk";
 
   return (
     <main className="mx-auto flex w-full max-w-lg flex-1 flex-col px-5 py-4">
@@ -69,7 +70,7 @@ export default async function RecPage({
       <div className="mt-1 flex items-center gap-1.5 text-sm text-zinc-500">
         <span aria-hidden>📍</span>
         <span>
-          {minutes} min walk from {hotel.name}
+          {minutes} min {modeLabel} from {hotel.name}
         </span>
       </div>
 
@@ -86,6 +87,7 @@ export default async function RecPage({
 
       <DirectionsLink
         address={rec.address}
+        mode={mode}
         className="mt-4 flex items-center justify-between rounded-xl bg-[var(--tuka-ink)] px-4 py-3 text-white"
       >
         <span>
@@ -98,7 +100,7 @@ export default async function RecPage({
         </span>
         <span className="ml-3 flex shrink-0 flex-col items-center">
           <span className="text-2xl font-bold leading-none">{minutes}</span>
-          <span className="text-[10px] font-semibold tracking-wide uppercase">min walk</span>
+          <span className="text-[10px] font-semibold tracking-wide uppercase">min {modeLabel}</span>
         </span>
       </DirectionsLink>
 
