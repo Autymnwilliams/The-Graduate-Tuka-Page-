@@ -8,6 +8,7 @@ import { getLikeCount, isLikedByGuest } from "@/lib/likes";
 import { walkMinutes } from "@/lib/distance";
 import { categoryLabel } from "@/lib/categoryIcon";
 import { RecEngagement } from "@/components/hotel/RecEngagement";
+import { DirectionsLink } from "@/components/hotel/DirectionsLink";
 
 export default async function RecPage({
   params,
@@ -52,7 +53,6 @@ export default async function RecPage({
   ]);
 
   const minutes = walkMinutes(hotel.coordinates, rec.coordinates);
-  const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${rec.coordinates.lat},${rec.coordinates.lng}`;
 
   return (
     <main className="mx-auto flex w-full max-w-lg flex-1 flex-col px-5 py-4">
@@ -83,10 +83,8 @@ export default async function RecPage({
         ))}
       </div>
 
-      <a
-        href={directionsUrl}
-        target="_blank"
-        rel="noopener noreferrer"
+      <DirectionsLink
+        coordinates={rec.coordinates}
         className="mt-4 flex items-center justify-between rounded-xl bg-[var(--tuka-ink)] px-4 py-3 text-white"
       >
         <span>
@@ -101,7 +99,7 @@ export default async function RecPage({
           <span className="text-2xl font-bold leading-none">{minutes}</span>
           <span className="text-[10px] font-semibold tracking-wide uppercase">min walk</span>
         </span>
-      </a>
+      </DirectionsLink>
 
       {/* eslint-disable-next-line @next/next/no-img-element -- per-hotel asset path, not a static import */}
       <img
