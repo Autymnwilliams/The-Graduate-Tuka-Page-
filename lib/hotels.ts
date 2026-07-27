@@ -2,6 +2,7 @@ import { readFile } from "fs/promises";
 import path from "path";
 import type { Hotel, PublicHotel, Rec } from "./types";
 import { getRecStats } from "./recStats";
+import { googlePhotoCount } from "./googlePlaces";
 
 const HOTELS_DIR = path.join(process.cwd(), "data", "hotels");
 const SLUG_PATTERN = /^[a-z0-9-]+$/;
@@ -39,6 +40,19 @@ export async function getHotelBySlug(slug: string): Promise<Hotel | null> {
 }
 
 /**
+ * A rec's photos: manually-supplied ones win if present, otherwise falls
+ * back to live Google Places photos (proxied through our own API route so
+ * the Google API key never reaches the client). Resolves to [] — same as
+ * "no photo yet" — when nothing is configured or found.
+ */
+export async function resolveRecPhotoUrls(hotelSlug: string, rec: Rec): Promise<string[]> {
+  if (rec.photoUrls.length > 0) return rec.photoUrls;
+
+  const count = await googlePhotoCount(rec.name, rec.address);
+  return Array.from({ length: count }, (_, i) => `/api/rec-photo/${hotelSlug}/${rec.id}/${i}`);
+}
+
+/**
  * Shapes a hotel record for client consumption. When locked, recs beyond
  * freeRecLimit are dropped entirely (not just hidden) so the gate can't be
  * bypassed by reading page source or client-side state. Attaches live
@@ -50,7 +64,11 @@ export async function toPublicHotel(hotel: Hotel, isUnlocked: boolean): Promise<
   const lockedCount = isUnlocked ? 0 : Math.max(ordered.length - hotel.freeRecLimit, 0);
 
   const visibleRecs = await Promise.all(
-    visible.map(async (rec) => ({ ...rec, stats: await getRecStats(hotel.slug, rec.id) })),
+    visible.map(async (rec) => ({
+      ...rec,
+      photoUrls: await resolveRecPhotoUrls(hotel.slug, rec),
+      stats: await getRecStats(hotel.slug, rec.id),
+    })),
   );
 
   return {

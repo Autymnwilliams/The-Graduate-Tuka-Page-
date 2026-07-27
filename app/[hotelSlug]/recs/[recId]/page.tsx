@@ -1,6 +1,6 @@
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
-import { getHotelBySlug, isRecVisible } from "@/lib/hotels";
+import { getHotelBySlug, isRecVisible, resolveRecPhotoUrls } from "@/lib/hotels";
 import { unlockCookieName, GATE_DISABLED } from "@/lib/unlock";
 import { GUEST_ID_COOKIE } from "@/lib/guest";
 import { getReviews } from "@/lib/reviews";
@@ -47,11 +47,12 @@ export default async function RecPage({
   }
 
   const guestId = cookieStore.get(GUEST_ID_COOKIE)?.value;
-  const [reviews, likeCount, initialLiked, minutes] = await Promise.all([
+  const [reviews, likeCount, initialLiked, minutes, photoUrls] = await Promise.all([
     getReviews(hotelSlug, recId),
     getLikeCount(hotelSlug, recId),
     guestId ? isLikedByGuest(hotelSlug, recId, guestId) : Promise.resolve(false),
     walkingRouteMinutes(hotel.coordinates, rec.coordinates),
+    resolveRecPhotoUrls(hotelSlug, rec),
   ]);
 
   return (
@@ -102,7 +103,7 @@ export default async function RecPage({
       </DirectionsLink>
 
       <RecGallery
-        photoUrls={rec.photoUrls}
+        photoUrls={photoUrls}
         alt={rec.name}
         category={rec.category}
         className="mt-4 h-56 w-full rounded-xl bg-zinc-200"
