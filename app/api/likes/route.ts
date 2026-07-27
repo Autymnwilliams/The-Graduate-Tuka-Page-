@@ -1,7 +1,6 @@
 import { randomUUID } from "crypto";
 import { cookies } from "next/headers";
 import { getHotelBySlug } from "@/lib/hotels";
-import { unlockCookieName } from "@/lib/unlock";
 import { GUEST_ID_COOKIE, GUEST_ID_COOKIE_MAX_AGE_SECONDS } from "@/lib/guest";
 import { toggleLike } from "@/lib/likes";
 import { recordEvent } from "@/lib/analytics";
@@ -24,11 +23,6 @@ export async function POST(request: Request) {
   }
 
   const cookieStore = await cookies();
-  const isUnlocked = cookieStore.get(unlockCookieName(hotelSlug))?.value === "1";
-  if (!isUnlocked) {
-    return Response.json({ error: "Sign up before liking a rec" }, { status: 403 });
-  }
-
   const hotel = await getHotelBySlug(hotelSlug);
   const recExists = hotel?.recs.some((rec) => rec.id === recId) ?? false;
   if (!hotel || !recExists) {

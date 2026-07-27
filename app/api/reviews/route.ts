@@ -1,6 +1,4 @@
-import { cookies } from "next/headers";
 import { getHotelBySlug } from "@/lib/hotels";
-import { unlockCookieName } from "@/lib/unlock";
 import { addReview } from "@/lib/reviews";
 import { recordEvent } from "@/lib/analytics";
 
@@ -35,12 +33,6 @@ export async function POST(request: Request) {
     (stayLength !== undefined && typeof stayLength !== "string")
   ) {
     return Response.json({ error: "Invalid review" }, { status: 400 });
-  }
-
-  const cookieStore = await cookies();
-  const isUnlocked = cookieStore.get(unlockCookieName(hotelSlug))?.value === "1";
-  if (!isUnlocked) {
-    return Response.json({ error: "Sign up before leaving a review" }, { status: 403 });
   }
 
   const hotel = await getHotelBySlug(hotelSlug);
