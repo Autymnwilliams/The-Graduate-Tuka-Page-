@@ -11,6 +11,7 @@ interface KvClient {
   rpush(key: string, value: string): Promise<number>;
   lrange(key: string, start: number, stop: number): Promise<string[]>;
   sadd(key: string, member: string): Promise<number>;
+  saddMany(key: string, members: string[]): Promise<number>;
   srem(key: string, member: string): Promise<number>;
   sismember(key: string, member: string): Promise<boolean>;
   scard(key: string): Promise<number>;
@@ -37,6 +38,17 @@ class MemoryKv implements KvClient {
     const set = this.sets.get(key) ?? new Set<string>();
     const added = set.has(member) ? 0 : 1;
     set.add(member);
+    this.sets.set(key, set);
+    return added;
+  }
+
+  async saddMany(key: string, members: string[]) {
+    const set = this.sets.get(key) ?? new Set<string>();
+    let added = 0;
+    for (const member of members) {
+      if (!set.has(member)) added++;
+      set.add(member);
+    }
     this.sets.set(key, set);
     return added;
   }
@@ -99,6 +111,22 @@ class MongoKv implements KvClient {
       { upsert: true },
     );
     return result.modifiedCount > 0 || result.upsertedCount > 0 ? 1 : 0;
+  }
+
+  async saddMany(key: string, members: string[]) {
+    if (members.length === 0) return 0;
+    const sets = await this.setsReady;
+    const before = await sets.findOne({ _id: key });
+    const beforeCount = before?.values.length ?? 0;
+
+    await sets.updateOne(
+      { _id: key },
+      { $addToSet: { values: { $each: members } } },
+      { upsert: true },
+    );
+
+    const after = await sets.findOne({ _id: key });
+    return (after?.values.length ?? 0) - beforeCount;
   }
 
   async srem(key: string, member: string) {
