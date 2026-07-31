@@ -2,594 +2,474 @@
   "id": "template-hotel",
   "slug": "template",
   "name": "Insert Hotel Name",
-  "neighborhood": "Downtown Evanston, IL",
+  "neighborhood": "Wrigleyville, Chicago, IL",
   "logoUrl": "/assets/template/logo.png",
   "heroImageUrl": "/assets/template/hero.jpg",
-  "coordinates": {
-    "lat": 42.0469,
-    "lng": -87.6877
-  },
+  "coordinates": { "lat": 41.947, "lng": -87.654 },
   "freeRecLimit": 10,
-  "categories": [
-    "dining",
-    "coffee",
-    "nightlife",
-    "shopping",
-    "outdoors",
-    "culture"
-  ],
+  "categories": ["dining", "coffee", "nightlife", "outdoors", "shopping", "culture"],
   "recs": [
     {
       "id": "rec_001",
-      "name": "Campagnola",
+      "name": "Mordecai",
       "category": "dining",
-      "coordinates": {
-        "lat": 42.033,
-        "lng": -87.6822
-      },
-      "address": "815 Chicago Ave, Evanston, IL 60202",
+      "coordinates": { "lat": 41.9489, "lng": -87.6553 },
+      "address": "3632 N Clark St, Chicago, IL 60613",
       "photoUrls": [],
-      "shortDescription": "A longtime Evanston favorite for seasonal, farm-to-table Italian cooking in a warm, brick-walled dining room. Great for a special dinner or celebrating an occasion just a few blocks from campus.",
+      "shortDescription": "A stylish New American restaurant and whiskey bar right in Wrigleyville, known for its extensive whiskey list alongside a refined but approachable menu. A step up from the sports-bar scene nearby.",
       "priceLevel": "$$$",
-      "tags": [
-        "upscale",
-        "date-night",
-        "italian",
-        "wine-list"
-      ]
+      "tags": ["whiskey-bar", "upscale-casual", "date-night", "cocktails"]
     },
     {
       "id": "rec_002",
-      "name": "Backlot Coffee",
+      "name": "Pedestrian Coffee",
       "category": "coffee",
-      "coordinates": {
-        "lat": 42.0693,
-        "lng": -87.6968
-      },
-      "address": "2006 Central St, Evanston, IL 60201",
+      "coordinates": { "lat": 41.9411, "lng": -87.6526 },
+      "address": "939 W Belmont Ave, Chicago, IL 60657",
       "photoUrls": [],
-      "shortDescription": "An independently owned Evanston coffeehouse with a loyal following — great pastries, friendly baristas, and a laid-back community feel. A favorite among both locals and Northwestern students.",
+      "shortDescription": "A bright, airy café right by the Belmont CTA stop, known for seasonal lattes and a laptop-friendly atmosphere with plenty of outlets and seating.",
       "priceLevel": "$",
-      "tags": [
-        "local-roaster",
-        "study-spot",
-        "pastries",
-        "community-vibe"
-      ]
+      "tags": ["natural-light", "remote-work-friendly", "seasonal-lattes", "belmont-stop"]
     },
     {
       "id": "rec_003",
-      "name": "Ward Eight",
+      "name": "Cubby Bear",
       "category": "nightlife",
-      "coordinates": {
-        "lat": 42.0413,
-        "lng": -87.6849
-      },
-      "address": "629 Howard St, Evanston, IL 60202",
+      "coordinates": { "lat": 41.9484, "lng": -87.6553 },
+      "address": "1059 W Addison St, Chicago, IL 60613",
       "photoUrls": [],
-      "shortDescription": "A cozy, unpretentious cocktail lounge with expertly crafted drinks and a relaxed vibe. Consistently ranked among Evanston's best bars for guests who want a proper cocktail without the fuss.",
+      "shortDescription": "One of Wrigleyville's most iconic bars, sitting directly across from Wrigley Field — a high-energy game-day staple with multiple floors and a rowdy, celebratory atmosphere.",
       "priceLevel": "$$",
-      "tags": [
-        "craft-cocktails",
-        "intimate",
-        "date-night",
-        "small-plates"
-      ]
+      "tags": ["wrigley-field-views", "iconic", "game-day", "multiple-floors"]
     },
     {
       "id": "rec_004",
-      "name": "Clark Street Beach & Lighthouse",
+      "name": "Wrigley Field",
       "category": "outdoors",
-      "coordinates": {
-        "lat": 42.0489341,
-        "lng": -87.6728082
-      },
-      "address": "1811 Sheridan Rd, Evanston, IL 60201",
+      "coordinates": { "lat": 41.9484, "lng": -87.6553 },
+      "address": "1060 W Addison St, Chicago, IL 60613",
       "photoUrls": [],
-      "shortDescription": "The closest public beach to downtown Evanston, with soft sand, lake views, and the iconic Evanston Lighthouse nearby. A great spot for a morning walk or sunset visit.",
-      "priceLevel": "Free",
-      "tags": [
-        "lake-views",
-        "beach",
-        "walkable",
-        "lighthouse"
-      ]
+      "shortDescription": "The second-oldest ballpark in Major League Baseball, famous for its ivy-covered outfield walls and hand-turned scoreboard. The whole reason most guests are staying in this neighborhood.",
+      "priceLevel": "$$$",
+      "tags": ["iconic-ballpark", "cubs-games", "historic", "photo-spot"]
     },
     {
       "id": "rec_005",
-      "name": "Bookends & Beginnings",
+      "name": "Southport Corridor",
       "category": "shopping",
-      "coordinates": {
-        "lat": 42.0478,
-        "lng": -87.6879
-      },
-      "address": "1620 Orrington Ave, Evanston, IL 60201",
+      "coordinates": { "lat": 41.9447, "lng": -87.665 },
+      "address": "Southport Ave between W Belmont Ave and W Irving Park Rd, Chicago, IL 60657",
       "photoUrls": [],
-      "shortDescription": "A beloved two-story independent bookstore in the heart of downtown Evanston, with new and used books, gifts, literary events, and a cozy in-store bar. A must for book-loving guests — and it's practically next door to the hotel.",
+      "shortDescription": "A charming stretch of independently owned boutiques, vintage and record shops, and bustling restaurant patios — a great walkable shopping alternative to the sports-bar-heavy Clark Street strip.",
       "priceLevel": "$",
-      "tags": [
-        "independent-bookstore",
-        "gifts",
-        "events",
-        "wine-bar"
-      ]
+      "tags": ["boutiques", "walkable", "vintage-shops", "restaurant-patios"]
     },
     {
       "id": "rec_006",
-      "name": "Block Museum of Art",
+      "name": "Music Box Theatre",
       "category": "culture",
-      "coordinates": {
-        "lat": 42.0525192,
-        "lng": -87.6728296
-      },
-      "address": "40 Arts Circle Dr, Evanston, IL 60208",
+      "coordinates": { "lat": 41.9508, "lng": -87.665 },
+      "address": "3733 N Southport Ave, Chicago, IL 60613",
       "photoUrls": [],
-      "shortDescription": "Northwestern's public art museum, free and open to all, with a global exhibition program spanning eras and cultures. An easy, no-cost cultural stop for guests exploring campus.",
-      "priceLevel": "Free",
-      "tags": [
-        "free-admission",
-        "on-campus",
-        "rotating-exhibits",
-        "art"
-      ]
+      "shortDescription": "A beautifully preserved historic movie palace showing indie and classic films, complete with a live organist before select showings. A one-of-a-kind evening activity for film lovers.",
+      "priceLevel": "$$",
+      "tags": ["historic-theater", "indie-films", "live-organist", "unique-experience"]
     },
     {
       "id": "rec_007",
-      "name": "Koi Fine Asian Cuisine & Lounge",
+      "name": "Smoke Daddy",
       "category": "dining",
-      "coordinates": {
-        "lat": 42.0459,
-        "lng": -87.6809
-      },
-      "address": "624 Davis St, Evanston, IL 60201",
+      "coordinates": { "lat": 41.949, "lng": -87.6553 },
+      "address": "3636 N Clark St, Chicago, IL 60613",
       "photoUrls": [],
-      "shortDescription": "Stylish pan-Asian restaurant and lounge with sushi, a full Asian-fusion menu, and a fireplace patio that guests love in the evenings. Good for a dinner that feels a bit more elevated.",
+      "shortDescription": "Award-winning barbecue with a side of live blues music, long a favorite for both locals and visiting Cubs fans. Great patio seating for a laid-back meal near the ballpark.",
       "priceLevel": "$$",
-      "tags": [
-        "sushi",
-        "lounge",
-        "upscale-casual",
-        "cocktails"
-      ]
+      "tags": ["barbecue", "live-blues", "patio", "casual"]
     },
     {
       "id": "rec_008",
-      "name": "Reprise Coffee Roasters",
+      "name": "Bombastic Cafe",
       "category": "coffee",
-      "coordinates": {
-        "lat": 42.0398,
-        "lng": -87.6796
-      },
-      "address": "710 Main St, Evanston, IL 60202",
+      "coordinates": { "lat": 41.9508, "lng": -87.665 },
+      "address": "3732 N Southport Ave, Chicago, IL 60613",
       "photoUrls": [],
-      "shortDescription": "Evanston's specialty coffee roaster, known for its award-winning lattes and calm, rustic atmosphere. A great stop for guests who take their coffee seriously.",
+      "shortDescription": "A beloved local coffee shop known for its friendly, familiar-face service and a cozy outdoor fire pit — a warm neighborhood hangout more than a quick-stop café.",
       "priceLevel": "$",
-      "tags": [
-        "specialty-coffee",
-        "roastery",
-        "award-winning-lattes",
-        "quiet"
-      ]
+      "tags": ["local-favorite", "fire-pit", "friendly-staff", "wrigleyville"]
     },
     {
       "id": "rec_009",
-      "name": "Temperance Beer Company",
+      "name": "Murphy's Bleachers",
       "category": "nightlife",
-      "coordinates": {
-        "lat": 42.0398,
-        "lng": -87.6836
-      },
-      "address": "2000 Dempster St, Evanston, IL 60202",
+      "coordinates": { "lat": 41.9494, "lng": -87.6577 },
+      "address": "3655 N Sheffield Ave, Chicago, IL 60613",
       "photoUrls": [],
-      "shortDescription": "Evanston's first and oldest brewery, pouring house-made IPAs and seasonal beers in a lively taproom. Hosts brewery tours and events, making it a fun stop for beer-curious guests.",
+      "shortDescription": "A Wrigleyville landmark right across from the ballpark, famous for its rooftop views and electric game-day crowd. As classic a Cubs-adjacent bar experience as it gets.",
       "priceLevel": "$$",
-      "tags": [
-        "craft-beer",
-        "brewery-tours",
-        "taproom",
-        "casual"
-      ]
+      "tags": ["wrigley-field-views", "rooftop", "classic-sports-bar", "pre-post-game"]
     },
     {
       "id": "rec_010",
-      "name": "Dawes Park & Arrington Lagoon",
+      "name": "Belmont Harbor & Dog Beach",
       "category": "outdoors",
-      "coordinates": {
-        "lat": 42.0498,
-        "lng": -87.6764
-      },
-      "address": "1700 Sheridan Rd, Evanston, IL 60201",
+      "coordinates": { "lat": 41.9484, "lng": -87.636 },
+      "address": "3600 N Recreation Dr, Chicago, IL 60613",
       "photoUrls": [],
-      "shortDescription": "A scenic lakefront park with a lagoon, walking paths, and a pier — home to ducks, geese, and one of Evanston's most photogenic outdoor spots. Turns into an ice rink in winter.",
+      "shortDescription": "A picturesque stretch of Lake Michigan shoreline with a marina, sailing charters, and a well-loved dog beach. A relaxing lakefront escape just minutes from the Wrigleyville buzz.",
       "priceLevel": "Free",
-      "tags": [
-        "lakefront-park",
-        "walking-path",
-        "picnic",
-        "ice-skating"
-      ]
+      "tags": ["lakefront", "dog-friendly", "sailing", "scenic-walk"]
     },
     {
       "id": "rec_011",
-      "name": "Kabul House",
+      "name": "Crosby's Kitchen",
       "category": "dining",
-      "coordinates": {
-        "lat": 42.0397,
-        "lng": -87.6885
-      },
-      "address": "2424 Dempster St, Evanston, IL 60202",
+      "coordinates": { "lat": 41.9458, "lng": -87.665 },
+      "address": "3455 N Southport Ave, Chicago, IL 60657",
       "photoUrls": [],
-      "shortDescription": "Authentic Afghan cuisine in a warm, welcoming setting — think kabobs, mantu dumplings, and fragrant rice dishes. A great pick for guests looking for something they can't easily find elsewhere.",
+      "shortDescription": "A reliable neighborhood gastropub known for elevated comfort food and a lively weekend brunch scene. Good pick for groups who want solid food without the sports-bar noise.",
       "priceLevel": "$$",
-      "tags": [
-        "afghan-cuisine",
-        "family-owned",
-        "unique",
-        "vegetarian-options"
-      ]
+      "tags": ["brunch", "gastropub", "group-friendly", "patio"]
     },
     {
       "id": "rec_012",
-      "name": "Tapas Barcelona",
+      "name": "Tango Sur",
       "category": "dining",
-      "coordinates": {
-        "lat": 42.0311,
-        "lng": -87.6822
-      },
-      "address": "1615 Chicago Ave, Evanston, IL 60201",
+      "coordinates": { "lat": 41.9513, "lng": -87.665 },
+      "address": "3763 N Southport Ave, Chicago, IL 60613",
       "photoUrls": [],
-      "shortDescription": "Lively Spanish tapas spot perfect for groups who want to share small plates and sangria. Popular for its energetic weekend atmosphere and flamenco nights.",
+      "shortDescription": "A neighborhood favorite for generous cuts of Argentinian steak at a fraction of downtown prices, with a BYOB policy guests love. A great date-night option just off the main Wrigleyville strip.",
       "priceLevel": "$$",
-      "tags": [
-        "tapas",
-        "sangria",
-        "share-plates",
-        "lively"
-      ]
+      "tags": ["steakhouse", "byob", "romantic", "southport-corridor"]
     },
     {
       "id": "rec_013",
-      "name": "Blue Horse Tavern",
+      "name": "Ann Sather",
       "category": "dining",
-      "coordinates": {
-        "lat": 42.0468641,
-        "lng": -87.6863442
-      },
-      "address": "1026 Davis St, Evanston, IL 60201",
+      "coordinates": { "lat": 41.945, "lng": -87.6456 },
+      "address": "3415 N Broadway St, Chicago, IL 60657",
       "photoUrls": [],
-      "shortDescription": "No-frills neighborhood tavern known for a deep bourbon and whiskey list alongside solid American comfort food — burgers, ribs, and hearty pub fare. A reliable, unpretentious go-to.",
-      "priceLevel": "$$",
-      "tags": [
-        "whiskey-selection",
-        "casual",
-        "burgers",
-        "neighborhood-bar"
-      ]
+      "shortDescription": "A Chicago institution since the 1920s, famous for its homemade cinnamon rolls and hearty Swedish diner classics. A comforting, old-school breakfast stop with real neighborhood history.",
+      "priceLevel": "$",
+      "tags": ["swedish-diner", "cinnamon-rolls", "chicago-institution", "breakfast"]
     },
     {
       "id": "rec_014",
-      "name": "Union Squared",
+      "name": "Chilam Balam",
       "category": "dining",
-      "coordinates": {
-        "lat": 42.0416,
-        "lng": -87.6822
-      },
-      "address": "1307 Chicago Ave, Evanston, IL 60201",
+      "coordinates": { "lat": 41.9379, "lng": -87.6456 },
+      "address": "3023 N Broadway St, Chicago, IL 60657",
       "photoUrls": [],
-      "shortDescription": "Square-cut, Detroit-style pizza piled high with toppings like Mike's hot honey and pickled jalapeños. Quick, affordable, and popular with the Northwestern crowd — outdoor terrace seating in nice weather.",
-      "priceLevel": "$",
-      "tags": [
-        "detroit-style-pizza",
-        "casual",
-        "counter-service",
-        "outdoor-terrace"
-      ]
+      "shortDescription": "A sustainably minded, BYOB Mexican spot serving farm-fresh small plates in a cozy basement-level space. A favorite for guests wanting something more inventive than standard tacos.",
+      "priceLevel": "$$",
+      "tags": ["byob", "farm-fresh", "small-plates", "intimate"]
     },
     {
       "id": "rec_015",
-      "name": "Frida's Breakfast & Lunch",
+      "name": "Batter & Berries",
       "category": "dining",
-      "coordinates": {
-        "lat": 42.0478,
-        "lng": -87.6841
-      },
-      "address": "618 Church St, Evanston, IL 60201",
+      "coordinates": { "lat": 41.9329, "lng": -87.6577 },
+      "address": "2748 N Lincoln Ave, Chicago, IL 60614",
       "photoUrls": [],
-      "shortDescription": "A cozy, no-fuss breakfast-and-lunch spot for guests who want a great morning meal before heading out for the day. Known for generous portions and friendly service.",
-      "priceLevel": "$",
-      "tags": [
-        "brunch",
-        "breakfast",
-        "casual",
-        "family-friendly"
-      ]
+      "shortDescription": "Known for decadent loaded french toast flights and a lively brunch crowd. One of Lakeview's most popular breakfast destinations — a great start before a day game.",
+      "priceLevel": "$$",
+      "tags": ["brunch", "french-toast", "family-friendly", "popular"]
     },
     {
       "id": "rec_016",
-      "name": "Soul & Smoke",
+      "name": "Galata Mediterranean Grill",
       "category": "dining",
-      "coordinates": {
-        "lat": 42.0374,
-        "lng": -87.6871
-      },
-      "address": "1601 Payne St, Evanston, IL 60201",
+      "coordinates": { "lat": 41.9437, "lng": -87.6553 },
+      "address": "3345 N Clark St, Chicago, IL 60657",
       "photoUrls": [],
-      "shortDescription": "Serious, competition-style barbecue with smoked brisket, ribs, and all the classic sides. A great casual option for guests craving something hearty and Southern-inspired.",
-      "priceLevel": "$$",
-      "tags": [
-        "barbecue",
-        "smoked-meats",
-        "casual",
-        "takeout-friendly"
-      ]
+      "shortDescription": "A neighborhood Turkish spot inspired by the historic Galata Tower, serving lahmacun, kebabs, and fresh-baked pides made from family recipes. A flavorful, casual dinner choice.",
+      "priceLevel": "$",
+      "tags": ["turkish-cuisine", "kebabs", "family-recipes", "casual"]
     },
     {
       "id": "rec_017",
-      "name": "Habibi Mediterranean Grill",
+      "name": "Felix Modern American Dining",
       "category": "dining",
-      "coordinates": {
-        "lat": 42.0478,
-        "lng": -87.6845
-      },
-      "address": "825 Church St, Evanston, IL 60201",
+      "coordinates": { "lat": 41.943, "lng": -87.6553 },
+      "address": "3301 N Clark St, Chicago, IL 60657",
       "photoUrls": [],
-      "shortDescription": "Fresh, flavorful Mediterranean grill fare — shawarma, falafel, hummus plates — in a casual, fast-friendly setting. A dependable lighter option near downtown Evanston.",
-      "priceLevel": "$",
-      "tags": [
-        "mediterranean",
-        "healthy",
-        "casual",
-        "vegetarian-friendly"
-      ]
+      "shortDescription": "A modern American restaurant with a seasonally driven menu and polished but unfussy atmosphere — a strong pick for guests wanting a slightly elevated dinner near Wrigley.",
+      "priceLevel": "$$$",
+      "tags": ["modern-american", "seasonal", "upscale-casual", "cocktails"]
     },
     {
       "id": "rec_018",
-      "name": "Taco Diablo",
+      "name": "Small Cheval",
       "category": "dining",
-      "coordinates": {
-        "lat": 42.0468641,
-        "lng": -87.6863442
-      },
-      "address": "1026 Davis St, Evanston, IL 60201",
+      "coordinates": { "lat": 41.9502, "lng": -87.657 },
+      "address": "1119 W Waveland Ave, Chicago, IL 60613",
       "photoUrls": [],
-      "shortDescription": "A local go-to for tacos and margaritas in a fun, colorful space. Frequently mentioned alongside Evanston's other neighborhood favorites as a reliable casual dinner spot.",
-      "priceLevel": "$$",
-      "tags": [
-        "tacos",
-        "margaritas",
-        "casual",
-        "local-favorite"
-      ]
+      "shortDescription": "A cult-favorite smash burger spot from the team behind Au Cheval, serving a compact menu of exceptional burgers and fries. Fast, casual, and dangerously good pre- or post-game.",
+      "priceLevel": "$",
+      "tags": ["smash-burgers", "casual", "quick-bite", "late-night"]
     },
     {
       "id": "rec_019",
-      "name": "Brothers K Coffeehouse",
-      "category": "coffee",
-      "coordinates": {
-        "lat": 42.0398,
-        "lng": -87.6793
-      },
-      "address": "500 Main St, Evanston, IL 60202",
+      "name": "Coda Di Volpe",
+      "category": "dining",
+      "coordinates": { "lat": 41.9436, "lng": -87.665 },
+      "address": "3335 N Southport Ave, Chicago, IL 60657",
       "photoUrls": [],
-      "shortDescription": "A mellow, well-loved coffeehouse with a cozy diner-esque feel, serving coffee from around the world plus teas, smoothies, and pastries. Great for settling in with a book or laptop.",
-      "priceLevel": "$",
-      "tags": [
-        "cozy",
-        "coffeehouse",
-        "since-2005",
-        "relaxed"
-      ]
+      "shortDescription": "A polished, wood-fired Italian restaurant from the Boka Restaurant Group, serving pizzas and shareable Southern Italian plates in a warm, energetic dining room.",
+      "priceLevel": "$$$",
+      "tags": ["wood-fired", "upscale-casual", "shareable-plates", "wine-list"]
     },
     {
       "id": "rec_020",
-      "name": "Cupitol Coffee & Eatery",
+      "name": "Uncommon Ground",
       "category": "coffee",
-      "coordinates": {
-        "lat": 42.0442,
-        "lng": -87.6839
-      },
-      "address": "812 Grove St, Evanston, IL 60201",
+      "coordinates": { "lat": 41.952, "lng": -87.6553 },
+      "address": "3800 N Clark St, Chicago, IL 60613",
       "photoUrls": [],
-      "shortDescription": "A bright, spacious café serving lattes, croissants, and a full food menu — equally good for a quick coffee or a longer brunch sit-down.",
+      "shortDescription": "A Lakeview mainstay for over 30 years, serving organic coffee and espresso alongside a full food menu and regular live music nights — equally good for a quiet coffee or an evening out.",
       "priceLevel": "$$",
-      "tags": [
-        "coffee-and-food",
-        "pastries",
-        "bright-space",
-        "brunch"
-      ]
+      "tags": ["organic-coffee", "30-plus-years", "live-music", "full-menu"]
     },
     {
       "id": "rec_021",
-      "name": "Sketchbook Brewing Evanston",
-      "category": "nightlife",
-      "coordinates": {
-        "lat": 42.033,
-        "lng": -87.6816
-      },
-      "address": "821 Chicago Ave, Evanston, IL 60202",
+      "name": "Cafe Tola",
+      "category": "coffee",
+      "coordinates": { "lat": 41.9486, "lng": -87.665 },
+      "address": "3612 N Southport Ave, Chicago, IL 60613",
       "photoUrls": [],
-      "shortDescription": "A intimate brewery outpost with a dozen beers on tap and an easy-to-reach location near transit. Good for a casual group hangout after a day of exploring.",
-      "priceLevel": "$$",
-      "tags": [
-        "brewery",
-        "easy-access",
-        "group-friendly",
-        "rotating-taps"
-      ]
+      "shortDescription": "A Mexican-inspired café serving great coffee alongside empanadas and other light bites. A flavorful, laid-back stop for a coffee-and-snack break.",
+      "priceLevel": "$",
+      "tags": ["mexican-inspired", "empanadas", "cozy", "casual"]
     },
     {
       "id": "rec_022",
-      "name": "Five & Dime",
-      "category": "nightlife",
-      "coordinates": {
-        "lat": 42.0468641,
-        "lng": -87.6863442
-      },
-      "address": "1026 Davis St, Evanston, IL 60201",
+      "name": "Elevate Coffee",
+      "category": "coffee",
+      "coordinates": { "lat": 41.9437, "lng": -87.6492 },
+      "address": "3344 N Halsted St, Chicago, IL 60657",
       "photoUrls": [],
-      "shortDescription": "A go-to for casual dinners and drinks, with one of Evanston's best rooftop patios for warm-weather evenings. Known for shareable American fare and a relaxed, fun atmosphere.",
-      "priceLevel": "$$",
-      "tags": [
-        "rooftop",
-        "cocktails",
-        "american-fare",
-        "outdoor-seating"
-      ]
+      "shortDescription": "A local coffee spot known for a smooth nitro cold brew and easygoing atmosphere — a solid quick-stop option in the Boystown/Lakeview stretch.",
+      "priceLevel": "$",
+      "tags": ["nitro-cold-brew", "casual", "boystown", "quick-stop"]
     },
     {
       "id": "rec_023",
-      "name": "Northwestern Campus & Shakespeare Garden",
-      "category": "outdoors",
-      "coordinates": {
-        "lat": 42.0512,
-        "lng": -87.6749
-      },
-      "address": "2121 Sheridan Rd, Evanston, IL 60201",
+      "name": "Sluggers",
+      "category": "nightlife",
+      "coordinates": { "lat": 41.9473, "lng": -87.6553 },
+      "address": "3540 N Clark St, Chicago, IL 60657",
       "photoUrls": [],
-      "shortDescription": "Northwestern's lakefront campus is worth a stroll on its own, and the Shakespeare Garden — planted with flora referenced in the Bard's works — is a hidden, quiet gem for literature-minded guests.",
-      "priceLevel": "Free",
-      "tags": [
-        "lakefront-campus",
-        "free",
-        "gardens",
-        "architecture"
-      ]
+      "shortDescription": "Part dive bar, part entertainment venue — Sluggers offers batting cages and dueling piano nights alongside the usual bar fare. A fun, interactive stop before or after the game.",
+      "priceLevel": "$$",
+      "tags": ["batting-cages", "dueling-pianos", "game-day-fun", "group-activity"]
     },
     {
       "id": "rec_024",
-      "name": "Ladd Arboretum",
-      "category": "outdoors",
-      "coordinates": {
-        "lat": 42.0533,
-        "lng": -87.7004
-      },
-      "address": "2024 N McCormick Blvd, Evanston, IL 60201",
+      "name": "Nisei Lounge",
+      "category": "nightlife",
+      "coordinates": { "lat": 41.9455, "lng": -87.6577 },
+      "address": "3439 N Sheffield Ave, Chicago, IL 60657",
       "photoUrls": [],
-      "shortDescription": "A peaceful stretch of green space along the North Shore Channel, popular for walking, jogging, and birdwatching. A nice escape from downtown Evanston's bustle.",
-      "priceLevel": "Free",
-      "tags": [
-        "green-space",
-        "walking-trails",
-        "quiet",
-        "birdwatching"
-      ]
+      "shortDescription": "A true Wrigleyville dive bar — cheap drinks, zero pretension, and a loyal following of regulars and pre-game fans. The anti-rooftop-bar option for guests who want the classic bleacher-bum experience.",
+      "priceLevel": "$",
+      "tags": ["dive-bar", "cheap-drinks", "no-frills", "game-day-staple"]
     },
     {
       "id": "rec_025",
-      "name": "Amaranth Books",
-      "category": "shopping",
-      "coordinates": {
-        "lat": 42.0459,
-        "lng": -87.6801
-      },
-      "address": "828 Davis St, Evanston, IL 60201",
+      "name": "Trader Todd's",
+      "category": "nightlife",
+      "coordinates": { "lat": 41.9414, "lng": -87.6577 },
+      "address": "3216 N Sheffield Ave, Chicago, IL 60657",
       "photoUrls": [],
-      "shortDescription": "A 30-plus-year Evanston institution for used and rare books, plus classical music CDs and DVDs. Great for guests who love browsing for something unexpected.",
-      "priceLevel": "$",
-      "tags": [
-        "used-books",
-        "rare-books",
-        "vintage",
-        "local-institution"
-      ]
+      "shortDescription": "A tropical-themed beer garden and tiki bar with a seafood-forward menu, tropical cocktails, and regular karaoke nights — a fun change of pace from the sports-bar strip.",
+      "priceLevel": "$$",
+      "tags": ["tiki-bar", "karaoke", "beer-garden", "tropical-cocktails"]
     },
     {
       "id": "rec_026",
-      "name": "Evanston SPACE",
-      "category": "culture",
-      "coordinates": {
-        "lat": 42.0398,
-        "lng": -87.6822
-      },
-      "address": "1245 Chicago Ave, Evanston, IL 60202",
+      "name": "Pilot Project Brewing - Wrigleyville",
+      "category": "nightlife",
+      "coordinates": { "lat": 41.9461, "lng": -87.6553 },
+      "address": "3473 N Clark St, Chicago, IL 60657",
       "photoUrls": [],
-      "shortDescription": "A beloved, intimate live music venue hosting touring and local acts across genres. A great option for guests looking for something to do in the evening beyond dinner.",
+      "shortDescription": "A Wrigleyville outpost of the local Pilot Project brewery collective, pouring rotating small-batch craft beers in a casual taproom setting.",
       "priceLevel": "$$",
-      "tags": [
-        "live-music-venue",
-        "intimate-shows",
-        "diverse-lineup",
-        "evening-activity"
-      ]
+      "tags": ["craft-beer", "rotating-taps", "brewery", "casual"]
     },
     {
       "id": "rec_027",
-      "name": "Millennium Park & The Bean",
-      "category": "outdoors",
-      "coordinates": {
-        "lat": 41.8826,
-        "lng": -87.6226
-      },
-      "address": "201 E Randolph St, Chicago, IL 60602",
+      "name": "Corridor Brewery & Provisions",
+      "category": "nightlife",
+      "coordinates": { "lat": 41.9456, "lng": -87.665 },
+      "address": "3446 N Southport Ave, Chicago, IL 60657",
       "photoUrls": [],
-      "shortDescription": "Home to Cloud Gate (aka 'The Bean'), Crown Fountain, and the Pritzker Pavilion — one of Chicago's most iconic and unmissable free attractions, about 30 minutes from Evanston.",
-      "priceLevel": "Free",
-      "tags": [
-        "iconic",
-        "free",
-        "photo-spot",
-        "public-art",
-        "day-trip"
-      ]
+      "shortDescription": "A farmhouse-style craft brewery on the Southport Corridor pairing ever-changing house beers with a locally sourced food menu — a quieter alternative to the Clark Street bar strip.",
+      "priceLevel": "$$",
+      "tags": ["farmhouse-brewery", "locally-sourced-food", "southport-corridor", "craft-beer"]
     },
     {
       "id": "rec_028",
-      "name": "Chicago Riverwalk",
-      "category": "outdoors",
-      "coordinates": {
-        "lat": 41.8879,
-        "lng": -87.627
-      },
-      "address": "112 E Wacker Dr, Chicago, IL 60601",
+      "name": "Underground Lounge",
+      "category": "nightlife",
+      "coordinates": { "lat": 41.9417, "lng": -87.6529 },
+      "address": "952 W Newport Ave, Chicago, IL 60657",
       "photoUrls": [],
-      "shortDescription": "A 1.25-mile riverfront path lined with bars, restaurants, and boat tour docks, with great views of the city's famous architecture. Ideal for an afternoon or evening downtown.",
-      "priceLevel": "Free",
-      "tags": [
-        "waterfront-walk",
-        "restaurants",
-        "kayaking",
-        "architecture-views",
-        "day-trip"
-      ]
+      "shortDescription": "Wrigleyville's best-kept secret for live music, hosting local bands in an intimate, no-frills setting. A great pick for guests wanting nightlife beyond the sports-bar scene.",
+      "priceLevel": "$$",
+      "tags": ["live-bands", "hidden-gem", "eclectic", "late-night"]
     },
     {
       "id": "rec_029",
+      "name": "Rizzo's Bar & Inn",
+      "category": "nightlife",
+      "coordinates": { "lat": 41.9494, "lng": -87.6553 },
+      "address": "3658 N Clark St, Chicago, IL 60613",
+      "photoUrls": [],
+      "shortDescription": "A longtime Lakeview bar known for live music and a relaxed, unpretentious crowd. A solid pick for guests who want a night out that isn't centered on the ballpark scene.",
+      "priceLevel": "$$",
+      "tags": ["live-music", "neighborhood-bar", "casual", "late-night"]
+    },
+    {
+      "id": "rec_030",
+      "name": "Budweiser Brickhouse Tavern",
+      "category": "nightlife",
+      "coordinates": { "lat": 41.9492, "lng": -87.6553 },
+      "address": "3647 N Clark St, Chicago, IL 60613",
+      "photoUrls": [],
+      "shortDescription": "A Clark Street tavern just steps from Wrigley Field with rooftop patio seating and game-day crowds — reliable pre- or post-game energy right in the thick of it.",
+      "priceLevel": "$$",
+      "tags": ["rooftop-patio", "wrigley-field-views", "game-day", "beer-selection"]
+    },
+    {
+      "id": "rec_031",
+      "name": "Kelly Park",
+      "category": "outdoors",
+      "coordinates": { "lat": 41.952, "lng": -87.6456 },
+      "address": "3800 N Seminary Ave, Chicago, IL 60613",
+      "photoUrls": [],
+      "shortDescription": "A full acre of open grass and playground space that serves as Wrigleyville's go-to cooldown spot — popular with families winding down after a game or before heading into the neighborhood's energy.",
+      "priceLevel": "Free",
+      "tags": ["green-space", "playground", "post-game-cooldown", "family-friendly"]
+    },
+    {
+      "id": "rec_032",
+      "name": "Graceland Cemetery",
+      "category": "outdoors",
+      "coordinates": { "lat": 41.9556, "lng": -87.6553 },
+      "address": "4001 N Clark St, Chicago, IL 60613",
+      "photoUrls": [],
+      "shortDescription": "A leafy, historic cemetery that's also an outdoor architecture and sculpture showcase, home to the tombs of many famous Chicagoans. A quietly fascinating stop for history-minded guests.",
+      "priceLevel": "Free",
+      "tags": ["historic", "scenic", "self-guided-tours", "quiet"]
+    },
+    {
+      "id": "rec_033",
+      "name": "Bill Jarvis Migratory Bird Sanctuary",
+      "category": "outdoors",
+      "coordinates": { "lat": 41.9475, "lng": -87.636 },
+      "address": "3550 N DuSable Lake Shore Dr, Chicago, IL 60613",
+      "photoUrls": [],
+      "shortDescription": "A tucked-away lakefront sanctuary popular with birdwatchers for spotting resident and migratory species. A peaceful, free nature break within walking distance of the neighborhood.",
+      "priceLevel": "Free",
+      "tags": ["birdwatching", "quiet-nature-spot", "lakefront", "free"]
+    },
+    {
+      "id": "rec_034",
+      "name": "Laugh Factory Chicago",
+      "category": "culture",
+      "coordinates": { "lat": 41.9407, "lng": -87.6456 },
+      "address": "3175 N Broadway St, Chicago, IL 60657",
+      "photoUrls": [],
+      "shortDescription": "A well-known stop for both emerging and established comedians, with the occasional surprise celebrity drop-in. A solid evening-out option beyond dinner and drinks.",
+      "priceLevel": "$$$",
+      "tags": ["stand-up-comedy", "nightlife", "celebrity-guests", "evening-activity"]
+    },
+    {
+      "id": "rec_035",
+      "name": "Dat Donut",
+      "category": "dining",
+      "coordinates": { "lat": 41.9375, "lng": -87.6528 },
+      "address": "947 W Wellington Ave, Chicago, IL 60657",
+      "photoUrls": [],
+      "shortDescription": "A beloved South Side Chicago donut institution now with a Lakeview location, famous for its oversized 'Big Dat' donut. A fun, sugary stop any time of day.",
+      "priceLevel": "$",
+      "tags": ["donuts", "chicago-classic", "casual", "sweet-treat"]
+    },
+    {
+      "id": "rec_036",
+      "name": "Millennium Park & The Bean",
+      "category": "outdoors",
+      "coordinates": { "lat": 41.8826, "lng": -87.6226 },
+      "address": "201 E Randolph St, Chicago, IL 60602",
+      "photoUrls": [],
+      "shortDescription": "Home to Cloud Gate (aka 'The Bean'), Crown Fountain, and the Pritzker Pavilion — one of Chicago's most iconic and unmissable free attractions, a quick ride south of Wrigleyville.",
+      "priceLevel": "Free",
+      "tags": ["iconic", "free", "photo-spot", "public-art", "day-trip"]
+    },
+    {
+      "id": "rec_037",
+      "name": "Chicago Riverwalk",
+      "category": "outdoors",
+      "coordinates": { "lat": 41.8879, "lng": -87.627 },
+      "address": "112 E Wacker Dr, Chicago, IL 60601",
+      "photoUrls": [],
+      "shortDescription": "A 1.25-mile riverfront path lined with bars, restaurants, and boat tour docks, with great views of the city's famous architecture. A perfect half-day downtown excursion.",
+      "priceLevel": "Free",
+      "tags": ["waterfront-walk", "restaurants", "boat-tours", "architecture-views", "day-trip"]
+    },
+    {
+      "id": "rec_038",
       "name": "Art Institute of Chicago",
       "category": "culture",
-      "coordinates": {
-        "lat": 41.87944,
-        "lng": -87.62389
-      },
+      "coordinates": { "lat": 41.87944, "lng": -87.62389 },
       "address": "111 S Michigan Ave, Chicago, IL 60603",
       "photoUrls": [],
       "shortDescription": "One of the world's premier art museums, with an outstanding Impressionist and modern art collection alongside the iconic lion statues out front. Worth a half-day for art-loving guests.",
       "priceLevel": "$$",
-      "tags": [
-        "world-class-museum",
-        "impressionist-art",
-        "iconic",
-        "day-trip"
-      ]
+      "tags": ["world-class-museum", "impressionist-art", "iconic", "day-trip"]
     },
     {
-      "id": "rec_030",
-      "name": "Gibsons Italia",
-      "category": "dining",
-      "coordinates": {
-        "lat": 41.8867238,
-        "lng": -87.6394951
-      },
-      "address": "233 N Canal St, Chicago, IL 60606",
+      "id": "rec_039",
+      "name": "Navy Pier",
+      "category": "outdoors",
+      "coordinates": { "lat": 41.8917, "lng": -87.6086 },
+      "address": "600 E Grand Ave, Chicago, IL 60611",
       "photoUrls": [],
-      "shortDescription": "A polished River North Italian spot with sweeping Chicago River and skyline views — a strong pick for guests wanting an upscale dinner while in the city for the day.",
-      "priceLevel": "$$$$",
-      "tags": [
-        "upscale-italian",
-        "skyline-views",
-        "river-north",
-        "day-trip"
-      ]
+      "shortDescription": "A lakefront entertainment pier with a giant Ferris wheel, boat cruises, and skyline views — a classic, crowd-pleasing outing for families or first-time Chicago visitors.",
+      "priceLevel": "Free",
+      "tags": ["ferris-wheel", "family-friendly", "lake-views", "entertainment", "day-trip"]
+    },
+    {
+      "id": "rec_040",
+      "name": "Willis Tower Skydeck",
+      "category": "culture",
+      "coordinates": { "lat": 41.8788, "lng": -87.6359 },
+      "address": "233 S Wacker Dr, Chicago, IL 60606",
+      "photoUrls": [],
+      "shortDescription": "One of the tallest buildings in the Western Hemisphere, with a glass-floored 'Ledge' jutting out over the city 103 floors up. A bucket-list stop for guests wanting the full skyline view.",
+      "priceLevel": "$$",
+      "tags": ["observation-deck", "glass-ledge", "skyline-views", "iconic", "day-trip"]
+    },
+    {
+      "id": "rec_041",
+      "name": "Lincoln Park Zoo",
+      "category": "outdoors",
+      "coordinates": { "lat": 41.9214, "lng": -87.6335 },
+      "address": "2001 N Clark St, Chicago, IL 60614",
+      "photoUrls": [],
+      "shortDescription": "One of the few free zoos in the country, and one of the closest downtown-adjacent attractions to Wrigleyville. A great low-cost, easy-to-reach outing for families.",
+      "priceLevel": "Free",
+      "tags": ["free-zoo", "family-friendly", "walkable", "nearby", "day-trip"]
+    },
+    {
+      "id": "rec_042",
+      "name": "Chicago Architecture Center River Cruise",
+      "category": "culture",
+      "coordinates": { "lat": 41.8879, "lng": -87.627 },
+      "address": "112 E Wacker Dr, Chicago, IL 60601",
+      "photoUrls": [],
+      "shortDescription": "A guided boat tour along the Chicago River highlighting the city's landmark architecture, led by trained docents. Consistently rated one of the best first-time-visitor activities in the city.",
+      "priceLevel": "$$$",
+      "tags": ["boat-tour", "architecture", "guided", "skyline-views", "day-trip"]
     }
   ]
 }
