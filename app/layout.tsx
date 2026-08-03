@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Averia_Serif_Libre } from "next/font/google";
+import { EB_Garamond } from "next/font/google";
 import "./globals.css";
 
-const averiaSerifLibre = Averia_Serif_Libre({
+const ebGaramond = EB_Garamond({
   variable: "--font-averia",
-  weight: ["300", "400", "700"],
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
 });
 
@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${averiaSerifLibre.variable} h-full antialiased`}>
+    <html lang="en" className={`${ebGaramond.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
