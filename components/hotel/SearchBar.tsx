@@ -6,7 +6,7 @@ export function SearchBar({
   onChange: (value: string) => void;
 }) {
   return (
-    <div className="flex items-center rounded-full bg-white/90 px-4 py-3 shadow-lg backdrop-blur-sm">
+    <div className="flex items-center rounded-full border border-[var(--tuka-gold)]/40 bg-white/95 px-4 py-3 shadow-lg backdrop-blur-sm">
       <input
         type="search"
         inputMode="search"

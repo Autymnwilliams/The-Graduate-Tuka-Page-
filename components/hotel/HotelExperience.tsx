@@ -93,6 +93,12 @@ export function HotelExperience({ hotel }: { hotel: PublicHotel }) {
         )}
       </div>
 
+      <div className="flex h-9 w-full shrink-0 items-center justify-center bg-gradient-to-b from-[#8b6239] to-[#6a4a2a] shadow-[inset_0_2px_6px_rgba(0,0,0,0.25)]">
+        <span className="text-xs font-semibold tracking-[0.25em] text-[#f5ead9] uppercase">
+          {hotel.neighborhood}
+        </span>
+      </div>
+
       <div className="flex flex-1 flex-col gap-3 p-4 sm:p-6">
         {filteredRecs.length === 0 ? (
           <p className="py-8 text-center text-sm text-zinc-500">
