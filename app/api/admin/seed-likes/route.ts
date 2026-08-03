@@ -21,7 +21,7 @@ export async function GET(request: Request) {
     return new Response("Not found", { status: 404 });
   }
 
-  const hotelSlug = searchParams.get("hotel") ?? "template";
+  const hotelSlug = searchParams.get("hotel") ?? "hotelzachary";
   const hotel = await getHotelBySlug(hotelSlug);
   if (!hotel) return new Response("Hotel not found", { status: 404 });
 

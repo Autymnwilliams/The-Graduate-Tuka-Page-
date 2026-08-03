@@ -3,8 +3,8 @@
   "slug": "evanston",
   "name": "The Graduate Evanston",
   "neighborhood": "Downtown Evanston, IL",
-  "logoUrl": "/assets/template/logo.png",
-  "heroImageUrl": "/assets/template/hero.jpg",
+  "logoUrl": "/assets/evanston/logo.png",
+  "heroImageUrl": "/assets/evanston/hero.jpg",
   "coordinates": {
     "lat": 42.0469,
     "lng": -87.6877
