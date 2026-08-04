@@ -117,7 +117,7 @@ class MemoryHotelStore implements HotelStore {
 
 /**
  * MongoDB-backed store. On first read of a slug with no doc yet, seeds from
- * data/hotels/${slug}.json — so /evanston and /hotelzachary keep working
+ * data/hotels/${slug}.json — so existing hotel pages keep working
  * unchanged the moment this ships, no manual migration step required.
  */
 class MongoHotelStore implements HotelStore {
