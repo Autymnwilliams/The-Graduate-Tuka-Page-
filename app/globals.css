@@ -84,6 +84,11 @@ a {
   object-fit: cover;
 }
 
+/* Clear the header pill + search bar overlay, which otherwise overlaps Mapbox's default zoom/compass control. */
+.mapboxgl-ctrl-top-right {
+  top: 136px;
+}
+
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
