@@ -19,8 +19,18 @@ export function proxy(request: NextRequest) {
   if (!isSubdomain) return NextResponse.next();
 
   const subdomain = hostname.slice(0, -(`.${ROOT_DOMAIN}`.length));
+  const { pathname } = request.nextUrl;
+
+  // Every internal link (rec cards, back links, signup) is an absolute href
+  // like /{hotelSlug}/recs/{recId} — the same ones used for path-based
+  // routing on the bare domain. On a subdomain those already resolve
+  // correctly once rewritten once; prefixing again on click would produce
+  // /{subdomain}/{subdomain}/recs/{recId} and 404.
+  const alreadyPrefixed = pathname === `/${subdomain}` || pathname.startsWith(`/${subdomain}/`);
+  if (alreadyPrefixed) return NextResponse.next();
+
   const url = request.nextUrl.clone();
-  url.pathname = `/${subdomain}${request.nextUrl.pathname === "/" ? "" : request.nextUrl.pathname}`;
+  url.pathname = `/${subdomain}${pathname === "/" ? "" : pathname}`;
   return NextResponse.rewrite(url);
 }
 
