@@ -14,6 +14,13 @@ export function uberDeepLink(dropoff: Coordinates, nickname: string): string | n
   const params = new URLSearchParams({
     action: "setPickup",
     client_id: clientId,
+    // "my_location" is a required sentinel meaning "use the device's current
+    // GPS location" -- omitting pickup entirely (as an earlier version of
+    // this did) makes Uber fall back to a default location instead of
+    // reading the dropoff params at all.
+    "pickup[latitude]": "my_location",
+    "pickup[longitude]": "my_location",
+    "pickup[nickname]": "my_location",
     "dropoff[latitude]": String(dropoff.lat),
     "dropoff[longitude]": String(dropoff.lng),
     "dropoff[nickname]": nickname,

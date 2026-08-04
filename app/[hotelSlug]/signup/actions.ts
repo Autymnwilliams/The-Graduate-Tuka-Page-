@@ -12,6 +12,7 @@ export async function completeSignup(hotelSlug: string, formData: FormData) {
   const name = String(formData.get("name") ?? "").trim();
   const email = String(formData.get("email") ?? "").trim();
   const phone = String(formData.get("phone") ?? "").trim();
+  const stayLength = String(formData.get("stayLength") ?? "").trim();
 
   const cookieStore = await cookies();
   let guestId = cookieStore.get(GUEST_ID_COOKIE)?.value;
@@ -31,6 +32,7 @@ export async function completeSignup(hotelSlug: string, formData: FormData) {
       email,
       name,
       phone: phone || undefined,
+      stayLength: stayLength || undefined,
       guestId,
       hotelSlug,
     }));

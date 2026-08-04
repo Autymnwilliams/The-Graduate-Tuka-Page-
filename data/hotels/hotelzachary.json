@@ -5,471 +5,865 @@
   "neighborhood": "Wrigleyville, Chicago, IL",
   "logoUrl": "/assets/hotelzachary/logo.png",
   "heroImageUrl": "/assets/hotelzachary/hero.jpg",
-  "coordinates": { "lat": 41.947, "lng": -87.654 },
+  "coordinates": {
+    "lat": 41.947,
+    "lng": -87.654
+  },
   "freeRecLimit": 10,
-  "categories": ["dining", "coffee", "nightlife", "outdoors", "shopping", "culture"],
+  "categories": [
+    "dining",
+    "coffee",
+    "nightlife",
+    "outdoors",
+    "shopping",
+    "culture"
+  ],
   "recs": [
     {
       "id": "rec_001",
       "name": "Mordecai",
       "category": "dining",
-      "coordinates": { "lat": 41.9489, "lng": -87.6553 },
+      "coordinates": {
+        "lat": 41.9489,
+        "lng": -87.6553
+      },
       "address": "3632 N Clark St, Chicago, IL 60613",
       "photoUrls": [],
       "shortDescription": "A stylish New American restaurant and whiskey bar right in Wrigleyville, known for its extensive whiskey list alongside a refined but approachable menu. A step up from the sports-bar scene nearby.",
       "priceLevel": "$$$",
-      "tags": ["whiskey-bar", "upscale-casual", "date-night", "cocktails"]
+      "tags": [
+        "whiskey-bar",
+        "upscale-casual",
+        "date-night",
+        "cocktails"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Mordecai%203632%20N%20Clark%20St%2C%20Chicago%2C%20IL%2060613%20reservations"
     },
     {
       "id": "rec_002",
       "name": "Pedestrian Coffee",
       "category": "coffee",
-      "coordinates": { "lat": 41.9411, "lng": -87.6526 },
+      "coordinates": {
+        "lat": 41.9411,
+        "lng": -87.6526
+      },
       "address": "939 W Belmont Ave, Chicago, IL 60657",
       "photoUrls": [],
       "shortDescription": "A bright, airy café right by the Belmont CTA stop, known for seasonal lattes and a laptop-friendly atmosphere with plenty of outlets and seating.",
       "priceLevel": "$",
-      "tags": ["natural-light", "remote-work-friendly", "seasonal-lattes", "belmont-stop"]
+      "tags": [
+        "natural-light",
+        "remote-work-friendly",
+        "seasonal-lattes",
+        "belmont-stop"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Pedestrian%20Coffee%20939%20W%20Belmont%20Ave%2C%20Chicago%2C%20IL%2060657%20reservations"
     },
     {
       "id": "rec_003",
       "name": "Cubby Bear",
       "category": "nightlife",
-      "coordinates": { "lat": 41.9484, "lng": -87.6553 },
+      "coordinates": {
+        "lat": 41.9484,
+        "lng": -87.6553
+      },
       "address": "1059 W Addison St, Chicago, IL 60613",
       "photoUrls": [],
       "shortDescription": "One of Wrigleyville's most iconic bars, sitting directly across from Wrigley Field — a high-energy game-day staple with multiple floors and a rowdy, celebratory atmosphere.",
       "priceLevel": "$$",
-      "tags": ["wrigley-field-views", "iconic", "game-day", "multiple-floors"]
+      "tags": [
+        "wrigley-field-views",
+        "iconic",
+        "game-day",
+        "multiple-floors"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Cubby%20Bear%201059%20W%20Addison%20St%2C%20Chicago%2C%20IL%2060613%20reservations"
     },
     {
       "id": "rec_004",
       "name": "Wrigley Field",
       "category": "outdoors",
-      "coordinates": { "lat": 41.9484, "lng": -87.6553 },
+      "coordinates": {
+        "lat": 41.9484,
+        "lng": -87.6553
+      },
       "address": "1060 W Addison St, Chicago, IL 60613",
       "photoUrls": [],
       "shortDescription": "The second-oldest ballpark in Major League Baseball, famous for its ivy-covered outfield walls and hand-turned scoreboard. The whole reason most guests are staying in this neighborhood.",
       "priceLevel": "$$$",
-      "tags": ["iconic-ballpark", "cubs-games", "historic", "photo-spot"]
+      "tags": [
+        "iconic-ballpark",
+        "cubs-games",
+        "historic",
+        "photo-spot"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Wrigley%20Field%201060%20W%20Addison%20St%2C%20Chicago%2C%20IL%2060613%20reservations"
     },
     {
       "id": "rec_005",
       "name": "Southport Corridor",
       "category": "shopping",
-      "coordinates": { "lat": 41.9447, "lng": -87.665 },
+      "coordinates": {
+        "lat": 41.9447,
+        "lng": -87.665
+      },
       "address": "Southport Ave between W Belmont Ave and W Irving Park Rd, Chicago, IL 60657",
       "photoUrls": [],
       "shortDescription": "A charming stretch of independently owned boutiques, vintage and record shops, and bustling restaurant patios — a great walkable shopping alternative to the sports-bar-heavy Clark Street strip.",
       "priceLevel": "$",
-      "tags": ["boutiques", "walkable", "vintage-shops", "restaurant-patios"]
+      "tags": [
+        "boutiques",
+        "walkable",
+        "vintage-shops",
+        "restaurant-patios"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Southport%20Corridor%20Southport%20Ave%20between%20W%20Belmont%20Ave%20and%20W%20Irving%20Park%20Rd%2C%20Chicago%2C%20IL%2060657%20reservations"
     },
     {
       "id": "rec_006",
       "name": "Music Box Theatre",
       "category": "culture",
-      "coordinates": { "lat": 41.9508, "lng": -87.665 },
+      "coordinates": {
+        "lat": 41.9508,
+        "lng": -87.665
+      },
       "address": "3733 N Southport Ave, Chicago, IL 60613",
       "photoUrls": [],
       "shortDescription": "A beautifully preserved historic movie palace showing indie and classic films, complete with a live organist before select showings. A one-of-a-kind evening activity for film lovers.",
       "priceLevel": "$$",
-      "tags": ["historic-theater", "indie-films", "live-organist", "unique-experience"]
+      "tags": [
+        "historic-theater",
+        "indie-films",
+        "live-organist",
+        "unique-experience"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Music%20Box%20Theatre%203733%20N%20Southport%20Ave%2C%20Chicago%2C%20IL%2060613%20reservations"
     },
     {
       "id": "rec_007",
       "name": "Smoke Daddy",
       "category": "dining",
-      "coordinates": { "lat": 41.949, "lng": -87.6553 },
+      "coordinates": {
+        "lat": 41.949,
+        "lng": -87.6553
+      },
       "address": "3636 N Clark St, Chicago, IL 60613",
       "photoUrls": [],
       "shortDescription": "Award-winning barbecue with a side of live blues music, long a favorite for both locals and visiting Cubs fans. Great patio seating for a laid-back meal near the ballpark.",
       "priceLevel": "$$",
-      "tags": ["barbecue", "live-blues", "patio", "casual"]
+      "tags": [
+        "barbecue",
+        "live-blues",
+        "patio",
+        "casual"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Smoke%20Daddy%203636%20N%20Clark%20St%2C%20Chicago%2C%20IL%2060613%20reservations"
     },
     {
       "id": "rec_008",
       "name": "Bombastic Cafe",
       "category": "coffee",
-      "coordinates": { "lat": 41.9508, "lng": -87.665 },
+      "coordinates": {
+        "lat": 41.9508,
+        "lng": -87.665
+      },
       "address": "3732 N Southport Ave, Chicago, IL 60613",
       "photoUrls": [],
       "shortDescription": "A beloved local coffee shop known for its friendly, familiar-face service and a cozy outdoor fire pit — a warm neighborhood hangout more than a quick-stop café.",
       "priceLevel": "$",
-      "tags": ["local-favorite", "fire-pit", "friendly-staff", "wrigleyville"]
+      "tags": [
+        "local-favorite",
+        "fire-pit",
+        "friendly-staff",
+        "wrigleyville"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Bombastic%20Cafe%203732%20N%20Southport%20Ave%2C%20Chicago%2C%20IL%2060613%20reservations"
     },
     {
       "id": "rec_009",
       "name": "Murphy's Bleachers",
       "category": "nightlife",
-      "coordinates": { "lat": 41.9494, "lng": -87.6577 },
+      "coordinates": {
+        "lat": 41.9494,
+        "lng": -87.6577
+      },
       "address": "3655 N Sheffield Ave, Chicago, IL 60613",
       "photoUrls": [],
       "shortDescription": "A Wrigleyville landmark right across from the ballpark, famous for its rooftop views and electric game-day crowd. As classic a Cubs-adjacent bar experience as it gets.",
       "priceLevel": "$$",
-      "tags": ["wrigley-field-views", "rooftop", "classic-sports-bar", "pre-post-game"]
+      "tags": [
+        "wrigley-field-views",
+        "rooftop",
+        "classic-sports-bar",
+        "pre-post-game"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Murphy's%20Bleachers%203655%20N%20Sheffield%20Ave%2C%20Chicago%2C%20IL%2060613%20reservations"
     },
     {
       "id": "rec_010",
       "name": "Belmont Harbor & Dog Beach",
       "category": "outdoors",
-      "coordinates": { "lat": 41.9484, "lng": -87.636 },
+      "coordinates": {
+        "lat": 41.9484,
+        "lng": -87.636
+      },
       "address": "3600 N Recreation Dr, Chicago, IL 60613",
       "photoUrls": [],
       "shortDescription": "A picturesque stretch of Lake Michigan shoreline with a marina, sailing charters, and a well-loved dog beach. A relaxing lakefront escape just minutes from the Wrigleyville buzz.",
       "priceLevel": "Free",
-      "tags": ["lakefront", "dog-friendly", "sailing", "scenic-walk"]
+      "tags": [
+        "lakefront",
+        "dog-friendly",
+        "sailing",
+        "scenic-walk"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Belmont%20Harbor%20%26%20Dog%20Beach%203600%20N%20Recreation%20Dr%2C%20Chicago%2C%20IL%2060613%20reservations"
     },
     {
       "id": "rec_011",
       "name": "Crosby's Kitchen",
       "category": "dining",
-      "coordinates": { "lat": 41.9458, "lng": -87.665 },
+      "coordinates": {
+        "lat": 41.9458,
+        "lng": -87.665
+      },
       "address": "3455 N Southport Ave, Chicago, IL 60657",
       "photoUrls": [],
       "shortDescription": "A reliable neighborhood gastropub known for elevated comfort food and a lively weekend brunch scene. Good pick for groups who want solid food without the sports-bar noise.",
       "priceLevel": "$$",
-      "tags": ["brunch", "gastropub", "group-friendly", "patio"]
+      "tags": [
+        "brunch",
+        "gastropub",
+        "group-friendly",
+        "patio"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Crosby's%20Kitchen%203455%20N%20Southport%20Ave%2C%20Chicago%2C%20IL%2060657%20reservations"
     },
     {
       "id": "rec_012",
       "name": "Tango Sur",
       "category": "dining",
-      "coordinates": { "lat": 41.9513, "lng": -87.665 },
+      "coordinates": {
+        "lat": 41.9513,
+        "lng": -87.665
+      },
       "address": "3763 N Southport Ave, Chicago, IL 60613",
       "photoUrls": [],
       "shortDescription": "A neighborhood favorite for generous cuts of Argentinian steak at a fraction of downtown prices, with a BYOB policy guests love. A great date-night option just off the main Wrigleyville strip.",
       "priceLevel": "$$",
-      "tags": ["steakhouse", "byob", "romantic", "southport-corridor"]
+      "tags": [
+        "steakhouse",
+        "byob",
+        "romantic",
+        "southport-corridor"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Tango%20Sur%203763%20N%20Southport%20Ave%2C%20Chicago%2C%20IL%2060613%20reservations"
     },
     {
       "id": "rec_013",
       "name": "Ann Sather",
       "category": "dining",
-      "coordinates": { "lat": 41.945, "lng": -87.6456 },
+      "coordinates": {
+        "lat": 41.945,
+        "lng": -87.6456
+      },
       "address": "3415 N Broadway St, Chicago, IL 60657",
       "photoUrls": [],
       "shortDescription": "A Chicago institution since the 1920s, famous for its homemade cinnamon rolls and hearty Swedish diner classics. A comforting, old-school breakfast stop with real neighborhood history.",
       "priceLevel": "$",
-      "tags": ["swedish-diner", "cinnamon-rolls", "chicago-institution", "breakfast"]
+      "tags": [
+        "swedish-diner",
+        "cinnamon-rolls",
+        "chicago-institution",
+        "breakfast"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Ann%20Sather%203415%20N%20Broadway%20St%2C%20Chicago%2C%20IL%2060657%20reservations"
     },
     {
       "id": "rec_014",
       "name": "Chilam Balam",
       "category": "dining",
-      "coordinates": { "lat": 41.9379, "lng": -87.6456 },
+      "coordinates": {
+        "lat": 41.9379,
+        "lng": -87.6456
+      },
       "address": "3023 N Broadway St, Chicago, IL 60657",
       "photoUrls": [],
       "shortDescription": "A sustainably minded, BYOB Mexican spot serving farm-fresh small plates in a cozy basement-level space. A favorite for guests wanting something more inventive than standard tacos.",
       "priceLevel": "$$",
-      "tags": ["byob", "farm-fresh", "small-plates", "intimate"]
+      "tags": [
+        "byob",
+        "farm-fresh",
+        "small-plates",
+        "intimate"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Chilam%20Balam%203023%20N%20Broadway%20St%2C%20Chicago%2C%20IL%2060657%20reservations"
     },
     {
       "id": "rec_015",
       "name": "Batter & Berries",
       "category": "dining",
-      "coordinates": { "lat": 41.9329, "lng": -87.6577 },
+      "coordinates": {
+        "lat": 41.9329,
+        "lng": -87.6577
+      },
       "address": "2748 N Lincoln Ave, Chicago, IL 60614",
       "photoUrls": [],
       "shortDescription": "Known for decadent loaded french toast flights and a lively brunch crowd. One of Lakeview's most popular breakfast destinations — a great start before a day game.",
       "priceLevel": "$$",
-      "tags": ["brunch", "french-toast", "family-friendly", "popular"]
+      "tags": [
+        "brunch",
+        "french-toast",
+        "family-friendly",
+        "popular"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Batter%20%26%20Berries%202748%20N%20Lincoln%20Ave%2C%20Chicago%2C%20IL%2060614%20reservations"
     },
     {
       "id": "rec_016",
       "name": "Galata Mediterranean Grill",
       "category": "dining",
-      "coordinates": { "lat": 41.9437, "lng": -87.6553 },
+      "coordinates": {
+        "lat": 41.9437,
+        "lng": -87.6553
+      },
       "address": "3345 N Clark St, Chicago, IL 60657",
       "photoUrls": [],
       "shortDescription": "A neighborhood Turkish spot inspired by the historic Galata Tower, serving lahmacun, kebabs, and fresh-baked pides made from family recipes. A flavorful, casual dinner choice.",
       "priceLevel": "$",
-      "tags": ["turkish-cuisine", "kebabs", "family-recipes", "casual"]
+      "tags": [
+        "turkish-cuisine",
+        "kebabs",
+        "family-recipes",
+        "casual"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Galata%20Mediterranean%20Grill%203345%20N%20Clark%20St%2C%20Chicago%2C%20IL%2060657%20reservations"
     },
     {
       "id": "rec_017",
       "name": "Felix Modern American Dining",
       "category": "dining",
-      "coordinates": { "lat": 41.943, "lng": -87.6553 },
+      "coordinates": {
+        "lat": 41.943,
+        "lng": -87.6553
+      },
       "address": "3301 N Clark St, Chicago, IL 60657",
       "photoUrls": [],
       "shortDescription": "A modern American restaurant with a seasonally driven menu and polished but unfussy atmosphere — a strong pick for guests wanting a slightly elevated dinner near Wrigley.",
       "priceLevel": "$$$",
-      "tags": ["modern-american", "seasonal", "upscale-casual", "cocktails"]
+      "tags": [
+        "modern-american",
+        "seasonal",
+        "upscale-casual",
+        "cocktails"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Felix%20Modern%20American%20Dining%203301%20N%20Clark%20St%2C%20Chicago%2C%20IL%2060657%20reservations"
     },
     {
       "id": "rec_018",
       "name": "Small Cheval",
       "category": "dining",
-      "coordinates": { "lat": 41.9502, "lng": -87.657 },
+      "coordinates": {
+        "lat": 41.9502,
+        "lng": -87.657
+      },
       "address": "1119 W Waveland Ave, Chicago, IL 60613",
       "photoUrls": [],
       "shortDescription": "A cult-favorite smash burger spot from the team behind Au Cheval, serving a compact menu of exceptional burgers and fries. Fast, casual, and dangerously good pre- or post-game.",
       "priceLevel": "$",
-      "tags": ["smash-burgers", "casual", "quick-bite", "late-night"]
+      "tags": [
+        "smash-burgers",
+        "casual",
+        "quick-bite",
+        "late-night"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Small%20Cheval%201119%20W%20Waveland%20Ave%2C%20Chicago%2C%20IL%2060613%20reservations"
     },
     {
       "id": "rec_019",
       "name": "Coda Di Volpe",
       "category": "dining",
-      "coordinates": { "lat": 41.9436, "lng": -87.665 },
+      "coordinates": {
+        "lat": 41.9436,
+        "lng": -87.665
+      },
       "address": "3335 N Southport Ave, Chicago, IL 60657",
       "photoUrls": [],
       "shortDescription": "A polished, wood-fired Italian restaurant from the Boka Restaurant Group, serving pizzas and shareable Southern Italian plates in a warm, energetic dining room.",
       "priceLevel": "$$$",
-      "tags": ["wood-fired", "upscale-casual", "shareable-plates", "wine-list"]
+      "tags": [
+        "wood-fired",
+        "upscale-casual",
+        "shareable-plates",
+        "wine-list"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Coda%20Di%20Volpe%203335%20N%20Southport%20Ave%2C%20Chicago%2C%20IL%2060657%20reservations"
     },
     {
       "id": "rec_020",
       "name": "Uncommon Ground",
       "category": "coffee",
-      "coordinates": { "lat": 41.952, "lng": -87.6553 },
+      "coordinates": {
+        "lat": 41.952,
+        "lng": -87.6553
+      },
       "address": "3800 N Clark St, Chicago, IL 60613",
       "photoUrls": [],
       "shortDescription": "A Lakeview mainstay for over 30 years, serving organic coffee and espresso alongside a full food menu and regular live music nights — equally good for a quiet coffee or an evening out.",
       "priceLevel": "$$",
-      "tags": ["organic-coffee", "30-plus-years", "live-music", "full-menu"]
+      "tags": [
+        "organic-coffee",
+        "30-plus-years",
+        "live-music",
+        "full-menu"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Uncommon%20Ground%203800%20N%20Clark%20St%2C%20Chicago%2C%20IL%2060613%20reservations"
     },
     {
       "id": "rec_021",
       "name": "Cafe Tola",
       "category": "coffee",
-      "coordinates": { "lat": 41.9486, "lng": -87.665 },
+      "coordinates": {
+        "lat": 41.9486,
+        "lng": -87.665
+      },
       "address": "3612 N Southport Ave, Chicago, IL 60613",
       "photoUrls": [],
       "shortDescription": "A Mexican-inspired café serving great coffee alongside empanadas and other light bites. A flavorful, laid-back stop for a coffee-and-snack break.",
       "priceLevel": "$",
-      "tags": ["mexican-inspired", "empanadas", "cozy", "casual"]
+      "tags": [
+        "mexican-inspired",
+        "empanadas",
+        "cozy",
+        "casual"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Cafe%20Tola%203612%20N%20Southport%20Ave%2C%20Chicago%2C%20IL%2060613%20reservations"
     },
     {
       "id": "rec_022",
       "name": "Elevate Coffee",
       "category": "coffee",
-      "coordinates": { "lat": 41.9437, "lng": -87.6492 },
+      "coordinates": {
+        "lat": 41.9437,
+        "lng": -87.6492
+      },
       "address": "3344 N Halsted St, Chicago, IL 60657",
       "photoUrls": [],
       "shortDescription": "A local coffee spot known for a smooth nitro cold brew and easygoing atmosphere — a solid quick-stop option in the Boystown/Lakeview stretch.",
       "priceLevel": "$",
-      "tags": ["nitro-cold-brew", "casual", "boystown", "quick-stop"]
+      "tags": [
+        "nitro-cold-brew",
+        "casual",
+        "boystown",
+        "quick-stop"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Elevate%20Coffee%203344%20N%20Halsted%20St%2C%20Chicago%2C%20IL%2060657%20reservations"
     },
     {
       "id": "rec_023",
       "name": "Sluggers",
       "category": "nightlife",
-      "coordinates": { "lat": 41.9473, "lng": -87.6553 },
+      "coordinates": {
+        "lat": 41.9473,
+        "lng": -87.6553
+      },
       "address": "3540 N Clark St, Chicago, IL 60657",
       "photoUrls": [],
       "shortDescription": "Part dive bar, part entertainment venue — Sluggers offers batting cages and dueling piano nights alongside the usual bar fare. A fun, interactive stop before or after the game.",
       "priceLevel": "$$",
-      "tags": ["batting-cages", "dueling-pianos", "game-day-fun", "group-activity"]
+      "tags": [
+        "batting-cages",
+        "dueling-pianos",
+        "game-day-fun",
+        "group-activity"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Sluggers%203540%20N%20Clark%20St%2C%20Chicago%2C%20IL%2060657%20reservations"
     },
     {
       "id": "rec_024",
       "name": "Nisei Lounge",
       "category": "nightlife",
-      "coordinates": { "lat": 41.9455, "lng": -87.6577 },
+      "coordinates": {
+        "lat": 41.9455,
+        "lng": -87.6577
+      },
       "address": "3439 N Sheffield Ave, Chicago, IL 60657",
       "photoUrls": [],
       "shortDescription": "A true Wrigleyville dive bar — cheap drinks, zero pretension, and a loyal following of regulars and pre-game fans. The anti-rooftop-bar option for guests who want the classic bleacher-bum experience.",
       "priceLevel": "$",
-      "tags": ["dive-bar", "cheap-drinks", "no-frills", "game-day-staple"]
+      "tags": [
+        "dive-bar",
+        "cheap-drinks",
+        "no-frills",
+        "game-day-staple"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Nisei%20Lounge%203439%20N%20Sheffield%20Ave%2C%20Chicago%2C%20IL%2060657%20reservations"
     },
     {
       "id": "rec_025",
       "name": "Trader Todd's",
       "category": "nightlife",
-      "coordinates": { "lat": 41.9414, "lng": -87.6577 },
+      "coordinates": {
+        "lat": 41.9414,
+        "lng": -87.6577
+      },
       "address": "3216 N Sheffield Ave, Chicago, IL 60657",
       "photoUrls": [],
       "shortDescription": "A tropical-themed beer garden and tiki bar with a seafood-forward menu, tropical cocktails, and regular karaoke nights — a fun change of pace from the sports-bar strip.",
       "priceLevel": "$$",
-      "tags": ["tiki-bar", "karaoke", "beer-garden", "tropical-cocktails"]
+      "tags": [
+        "tiki-bar",
+        "karaoke",
+        "beer-garden",
+        "tropical-cocktails"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Trader%20Todd's%203216%20N%20Sheffield%20Ave%2C%20Chicago%2C%20IL%2060657%20reservations"
     },
     {
       "id": "rec_026",
       "name": "Pilot Project Brewing - Wrigleyville",
       "category": "nightlife",
-      "coordinates": { "lat": 41.9461, "lng": -87.6553 },
+      "coordinates": {
+        "lat": 41.9461,
+        "lng": -87.6553
+      },
       "address": "3473 N Clark St, Chicago, IL 60657",
       "photoUrls": [],
       "shortDescription": "A Wrigleyville outpost of the local Pilot Project brewery collective, pouring rotating small-batch craft beers in a casual taproom setting.",
       "priceLevel": "$$",
-      "tags": ["craft-beer", "rotating-taps", "brewery", "casual"]
+      "tags": [
+        "craft-beer",
+        "rotating-taps",
+        "brewery",
+        "casual"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Pilot%20Project%20Brewing%20-%20Wrigleyville%203473%20N%20Clark%20St%2C%20Chicago%2C%20IL%2060657%20reservations"
     },
     {
       "id": "rec_027",
       "name": "Corridor Brewery & Provisions",
       "category": "nightlife",
-      "coordinates": { "lat": 41.9456, "lng": -87.665 },
+      "coordinates": {
+        "lat": 41.9456,
+        "lng": -87.665
+      },
       "address": "3446 N Southport Ave, Chicago, IL 60657",
       "photoUrls": [],
       "shortDescription": "A farmhouse-style craft brewery on the Southport Corridor pairing ever-changing house beers with a locally sourced food menu — a quieter alternative to the Clark Street bar strip.",
       "priceLevel": "$$",
-      "tags": ["farmhouse-brewery", "locally-sourced-food", "southport-corridor", "craft-beer"]
+      "tags": [
+        "farmhouse-brewery",
+        "locally-sourced-food",
+        "southport-corridor",
+        "craft-beer"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Corridor%20Brewery%20%26%20Provisions%203446%20N%20Southport%20Ave%2C%20Chicago%2C%20IL%2060657%20reservations"
     },
     {
       "id": "rec_028",
       "name": "Underground Lounge",
       "category": "nightlife",
-      "coordinates": { "lat": 41.9417, "lng": -87.6529 },
+      "coordinates": {
+        "lat": 41.9417,
+        "lng": -87.6529
+      },
       "address": "952 W Newport Ave, Chicago, IL 60657",
       "photoUrls": [],
       "shortDescription": "Wrigleyville's best-kept secret for live music, hosting local bands in an intimate, no-frills setting. A great pick for guests wanting nightlife beyond the sports-bar scene.",
       "priceLevel": "$$",
-      "tags": ["live-bands", "hidden-gem", "eclectic", "late-night"]
+      "tags": [
+        "live-bands",
+        "hidden-gem",
+        "eclectic",
+        "late-night"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Underground%20Lounge%20952%20W%20Newport%20Ave%2C%20Chicago%2C%20IL%2060657%20reservations"
     },
     {
       "id": "rec_029",
       "name": "Rizzo's Bar & Inn",
       "category": "nightlife",
-      "coordinates": { "lat": 41.9494, "lng": -87.6553 },
+      "coordinates": {
+        "lat": 41.9494,
+        "lng": -87.6553
+      },
       "address": "3658 N Clark St, Chicago, IL 60613",
       "photoUrls": [],
       "shortDescription": "A longtime Lakeview bar known for live music and a relaxed, unpretentious crowd. A solid pick for guests who want a night out that isn't centered on the ballpark scene.",
       "priceLevel": "$$",
-      "tags": ["live-music", "neighborhood-bar", "casual", "late-night"]
+      "tags": [
+        "live-music",
+        "neighborhood-bar",
+        "casual",
+        "late-night"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Rizzo's%20Bar%20%26%20Inn%203658%20N%20Clark%20St%2C%20Chicago%2C%20IL%2060613%20reservations"
     },
     {
       "id": "rec_030",
       "name": "Budweiser Brickhouse Tavern",
       "category": "nightlife",
-      "coordinates": { "lat": 41.9492, "lng": -87.6553 },
+      "coordinates": {
+        "lat": 41.9492,
+        "lng": -87.6553
+      },
       "address": "3647 N Clark St, Chicago, IL 60613",
       "photoUrls": [],
       "shortDescription": "A Clark Street tavern just steps from Wrigley Field with rooftop patio seating and game-day crowds — reliable pre- or post-game energy right in the thick of it.",
       "priceLevel": "$$",
-      "tags": ["rooftop-patio", "wrigley-field-views", "game-day", "beer-selection"]
+      "tags": [
+        "rooftop-patio",
+        "wrigley-field-views",
+        "game-day",
+        "beer-selection"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Budweiser%20Brickhouse%20Tavern%203647%20N%20Clark%20St%2C%20Chicago%2C%20IL%2060613%20reservations"
     },
     {
       "id": "rec_031",
       "name": "Kelly Park",
       "category": "outdoors",
-      "coordinates": { "lat": 41.952, "lng": -87.6456 },
+      "coordinates": {
+        "lat": 41.952,
+        "lng": -87.6456
+      },
       "address": "3800 N Seminary Ave, Chicago, IL 60613",
       "photoUrls": [],
       "shortDescription": "A full acre of open grass and playground space that serves as Wrigleyville's go-to cooldown spot — popular with families winding down after a game or before heading into the neighborhood's energy.",
       "priceLevel": "Free",
-      "tags": ["green-space", "playground", "post-game-cooldown", "family-friendly"]
+      "tags": [
+        "green-space",
+        "playground",
+        "post-game-cooldown",
+        "family-friendly"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Kelly%20Park%203800%20N%20Seminary%20Ave%2C%20Chicago%2C%20IL%2060613%20reservations"
     },
     {
       "id": "rec_032",
       "name": "Graceland Cemetery",
       "category": "outdoors",
-      "coordinates": { "lat": 41.9556, "lng": -87.6553 },
+      "coordinates": {
+        "lat": 41.9556,
+        "lng": -87.6553
+      },
       "address": "4001 N Clark St, Chicago, IL 60613",
       "photoUrls": [],
       "shortDescription": "A leafy, historic cemetery that's also an outdoor architecture and sculpture showcase, home to the tombs of many famous Chicagoans. A quietly fascinating stop for history-minded guests.",
       "priceLevel": "Free",
-      "tags": ["historic", "scenic", "self-guided-tours", "quiet"]
+      "tags": [
+        "historic",
+        "scenic",
+        "self-guided-tours",
+        "quiet"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Graceland%20Cemetery%204001%20N%20Clark%20St%2C%20Chicago%2C%20IL%2060613%20reservations"
     },
     {
       "id": "rec_033",
       "name": "Bill Jarvis Migratory Bird Sanctuary",
       "category": "outdoors",
-      "coordinates": { "lat": 41.9475, "lng": -87.636 },
+      "coordinates": {
+        "lat": 41.9475,
+        "lng": -87.636
+      },
       "address": "3550 N DuSable Lake Shore Dr, Chicago, IL 60613",
       "photoUrls": [],
       "shortDescription": "A tucked-away lakefront sanctuary popular with birdwatchers for spotting resident and migratory species. A peaceful, free nature break within walking distance of the neighborhood.",
       "priceLevel": "Free",
-      "tags": ["birdwatching", "quiet-nature-spot", "lakefront", "free"]
+      "tags": [
+        "birdwatching",
+        "quiet-nature-spot",
+        "lakefront",
+        "free"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Bill%20Jarvis%20Migratory%20Bird%20Sanctuary%203550%20N%20DuSable%20Lake%20Shore%20Dr%2C%20Chicago%2C%20IL%2060613%20reservations"
     },
     {
       "id": "rec_034",
       "name": "Laugh Factory Chicago",
       "category": "culture",
-      "coordinates": { "lat": 41.9407, "lng": -87.6456 },
+      "coordinates": {
+        "lat": 41.9407,
+        "lng": -87.6456
+      },
       "address": "3175 N Broadway St, Chicago, IL 60657",
       "photoUrls": [],
       "shortDescription": "A well-known stop for both emerging and established comedians, with the occasional surprise celebrity drop-in. A solid evening-out option beyond dinner and drinks.",
       "priceLevel": "$$$",
-      "tags": ["stand-up-comedy", "nightlife", "celebrity-guests", "evening-activity"]
+      "tags": [
+        "stand-up-comedy",
+        "nightlife",
+        "celebrity-guests",
+        "evening-activity"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Laugh%20Factory%20Chicago%203175%20N%20Broadway%20St%2C%20Chicago%2C%20IL%2060657%20reservations"
     },
     {
       "id": "rec_035",
       "name": "Dat Donut",
       "category": "dining",
-      "coordinates": { "lat": 41.9375, "lng": -87.6528 },
+      "coordinates": {
+        "lat": 41.9375,
+        "lng": -87.6528
+      },
       "address": "947 W Wellington Ave, Chicago, IL 60657",
       "photoUrls": [],
       "shortDescription": "A beloved South Side Chicago donut institution now with a Lakeview location, famous for its oversized 'Big Dat' donut. A fun, sugary stop any time of day.",
       "priceLevel": "$",
-      "tags": ["donuts", "chicago-classic", "casual", "sweet-treat"]
+      "tags": [
+        "donuts",
+        "chicago-classic",
+        "casual",
+        "sweet-treat"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Dat%20Donut%20947%20W%20Wellington%20Ave%2C%20Chicago%2C%20IL%2060657%20reservations"
     },
     {
       "id": "rec_036",
       "name": "Millennium Park & The Bean",
       "category": "outdoors",
-      "coordinates": { "lat": 41.8826, "lng": -87.6226 },
+      "coordinates": {
+        "lat": 41.8826,
+        "lng": -87.6226
+      },
       "address": "201 E Randolph St, Chicago, IL 60602",
       "photoUrls": [],
       "shortDescription": "Home to Cloud Gate (aka 'The Bean'), Crown Fountain, and the Pritzker Pavilion — one of Chicago's most iconic and unmissable free attractions, a quick ride south of Wrigleyville.",
       "priceLevel": "Free",
-      "tags": ["iconic", "free", "photo-spot", "public-art", "day-trip"]
+      "tags": [
+        "iconic",
+        "free",
+        "photo-spot",
+        "public-art",
+        "day-trip"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Millennium%20Park%20%26%20The%20Bean%20201%20E%20Randolph%20St%2C%20Chicago%2C%20IL%2060602%20reservations"
     },
     {
       "id": "rec_037",
       "name": "Chicago Riverwalk",
       "category": "outdoors",
-      "coordinates": { "lat": 41.8879, "lng": -87.627 },
+      "coordinates": {
+        "lat": 41.8879,
+        "lng": -87.627
+      },
       "address": "112 E Wacker Dr, Chicago, IL 60601",
       "photoUrls": [],
       "shortDescription": "A 1.25-mile riverfront path lined with bars, restaurants, and boat tour docks, with great views of the city's famous architecture. A perfect half-day downtown excursion.",
       "priceLevel": "Free",
-      "tags": ["waterfront-walk", "restaurants", "boat-tours", "architecture-views", "day-trip"]
+      "tags": [
+        "waterfront-walk",
+        "restaurants",
+        "boat-tours",
+        "architecture-views",
+        "day-trip"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Chicago%20Riverwalk%20112%20E%20Wacker%20Dr%2C%20Chicago%2C%20IL%2060601%20reservations"
     },
     {
       "id": "rec_038",
       "name": "Art Institute of Chicago",
       "category": "culture",
-      "coordinates": { "lat": 41.87944, "lng": -87.62389 },
+      "coordinates": {
+        "lat": 41.87944,
+        "lng": -87.62389
+      },
       "address": "111 S Michigan Ave, Chicago, IL 60603",
       "photoUrls": [],
       "shortDescription": "One of the world's premier art museums, with an outstanding Impressionist and modern art collection alongside the iconic lion statues out front. Worth a half-day for art-loving guests.",
       "priceLevel": "$$",
-      "tags": ["world-class-museum", "impressionist-art", "iconic", "day-trip"]
+      "tags": [
+        "world-class-museum",
+        "impressionist-art",
+        "iconic",
+        "day-trip"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Art%20Institute%20of%20Chicago%20111%20S%20Michigan%20Ave%2C%20Chicago%2C%20IL%2060603%20reservations"
     },
     {
       "id": "rec_039",
       "name": "Navy Pier",
       "category": "outdoors",
-      "coordinates": { "lat": 41.8917, "lng": -87.6086 },
+      "coordinates": {
+        "lat": 41.8917,
+        "lng": -87.6086
+      },
       "address": "600 E Grand Ave, Chicago, IL 60611",
       "photoUrls": [],
       "shortDescription": "A lakefront entertainment pier with a giant Ferris wheel, boat cruises, and skyline views — a classic, crowd-pleasing outing for families or first-time Chicago visitors.",
       "priceLevel": "Free",
-      "tags": ["ferris-wheel", "family-friendly", "lake-views", "entertainment", "day-trip"]
+      "tags": [
+        "ferris-wheel",
+        "family-friendly",
+        "lake-views",
+        "entertainment",
+        "day-trip"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Navy%20Pier%20600%20E%20Grand%20Ave%2C%20Chicago%2C%20IL%2060611%20reservations"
     },
     {
       "id": "rec_040",
       "name": "Willis Tower Skydeck",
       "category": "culture",
-      "coordinates": { "lat": 41.8788, "lng": -87.6359 },
+      "coordinates": {
+        "lat": 41.8788,
+        "lng": -87.6359
+      },
       "address": "233 S Wacker Dr, Chicago, IL 60606",
       "photoUrls": [],
       "shortDescription": "One of the tallest buildings in the Western Hemisphere, with a glass-floored 'Ledge' jutting out over the city 103 floors up. A bucket-list stop for guests wanting the full skyline view.",
       "priceLevel": "$$",
-      "tags": ["observation-deck", "glass-ledge", "skyline-views", "iconic", "day-trip"]
+      "tags": [
+        "observation-deck",
+        "glass-ledge",
+        "skyline-views",
+        "iconic",
+        "day-trip"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Willis%20Tower%20Skydeck%20233%20S%20Wacker%20Dr%2C%20Chicago%2C%20IL%2060606%20reservations"
     },
     {
       "id": "rec_041",
       "name": "Lincoln Park Zoo",
       "category": "outdoors",
-      "coordinates": { "lat": 41.9214, "lng": -87.6335 },
+      "coordinates": {
+        "lat": 41.9214,
+        "lng": -87.6335
+      },
       "address": "2001 N Clark St, Chicago, IL 60614",
       "photoUrls": [],
       "shortDescription": "One of the few free zoos in the country, and one of the closest downtown-adjacent attractions to Wrigleyville. A great low-cost, easy-to-reach outing for families.",
       "priceLevel": "Free",
-      "tags": ["free-zoo", "family-friendly", "walkable", "nearby", "day-trip"]
+      "tags": [
+        "free-zoo",
+        "family-friendly",
+        "walkable",
+        "nearby",
+        "day-trip"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Lincoln%20Park%20Zoo%202001%20N%20Clark%20St%2C%20Chicago%2C%20IL%2060614%20reservations"
     },
     {
       "id": "rec_042",
       "name": "Chicago Architecture Center River Cruise",
       "category": "culture",
-      "coordinates": { "lat": 41.8879, "lng": -87.627 },
+      "coordinates": {
+        "lat": 41.8879,
+        "lng": -87.627
+      },
       "address": "112 E Wacker Dr, Chicago, IL 60601",
       "photoUrls": [],
       "shortDescription": "A guided boat tour along the Chicago River highlighting the city's landmark architecture, led by trained docents. Consistently rated one of the best first-time-visitor activities in the city.",
       "priceLevel": "$$$",
-      "tags": ["boat-tour", "architecture", "guided", "skyline-views", "day-trip"]
+      "tags": [
+        "boat-tour",
+        "architecture",
+        "guided",
+        "skyline-views",
+        "day-trip"
+      ],
+      "bookingLink": "https://www.google.com/search?q=Chicago%20Architecture%20Center%20River%20Cruise%20112%20E%20Wacker%20Dr%2C%20Chicago%2C%20IL%2060601%20reservations"
     }
   ]
 }

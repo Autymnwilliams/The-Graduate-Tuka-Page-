@@ -56,9 +56,9 @@ export async function POST(request: Request) {
   // failed/unconfigured Twilio send never fails the like action itself.
   if (liked) {
     const rec = hotel.recs.find((r) => r.id === recId);
-    const phone = await getLeadStore().getPhoneByGuestId(guestId);
-    if (rec && phone) {
-      sendConciergeText(phone, hotel, rec).catch(() => {});
+    const lead = await getLeadStore().getLeadByGuestId(guestId);
+    if (rec && lead?.phone) {
+      sendConciergeText(lead.phone, hotel, rec, { name: lead.name, stayLength: lead.stayLength }).catch(() => {});
     }
   }
 

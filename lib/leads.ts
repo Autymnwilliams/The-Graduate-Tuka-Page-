@@ -7,6 +7,8 @@ export interface Lead {
   name: string;
   /** E.164 phone, used for the concierge SMS (lib/sms.ts) triggered from likes. */
   phone?: string;
+  /** Free-text answer to "How long is your stay?" -- used to personalize the concierge SMS. */
+  stayLength?: string;
   /** Guest cookie id (lib/guest.ts), so the likes route can look up a phone number by guestId. */
   guestId?: string;
   hotelSlug: string;
@@ -14,11 +16,20 @@ export interface Lead {
   lastSignedUpAt: string;
 }
 
+export interface UpsertLeadInput {
+  email: string;
+  name: string;
+  phone?: string;
+  stayLength?: string;
+  guestId?: string;
+  hotelSlug: string;
+}
+
 interface LeadStore {
   /** Upserts by email (case-insensitive). Returns whether this email had already signed up before. */
-  upsertLead(input: { email: string; name: string; phone?: string; guestId?: string; hotelSlug: string }): Promise<{ isReturning: boolean }>;
-  /** Looks up a lead's phone number by guest cookie id — used by the likes route to trigger the concierge SMS. */
-  getPhoneByGuestId(guestId: string): Promise<string | null>;
+  upsertLead(input: UpsertLeadInput): Promise<{ isReturning: boolean }>;
+  /** Looks up a lead by guest cookie id — used by the likes route to personalize the concierge SMS. */
+  getLeadByGuestId(guestId: string): Promise<Lead | null>;
 }
 
 function normalizeEmail(email: string): string {
@@ -28,7 +39,7 @@ function normalizeEmail(email: string): string {
 class MemoryLeadStore implements LeadStore {
   private leads = new Map<string, Lead>();
 
-  async upsertLead({ email, name, phone, guestId, hotelSlug }: { email: string; name: string; phone?: string; guestId?: string; hotelSlug: string }) {
+  async upsertLead({ email, name, phone, stayLength, guestId, hotelSlug }: UpsertLeadInput) {
     const key = normalizeEmail(email);
     const existing = this.leads.get(key);
     const now = new Date().toISOString();
@@ -37,6 +48,7 @@ class MemoryLeadStore implements LeadStore {
       email: key,
       name: name || existing?.name || "",
       phone: phone || existing?.phone,
+      stayLength: stayLength || existing?.stayLength,
       guestId: guestId || existing?.guestId,
       hotelSlug,
       firstSignedUpAt: existing?.firstSignedUpAt ?? now,
@@ -46,9 +58,9 @@ class MemoryLeadStore implements LeadStore {
     return { isReturning: existing !== undefined };
   }
 
-  async getPhoneByGuestId(guestId: string) {
+  async getLeadByGuestId(guestId: string) {
     for (const lead of this.leads.values()) {
-      if (lead.guestId === guestId && lead.phone) return lead.phone;
+      if (lead.guestId === guestId && lead.phone) return lead;
     }
     return null;
   }
@@ -65,7 +77,7 @@ class MongoLeadStore implements LeadStore {
       .then((db) => db.collection<Lead>("leads"));
   }
 
-  async upsertLead({ email, name, phone, guestId, hotelSlug }: { email: string; name: string; phone?: string; guestId?: string; hotelSlug: string }) {
+  async upsertLead({ email, name, phone, stayLength, guestId, hotelSlug }: UpsertLeadInput) {
     const key = normalizeEmail(email);
     const leads = await this.ready;
     const now = new Date().toISOString();
@@ -77,6 +89,7 @@ class MongoLeadStore implements LeadStore {
         $set: {
           name: name || existing?.name || "",
           phone: phone || existing?.phone,
+          stayLength: stayLength || existing?.stayLength,
           guestId: guestId || existing?.guestId,
           hotelSlug,
           lastSignedUpAt: now,
@@ -89,10 +102,9 @@ class MongoLeadStore implements LeadStore {
     return { isReturning: existing !== null };
   }
 
-  async getPhoneByGuestId(guestId: string) {
+  async getLeadByGuestId(guestId: string) {
     const leads = await this.ready;
-    const lead = await leads.findOne({ guestId, phone: { $exists: true, $ne: "" } });
-    return lead?.phone ?? null;
+    return leads.findOne({ guestId, phone: { $exists: true, $ne: "" } });
   }
 }
 

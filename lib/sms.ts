@@ -25,7 +25,7 @@ function getClient() {
   return client;
 }
 
-async function sendSms(to: string, body: string): Promise<void> {
+export async function sendSms(to: string, body: string): Promise<void> {
   const c = getClient();
   if (!c || !FROM_NUMBER) {
     console.warn("[sms] Skipped send — Twilio not fully configured.");
@@ -35,9 +35,16 @@ async function sendSms(to: string, body: string): Promise<void> {
 }
 
 /** Concierge text sent when a guest likes/favorites a rec. Never books anything itself — just hands off the link. */
-export async function sendConciergeText(phone: string, hotel: Hotel, rec: Rec): Promise<void> {
+export async function sendConciergeText(
+  phone: string,
+  hotel: Hotel,
+  rec: Rec,
+  guest?: { name?: string; stayLength?: string },
+): Promise<void> {
+  const greeting = guest?.name ? `Hey ${guest.name}!` : "Hey!";
+  const stayNote = guest?.stayLength ? ` Hope the ${guest.stayLength} stay is going well —` : "";
   const body =
-    `Hey! We see you're interested in ${rec.name} near ${hotel.name}. ` +
+    `${greeting} We noticed you liked ${rec.name} near ${hotel.name}.${stayNote} ` +
     `I'm your digital concierge — here's the link to book: ` +
     `${rec.bookingLink || "(no booking link on file yet — ask the front desk!)"}`;
 

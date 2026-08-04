@@ -12,7 +12,9 @@ import { DirectionsLink } from "@/components/hotel/DirectionsLink";
 import { RecGallery } from "@/components/hotel/RecGallery";
 import { UberButton } from "@/components/hotel/UberButton";
 import { ReservationLink } from "@/components/hotel/ReservationLink";
+import { AvailabilityCalendar } from "@/components/hotel/AvailabilityCalendar";
 import { uberDeepLink } from "@/lib/uber";
+import { getAvailability } from "@/lib/availability";
 
 export default async function RecPage({
   params,
@@ -50,12 +52,13 @@ export default async function RecPage({
   }
 
   const guestId = cookieStore.get(GUEST_ID_COOKIE)?.value;
-  const [reviews, likeCount, initialLiked, { minutes, mode }, photoUrls] = await Promise.all([
+  const [reviews, likeCount, initialLiked, { minutes, mode }, photoUrls, availabilityDays] = await Promise.all([
     getReviews(hotelSlug, recId),
     getLikeCount(hotelSlug, recId),
     guestId ? isLikedByGuest(hotelSlug, recId, guestId) : Promise.resolve(false),
     travelTime(hotel.coordinates, rec.coordinates),
     resolveRecPhotoUrls(hotelSlug, rec),
+    getAvailability(recId, rec.name, rec.category, rec.coordinates),
   ]);
   const modeLabel = mode === "drive" ? "drive" : "walk";
 
@@ -118,6 +121,13 @@ export default async function RecPage({
           className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-zinc-300 px-4 py-3 text-sm font-semibold text-zinc-800"
         />
       </div>
+
+      <AvailabilityCalendar
+        hotelSlug={hotelSlug}
+        recId={recId}
+        days={availabilityDays}
+        bookingLink={rec.bookingLink}
+      />
 
       <RecGallery
         photoUrls={photoUrls}
