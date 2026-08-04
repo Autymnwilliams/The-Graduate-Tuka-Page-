@@ -80,7 +80,7 @@ export function HotelExperience({ hotel }: { hotel: PublicHotel }) {
           selectedRecId={selectedRecId}
           onSelectRec={handlePinSelect}
         />
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-20 flex flex-col gap-3 px-4 pt-4">
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-20 flex flex-col gap-3 pt-4 pl-4 pr-16">
           <div className="pointer-events-auto">
             <HotelHeader hotel={hotel} />
           </div>
