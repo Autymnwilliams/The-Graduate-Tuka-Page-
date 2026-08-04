@@ -40,6 +40,8 @@ interface HotelStore {
   updateRec(slug: string, recId: string, patch: RecPatch): Promise<Hotel | null>;
   deleteRec(slug: string, recId: string): Promise<Hotel | null>;
   setTheme(slug: string, theme: HotelTheme): Promise<Hotel | null>;
+  /** Drops the stored record so the next getHotel() reseeds fresh from data/hotels/${slug}.json. */
+  resetHotel(slug: string): Promise<void>;
 }
 
 function buildRec(input: NewRecInput): Rec {
@@ -122,6 +124,10 @@ class MemoryHotelStore implements HotelStore {
     hotel.theme = theme;
     return hotel;
   }
+
+  async resetHotel(slug: string): Promise<void> {
+    this.hotels.delete(slug);
+  }
 }
 
 /**
@@ -195,6 +201,11 @@ class MongoHotelStore implements HotelStore {
     const hotels = await this.ready;
     await hotels.updateOne({ slug }, { $set: { theme } });
     return hotel;
+  }
+
+  async resetHotel(slug: string): Promise<void> {
+    const hotels = await this.ready;
+    await hotels.deleteOne({ slug });
   }
 }
 
