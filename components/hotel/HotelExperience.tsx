@@ -10,6 +10,7 @@ import { HotelHeader } from "./HotelHeader";
 import { RecCard } from "./RecCard";
 import { RecDetailSheet } from "./RecDetailSheet";
 import { GateBanner } from "./GateBanner";
+import { ChatWidget } from "./ChatWidget";
 
 function matchesQuery(rec: Rec, query: string): boolean {
   const q = query.trim().toLowerCase();
@@ -121,6 +122,7 @@ export function HotelExperience({ hotel }: { hotel: PublicHotel }) {
         )}
         <GateBanner lockedCount={hotel.lockedCount} href={`/${hotel.slug}/signup`} />
       </div>
+      <ChatWidget hotel={hotel} />
     </div>
   );
 }
