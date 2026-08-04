@@ -1,10 +1,8 @@
-import { readFile } from "fs/promises";
-import path from "path";
 import type { Hotel, PublicHotel, Rec } from "./types";
 import { getRecStats } from "./recStats";
 import { googlePhotoCount } from "./googlePlaces";
+import { getHotelStore } from "./hotelStore";
 
-const HOTELS_DIR = path.join(process.cwd(), "data", "hotels");
 const SLUG_PATTERN = /^[a-z0-9-]+$/;
 
 function isValidSlug(slug: string): boolean {
@@ -24,19 +22,15 @@ export function isRecVisible(hotel: Hotel, recId: string, isUnlocked: boolean): 
 }
 
 /**
- * Reads a hotel's full record from disk. Returns null for missing or
- * malformed slugs — never throws on a route param an attacker can control.
+ * Reads a hotel's full record. Returns null for missing or malformed slugs
+ * — never throws on a route param an attacker can control. Backed by
+ * lib/hotelStore.ts (MongoDB when configured, seeded from data/hotels/*.json
+ * on first read; in-memory otherwise) rather than reading the JSON file
+ * directly, so staff edits via the /staff pages persist.
  */
 export async function getHotelBySlug(slug: string): Promise<Hotel | null> {
   if (!isValidSlug(slug)) return null;
-
-  try {
-    const filePath = path.join(HOTELS_DIR, `${slug}.json`);
-    const raw = await readFile(filePath, "utf-8");
-    return JSON.parse(raw) as Hotel;
-  } catch {
-    return null;
-  }
+  return getHotelStore().getHotel(slug);
 }
 
 /**

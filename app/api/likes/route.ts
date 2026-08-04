@@ -4,6 +4,8 @@ import { getHotelBySlug } from "@/lib/hotels";
 import { GUEST_ID_COOKIE, GUEST_ID_COOKIE_MAX_AGE_SECONDS } from "@/lib/guest";
 import { toggleLike } from "@/lib/likes";
 import { recordEvent } from "@/lib/analytics";
+import { getLeadStore } from "@/lib/leads";
+import { sendConciergeText } from "@/lib/sms";
 
 export async function POST(request: Request) {
   let body: unknown;
@@ -48,6 +50,17 @@ export async function POST(request: Request) {
     timestamp: new Date().toISOString(),
     data: { recId, liked },
   });
+
+  // Concierge text on favorite/like — only if this guest has a phone on file
+  // (from sign-up) and this is a "like", not an "un-like". Best-effort: a
+  // failed/unconfigured Twilio send never fails the like action itself.
+  if (liked) {
+    const rec = hotel.recs.find((r) => r.id === recId);
+    const phone = await getLeadStore().getPhoneByGuestId(guestId);
+    if (rec && phone) {
+      sendConciergeText(phone, hotel, rec).catch(() => {});
+    }
+  }
 
   return Response.json({ liked, count });
 }
