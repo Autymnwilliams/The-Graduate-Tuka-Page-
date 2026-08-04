@@ -34,7 +34,7 @@ export default async function SignupPage({
         <form action={boundCompleteSignup} className="mt-6 flex flex-col gap-4">
           <div>
             <label htmlFor="name" className="mb-1 block text-sm font-medium text-zinc-700">
-              Name
+              What do we call you?
             </label>
             <input
               id="name"
@@ -42,6 +42,18 @@ export default async function SignupPage({
               type="text"
               required
               autoComplete="name"
+              className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2.5 text-base text-zinc-900 outline-none focus:border-[var(--tuka-ink)] focus:ring-2 focus:ring-[var(--tuka-ink)]/30"
+            />
+          </div>
+          <div>
+            <label htmlFor="stayLength" className="mb-1 block text-sm font-medium text-zinc-700">
+              How long is your stay?
+            </label>
+            <input
+              id="stayLength"
+              name="stayLength"
+              type="text"
+              placeholder="e.g. 3 nights"
               className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2.5 text-base text-zinc-900 outline-none focus:border-[var(--tuka-ink)] focus:ring-2 focus:ring-[var(--tuka-ink)]/30"
             />
           </div>
@@ -55,6 +67,19 @@ export default async function SignupPage({
               type="email"
               required
               autoComplete="email"
+              className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2.5 text-base text-zinc-900 outline-none focus:border-[var(--tuka-ink)] focus:ring-2 focus:ring-[var(--tuka-ink)]/30"
+            />
+          </div>
+          <div>
+            <label htmlFor="phone" className="mb-1 block text-sm font-medium text-zinc-700">
+              Phone
+            </label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              autoComplete="tel"
+              placeholder="For your digital concierge to text you"
               className="w-full rounded-lg border border-zinc-300 bg-white px-3 py-2.5 text-base text-zinc-900 outline-none focus:border-[var(--tuka-ink)] focus:ring-2 focus:ring-[var(--tuka-ink)]/30"
             />
           </div>

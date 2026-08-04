@@ -25,6 +25,8 @@ export interface Rec {
   priceLevel: string;
   tags: string[];
   isFeatured?: boolean;
+  /** Link to the restaurant/venue's own booking page. Tuka never books reservations itself. */
+  bookingLink?: string;
 }
 
 /** Full hotel record as stored on disk. Never send this whole object to the client. */
@@ -86,7 +88,10 @@ export type AnalyticsEventType =
   | "signup_started"
   | "signup_completed"
   | "review_submitted"
-  | "rec_liked";
+  | "rec_liked"
+  | "uber_requested"
+  | "reservation_link_clicked"
+  | "chat_message";
 
 export interface AnalyticsEvent {
   type: AnalyticsEventType;
