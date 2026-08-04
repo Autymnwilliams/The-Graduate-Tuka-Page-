@@ -1,10 +1,17 @@
 import type { Coordinates } from "./types";
-import { walkMinutes as straightLineWalkMinutes, driveMinutes as straightLineDriveMinutes } from "./distance";
+import {
+  milesBetween,
+  walkMinutes as straightLineWalkMinutes,
+  driveMinutes as straightLineDriveMinutes,
+} from "./distance";
 
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 
 /** Above this, a "min walk" reads as impractical — show driving time instead. */
 const WALK_DRIVE_THRESHOLD_MINUTES = 25;
+
+/** Recs at (or effectively at) the hotel's own coordinates — e.g. an in-house restaurant — read as 0 min, not a floored 1. */
+const SAME_LOCATION_THRESHOLD_MILES = 0.02;
 
 interface MapboxDirectionsResponse {
   code?: string;
@@ -64,6 +71,8 @@ export interface TravelTime {
  * far away reads better as a drive time than an implausible-looking walk.
  */
 export async function travelTime(a: Coordinates, b: Coordinates): Promise<TravelTime> {
+  if (milesBetween(a, b) < SAME_LOCATION_THRESHOLD_MILES) return { minutes: 0, mode: "walk" };
+
   const walk = await walkingRouteMinutes(a, b);
   if (walk <= WALK_DRIVE_THRESHOLD_MINUTES) return { minutes: walk, mode: "walk" };
 
