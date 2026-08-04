@@ -41,6 +41,8 @@ export interface Hotel {
   freeRecLimit: number;
   categories: string[];
   recs: Rec[];
+  /** Per-hotel ink/gold colors. Falls back to DEFAULT_THEME (lib/theme.ts) when omitted. */
+  theme?: { ink: string; gold: string };
 }
 
 export interface RecStats {

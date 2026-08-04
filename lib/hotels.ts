@@ -1,3 +1,4 @@
+import { cache } from "react";
 import type { Hotel, PublicHotel, Rec } from "./types";
 import { getRecStats } from "./recStats";
 import { googlePhotoCount } from "./googlePlaces";
@@ -26,12 +27,14 @@ export function isRecVisible(hotel: Hotel, recId: string, isUnlocked: boolean): 
  * — never throws on a route param an attacker can control. Backed by
  * lib/hotelStore.ts (MongoDB when configured, seeded from data/hotels/*.json
  * on first read; in-memory otherwise) rather than reading the JSON file
- * directly, so staff edits via the /staff pages persist.
+ * directly, so staff edits via the /staff pages persist. Wrapped in React's
+ * cache() so the hotel layout and page (both of which need it) share one
+ * store round-trip per request instead of two.
  */
-export async function getHotelBySlug(slug: string): Promise<Hotel | null> {
+export const getHotelBySlug = cache(async (slug: string): Promise<Hotel | null> => {
   if (!isValidSlug(slug)) return null;
   return getHotelStore().getHotel(slug);
-}
+});
 
 /**
  * A rec's photos: manually-supplied ones win if present, otherwise falls

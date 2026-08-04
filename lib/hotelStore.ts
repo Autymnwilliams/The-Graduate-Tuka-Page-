@@ -3,6 +3,7 @@ import { readFile } from "fs/promises";
 import path from "path";
 import { MongoClient, type Collection } from "mongodb";
 import type { Hotel, Rec } from "./types";
+import type { HotelTheme } from "./theme";
 
 const MONGODB_URI = process.env.MONGODB_URI;
 const HOTELS_DIR = path.join(process.cwd(), "data", "hotels");
@@ -38,6 +39,7 @@ interface HotelStore {
   addRec(slug: string, input: NewRecInput): Promise<Hotel | null>;
   updateRec(slug: string, recId: string, patch: RecPatch): Promise<Hotel | null>;
   deleteRec(slug: string, recId: string): Promise<Hotel | null>;
+  setTheme(slug: string, theme: HotelTheme): Promise<Hotel | null>;
 }
 
 function buildRec(input: NewRecInput): Rec {
@@ -113,6 +115,13 @@ class MemoryHotelStore implements HotelStore {
     hotel.recs = hotel.recs.filter((r) => r.id !== recId);
     return hotel;
   }
+
+  async setTheme(slug: string, theme: HotelTheme): Promise<Hotel | null> {
+    const hotel = await this.getHotel(slug);
+    if (!hotel) return null;
+    hotel.theme = theme;
+    return hotel;
+  }
 }
 
 /**
@@ -175,6 +184,16 @@ class MongoHotelStore implements HotelStore {
 
     const hotels = await this.ready;
     await hotels.updateOne({ slug }, { $pull: { recs: { id: recId } } });
+    return hotel;
+  }
+
+  async setTheme(slug: string, theme: HotelTheme): Promise<Hotel | null> {
+    const hotel = await this.getHotel(slug);
+    if (!hotel) return null;
+    hotel.theme = theme;
+
+    const hotels = await this.ready;
+    await hotels.updateOne({ slug }, { $set: { theme } });
     return hotel;
   }
 }

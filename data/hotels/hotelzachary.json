@@ -9,6 +9,10 @@
     "lat": 41.947,
     "lng": -87.654
   },
+  "theme": {
+    "ink": "#14233e",
+    "gold": "#a87c4f"
+  },
   "freeRecLimit": 10,
   "categories": [
     "dining",
