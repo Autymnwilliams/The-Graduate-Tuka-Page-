@@ -83,7 +83,7 @@ export function ChatWidget({ hotel }: { hotel: PublicHotel }) {
   return (
     <div className="fixed right-4 bottom-4 z-40 flex flex-col items-end">
       {open && (
-        <div className="mb-2 flex max-h-[70vh] w-80 max-w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.18)]">
+        <div className="mb-2 flex max-h-[70dvh] w-80 max-w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.18)]">
           <div className="flex items-center gap-2 bg-[var(--tuka-ink)] px-4 py-3 text-sm font-semibold text-white">
             <img src="/tuka-logo.png" alt="" className="h-5 w-5 rounded-full" />
             Ask your digital concierge
@@ -126,7 +126,8 @@ export function ChatWidget({ hotel }: { hotel: PublicHotel }) {
                   onKeyDown={(e) => e.key === "Enter" && sendHandoff()}
                   type="tel"
                   placeholder="Your phone number"
-                  className="flex-1 rounded-full border border-zinc-300 px-3 py-1.5 text-xs outline-none focus:border-[var(--tuka-ink)]"
+                  // text-base (16px), not text-xs -- anything under 16px makes iOS Safari auto-zoom in on focus, which is what was breaking the page alignment/zoom on mobile.
+                  className="flex-1 rounded-full border border-zinc-300 px-3 py-1.5 text-base outline-none focus:border-[var(--tuka-ink)]"
                 />
                 <button
                   type="button"
@@ -148,7 +149,8 @@ export function ChatWidget({ hotel }: { hotel: PublicHotel }) {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && send()}
                 placeholder="Ask about places to go…"
-                className="flex-1 rounded-full border border-zinc-300 px-3 py-2 text-sm outline-none focus:border-[var(--tuka-ink)]"
+                // text-base (16px), not text-sm -- same iOS auto-zoom fix as the phone input above.
+                className="flex-1 rounded-full border border-zinc-300 px-3 py-2 text-base outline-none focus:border-[var(--tuka-ink)]"
               />
               <button
                 type="button"
