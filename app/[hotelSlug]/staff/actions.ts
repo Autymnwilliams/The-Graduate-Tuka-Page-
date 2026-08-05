@@ -1,9 +1,13 @@
 "use server";
 
+import { randomUUID } from "crypto";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { put, del } from "@vercel/blob";
 import { getHotelStore, type NewRecInput, type RecPatch } from "@/lib/hotelStore";
 import { checkStaffPasscode, staffCookieName, STAFF_COOKIE_VALUE, UNLOCK_COOKIE_MAX_AGE_SECONDS } from "@/lib/staffAuth";
+
+const MAX_PHOTO_BYTES = 8 * 1024 * 1024;
 
 export async function staffLogin(hotelSlug: string, formData: FormData) {
   const passcode = String(formData.get("passcode") ?? "");
@@ -59,5 +63,42 @@ export async function updateRec(hotelSlug: string, recId: string, formData: Form
 
 export async function deleteRec(hotelSlug: string, recId: string) {
   await getHotelStore().deleteRec(hotelSlug, recId);
+  redirect(`/${hotelSlug}/staff`);
+}
+
+/** Uploads staff-supplied photos to durable blob storage and appends them to the rec's photoUrls (which already take priority over Google Places photos in lib/hotels.ts's resolveRecPhotoUrls). */
+export async function uploadRecPhotos(hotelSlug: string, recId: string, formData: FormData) {
+  const files = formData.getAll("photos").filter((f): f is File => f instanceof File && f.size > 0);
+  if (files.length === 0) redirect(`/${hotelSlug}/staff?error=no-photos`);
+
+  for (const file of files) {
+    if (!file.type.startsWith("image/")) redirect(`/${hotelSlug}/staff?error=not-an-image`);
+    if (file.size > MAX_PHOTO_BYTES) redirect(`/${hotelSlug}/staff?error=photo-too-large`);
+  }
+
+  const hotel = await getHotelStore().getHotel(hotelSlug);
+  const rec = hotel?.recs.find((r) => r.id === recId);
+  if (!rec) redirect(`/${hotelSlug}/staff?error=rec-not-found`);
+
+  const uploaded = await Promise.all(
+    files.map((file) => {
+      const ext = file.name.includes(".") ? file.name.slice(file.name.lastIndexOf(".")) : "";
+      return put(`hotels/${hotelSlug}/recs/${recId}/${randomUUID()}${ext}`, file, { access: "public" });
+    }),
+  );
+
+  const photoUrls = [...rec.photoUrls, ...uploaded.map((b) => b.url)];
+  await getHotelStore().updateRec(hotelSlug, recId, { photoUrls });
+  redirect(`/${hotelSlug}/staff`);
+}
+
+export async function deleteRecPhoto(hotelSlug: string, recId: string, photoUrl: string) {
+  const hotel = await getHotelStore().getHotel(hotelSlug);
+  const rec = hotel?.recs.find((r) => r.id === recId);
+  if (!rec) redirect(`/${hotelSlug}/staff?error=rec-not-found`);
+
+  const photoUrls = rec.photoUrls.filter((u) => u !== photoUrl);
+  await getHotelStore().updateRec(hotelSlug, recId, { photoUrls });
+  await del(photoUrl).catch(() => {});
   redirect(`/${hotelSlug}/staff`);
 }

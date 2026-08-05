@@ -29,9 +29,21 @@ export interface StaffTabsProps {
   addRecAction: (formData: FormData) => void;
   updateRecAction: (recId: string, formData: FormData) => void;
   deleteRecAction: (recId: string) => void;
+  uploadPhotosAction: (recId: string, formData: FormData) => void;
+  deletePhotoAction: (recId: string, photoUrl: string) => void;
 }
 
-export function StaffTabs({ hotelSlug, kpis, performance, recs, addRecAction, updateRecAction, deleteRecAction }: StaffTabsProps) {
+export function StaffTabs({
+  hotelSlug,
+  kpis,
+  performance,
+  recs,
+  addRecAction,
+  updateRecAction,
+  deleteRecAction,
+  uploadPhotosAction,
+  deletePhotoAction,
+}: StaffTabsProps) {
   const [tab, setTab] = useState<Tab>("overview");
 
   return (
@@ -88,9 +100,26 @@ export function StaffTabs({ hotelSlug, kpis, performance, recs, addRecAction, up
       )}
 
       {tab === "manage" && (
-        <ManageTab hotelSlug={hotelSlug} recs={recs} addRecAction={addRecAction} updateRecAction={updateRecAction} deleteRecAction={deleteRecAction} />
+        <ManageTab
+          hotelSlug={hotelSlug}
+          recs={recs}
+          addRecAction={addRecAction}
+          updateRecAction={updateRecAction}
+          deleteRecAction={deleteRecAction}
+          uploadPhotosAction={uploadPhotosAction}
+          deletePhotoAction={deletePhotoAction}
+        />
       )}
     </div>
+  );
+}
+
+function EditIcon() {
+  return (
+    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 20h9" />
+      <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4Z" />
+    </svg>
   );
 }
 
@@ -108,7 +137,12 @@ function ManageTab({
   addRecAction,
   updateRecAction,
   deleteRecAction,
-}: Pick<StaffTabsProps, "hotelSlug" | "recs" | "addRecAction" | "updateRecAction" | "deleteRecAction">) {
+  uploadPhotosAction,
+  deletePhotoAction,
+}: Pick<
+  StaffTabsProps,
+  "hotelSlug" | "recs" | "addRecAction" | "updateRecAction" | "deleteRecAction" | "uploadPhotosAction" | "deletePhotoAction"
+>) {
   return (
     <div className="flex flex-col gap-8">
       <section>
@@ -158,6 +192,50 @@ function ManageTab({
                   Save changes
                 </button>
               </form>
+
+              <details className="mt-3 rounded-lg border border-zinc-200 p-2">
+                <summary className="flex cursor-pointer items-center gap-1.5 text-xs font-semibold text-zinc-600">
+                  <EditIcon />
+                  Photos ({rec.photoUrls.length})
+                </summary>
+                <div className="mt-3 flex flex-col gap-3">
+                  {rec.photoUrls.length > 0 && (
+                    <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
+                      {rec.photoUrls.map((url) => (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <div key={url} className="group relative overflow-hidden rounded-lg border border-zinc-200">
+                          <img src={url} alt="" className="h-20 w-full object-cover" />
+                          <form action={deletePhotoAction.bind(null, rec.id, url)}>
+                            <button
+                              type="submit"
+                              aria-label="Remove photo"
+                              className="absolute top-1 right-1 flex h-5 w-5 items-center justify-center rounded-full bg-black/60 text-xs text-white"
+                            >
+                              ×
+                            </button>
+                          </form>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  <form action={uploadPhotosAction.bind(null, rec.id)} className="flex flex-wrap items-center gap-2">
+                    <input
+                      type="file"
+                      name="photos"
+                      accept="image/*"
+                      multiple
+                      required
+                      className="text-xs text-zinc-600 file:mr-2 file:rounded-full file:border-0 file:bg-zinc-100 file:px-3 file:py-1.5 file:text-xs file:font-semibold"
+                    />
+                    <button type="submit" className="rounded-full bg-[var(--tuka-ink)] px-4 py-1.5 text-xs font-semibold text-white">
+                      Upload
+                    </button>
+                  </form>
+                  <p className="text-[10px] text-zinc-400">
+                    Uploaded photos always take priority over automatic Google Places photos.
+                  </p>
+                </div>
+              </details>
             </details>
           ))}
           {recs.length === 0 && <p className="text-sm text-zinc-500">No recommendations yet.</p>}
