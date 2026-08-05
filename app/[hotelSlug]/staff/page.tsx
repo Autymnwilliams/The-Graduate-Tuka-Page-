@@ -5,7 +5,7 @@ import { getHotelEvents } from "@/lib/analytics";
 import { getRecStats } from "@/lib/recStats";
 import { staffCookieName, STAFF_COOKIE_VALUE } from "@/lib/staffAuth";
 import { StaffTabs } from "@/components/hotel/StaffTabs";
-import { addRec, deleteRec, updateRec } from "./actions";
+import { addRec, deleteRec, updateRec, uploadRecPhotos, deleteRecPhoto } from "./actions";
 
 export default async function StaffPage({ params }: { params: Promise<{ hotelSlug: string }> }) {
   const { hotelSlug } = await params;
@@ -81,6 +81,8 @@ export default async function StaffPage({ params }: { params: Promise<{ hotelSlu
         addRecAction={addRec.bind(null, hotelSlug)}
         updateRecAction={updateRec.bind(null, hotelSlug)}
         deleteRecAction={deleteRec.bind(null, hotelSlug)}
+        uploadPhotosAction={uploadRecPhotos.bind(null, hotelSlug)}
+        deletePhotoAction={deleteRecPhoto.bind(null, hotelSlug)}
       />
     </div>
   );

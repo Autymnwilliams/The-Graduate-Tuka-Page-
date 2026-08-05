@@ -32,7 +32,7 @@ export interface NewRecInput {
   staffName?: string;
 }
 
-export type RecPatch = Partial<Omit<NewRecInput, "lat" | "lng">> & { lat?: number; lng?: number };
+export type RecPatch = Partial<Omit<NewRecInput, "lat" | "lng">> & { lat?: number; lng?: number; photoUrls?: string[] };
 
 interface HotelStore {
   getHotel(slug: string): Promise<Hotel | null>;
@@ -74,6 +74,7 @@ function applyPatch(rec: Rec, patch: RecPatch): Rec {
     shortDescription: patch.shortDescription ?? rec.shortDescription,
     priceLevel: patch.priceLevel ?? rec.priceLevel,
     tags: patch.tags ?? rec.tags,
+    photoUrls: patch.photoUrls ?? rec.photoUrls,
     bookingLink: patch.bookingLink !== undefined ? patch.bookingLink || undefined : rec.bookingLink,
     staffNote: patch.staffNote !== undefined ? patch.staffNote || undefined : rec.staffNote,
     staffName: patch.staffName !== undefined ? patch.staffName || undefined : rec.staffName,
