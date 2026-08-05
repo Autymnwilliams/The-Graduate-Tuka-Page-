@@ -50,7 +50,7 @@ Return ONLY this exact JSON format, nothing else:
   "recommendedIds": ["id1", "id2"],
   "contact": {"name": "guest's name if they just gave it, else omit", "phone": "guest's phone if they just gave it, else omit", "email": "guest's email if they just gave it, else omit"}
 }
-recommendedIds must only contain ids from the list above, and can be empty. Omit "contact" entirely, or omit its fields, when the guest hasn't provided that info in their latest message.`;
+recommendedIds must only contain ids from the list above, and can be empty. Omit "contact" entirely, or omit its fields, when the guest hasn't provided that info in their latest message. In "reply", refer to recommendations by name only -- never write their internal "id:..." token, the guest should never see that.`;
 }
 
 export async function POST(request: Request) {
@@ -105,6 +105,14 @@ export async function POST(request: Request) {
     const validIds = new Set(hotel.recs.map((r) => r.id));
     const recommendedIds = (parsed.recommendedIds ?? []).filter((id) => validIds.has(id));
 
+    // Backstop in case the model ignores the reply-formatting instruction --
+    // LLM instruction-following isn't guaranteed, and a leaked internal id
+    // looks broken to a guest.
+    const reply = (parsed.reply ?? "")
+      .replace(/,?\s*\bid:rec_[a-zA-Z0-9_]+\b,?/g, "")
+      .replace(/ {2,}/g, " ")
+      .trim();
+
     const contact = parsed.contact;
     if (contact?.name || contact?.phone || contact?.email) {
       const cookieStore = await cookies();
@@ -138,7 +146,7 @@ export async function POST(request: Request) {
       data: { recommendedCount: recommendedIds.length },
     });
 
-    return Response.json({ reply: parsed.reply ?? "", recommendedIds });
+    return Response.json({ reply, recommendedIds });
   } catch (err) {
     console.error("[chat] Gemini error:", err instanceof Error ? err.message : err);
     return Response.json({ error: "Chat failed, try again" }, { status: 500 });
