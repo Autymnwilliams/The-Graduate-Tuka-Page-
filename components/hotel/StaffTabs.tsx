@@ -157,6 +157,7 @@ function ManageTab({
           <input name="priceLevel" placeholder="Price level (e.g. $$)" className="rounded-lg border border-zinc-300 px-3 py-2 text-sm" />
           <input name="tags" placeholder="Tags, comma separated" className="rounded-lg border border-zinc-300 px-3 py-2 text-sm" />
           <input name="bookingLink" placeholder="Booking link (optional)" className="rounded-lg border border-zinc-300 px-3 py-2 text-sm sm:col-span-2" />
+          <input name="hours" placeholder="Hours (e.g. Daily 9am-5pm) -- only shown for non-reservable categories" className="rounded-lg border border-zinc-300 px-3 py-2 text-sm sm:col-span-2" />
           <button type="submit" className="w-fit rounded-full bg-[var(--tuka-ink)] px-6 py-2.5 text-sm font-semibold text-white sm:col-span-2">
             Add recommendation
           </button>
@@ -188,6 +189,7 @@ function ManageTab({
                 <input name="priceLevel" defaultValue={rec.priceLevel} className="rounded-lg border border-zinc-300 px-3 py-2 text-sm" />
                 <input name="tags" defaultValue={rec.tags.join(", ")} className="rounded-lg border border-zinc-300 px-3 py-2 text-sm" />
                 <input name="bookingLink" defaultValue={rec.bookingLink ?? ""} placeholder="Booking link" className="rounded-lg border border-zinc-300 px-3 py-2 text-sm sm:col-span-2" />
+                <input name="hours" defaultValue={rec.hours ?? ""} placeholder="Hours (e.g. Daily 9am-5pm)" className="rounded-lg border border-zinc-300 px-3 py-2 text-sm sm:col-span-2" />
                 <button type="submit" className="w-fit rounded-full bg-[var(--tuka-ink)] px-5 py-2 text-sm font-semibold text-white sm:col-span-2">
                   Save changes
                 </button>

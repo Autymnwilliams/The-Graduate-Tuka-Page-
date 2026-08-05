@@ -124,7 +124,9 @@ export default async function RecPage({
       </DirectionsLink>
 
       <div className="mt-2 flex gap-2">
-        <ReservationLink hotelSlug={hotelSlug} recId={recId} bookingLink={reservationUrl} className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-zinc-300 px-4 py-3 text-sm font-semibold text-zinc-800" />
+        {isResyEligibleCategory(rec.category) && (
+          <ReservationLink hotelSlug={hotelSlug} recId={recId} bookingLink={reservationUrl} className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-zinc-300 px-4 py-3 text-sm font-semibold text-zinc-800" />
+        )}
         <UberButton
           hotelSlug={hotelSlug}
           recId={recId}
@@ -135,12 +137,21 @@ export default async function RecPage({
         />
       </div>
 
-      <AvailabilityCalendar
-        hotelSlug={hotelSlug}
-        recId={recId}
-        days={availabilityDays}
-        bookingLink={reservationUrl}
-      />
+      {isResyEligibleCategory(rec.category) ? (
+        <AvailabilityCalendar
+          hotelSlug={hotelSlug}
+          recId={recId}
+          days={availabilityDays}
+          bookingLink={reservationUrl}
+        />
+      ) : (
+        rec.hours && (
+          <div className="mt-4 rounded-xl border border-zinc-200 px-4 py-3">
+            <h2 className="text-xs font-semibold tracking-wide text-zinc-500 uppercase">Hours</h2>
+            <p className="mt-1 text-sm text-zinc-700">{rec.hours}</p>
+          </div>
+        )
+      )}
 
       <RecGallery
         photoUrls={photoUrls}
