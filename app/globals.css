@@ -74,9 +74,20 @@ a {
 }
 
 .tuka-map-marker--home {
-  padding: 4px;
-  /* Stand out clearly from rec pins: gold ring, stronger shadow, and always
-     above any rec pin that clusters near the hotel's own location. */
+  /* Actual teardrop pin shape (rotated square), not a circle -- stands out
+     clearly from rec pins with a gold ring, stronger shadow, and stays
+     above any rec pin that clusters near the hotel's own location. The
+     marker is anchored at "bottom" in MapSection.tsx so the pin's tip
+     (the unrounded bottom-left corner, post-rotation) points at the exact
+     coordinate rather than the shape's visual center. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
   background: var(--tuka-gold, #efc75e);
   border: 3px solid var(--tuka-ink, #17223b);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
@@ -84,23 +95,25 @@ a {
 }
 
 .tuka-map-marker--home img {
-  height: 52px;
-  width: 52px;
+  height: 34px;
+  width: 34px;
   border-radius: 9999px;
   object-fit: cover;
   border: 2px solid white;
+  transform: rotate(45deg);
 }
 
 .tuka-map-marker__home-fallback {
   display: flex;
-  height: 52px;
-  width: 52px;
+  height: 34px;
+  width: 34px;
   align-items: center;
   justify-content: center;
   border-radius: 9999px;
   border: 2px solid white;
   background: var(--tuka-ink, #17223b);
   color: var(--tuka-gold, #efc75e);
+  transform: rotate(45deg);
 }
 
 /* Mapbox's default zoom controls are a generic, cramped little square --
