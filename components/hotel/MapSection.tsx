@@ -103,12 +103,13 @@ function MapboxMap({ recs, center, hotelName, hotelLogoUrl, selectedRecId, onSel
     logoImg.src = hotelLogoUrl;
     logoImg.alt = hotelName;
     logoImg.onerror = () => {
-      // No logo file at this URL yet -- show the hotel's initial instead of
-      // a broken image icon shrinking down to the bare gold circle.
+      // No logo file at this URL yet -- show a home-pin icon instead of a
+      // broken image icon shrinking down to the bare gold circle.
       logoImg.remove();
-      const fallback = document.createElement("span");
-      fallback.className = "tuka-map-marker__home-initial";
-      fallback.textContent = hotelName.trim().charAt(0).toUpperCase();
+      const fallback = document.createElement("div");
+      fallback.className = "tuka-map-marker__home-fallback";
+      fallback.innerHTML =
+        '<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V10"/></svg>';
       homeEl.appendChild(fallback);
     };
     homeEl.appendChild(logoImg);
