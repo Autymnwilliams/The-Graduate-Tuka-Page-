@@ -9,6 +9,13 @@ const VALID_TYPES: AnalyticsEventType[] = [
   "gate_hit",
   "signup_started",
   "signup_completed",
+  "review_submitted",
+  "rec_liked",
+  "uber_requested",
+  "reservation_link_clicked",
+  "chat_message",
+  "directions_clicked",
+  "rec_time_spent",
 ];
 
 export async function POST(request: Request) {

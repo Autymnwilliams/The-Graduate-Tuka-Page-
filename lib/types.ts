@@ -93,7 +93,9 @@ export type AnalyticsEventType =
   | "rec_liked"
   | "uber_requested"
   | "reservation_link_clicked"
-  | "chat_message";
+  | "chat_message"
+  | "directions_clicked"
+  | "rec_time_spent";
 
 export interface AnalyticsEvent {
   type: AnalyticsEventType;

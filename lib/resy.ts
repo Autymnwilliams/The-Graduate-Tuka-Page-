@@ -52,20 +52,49 @@ function isConfidentMatch(recName: string, hitName: string): boolean {
 interface ResyVenueHit {
   id?: { resy?: number };
   name?: string;
+  url_slug?: string;
+  venue_url_slug?: string;
+  location?: { locality?: string; region?: string; url_slug?: string };
 }
 
-/** Resolves a rec to a Resy venue_id, cached indefinitely per rec (rarely changes). Returns null on no confident match or any request failure. */
-export async function searchResyVenue(recId: string, name: string, lat: number, lng: number): Promise<number | null> {
+interface ResyVenueMatch {
+  venueId: number;
+  /** Resy's own canonical page for this venue -- real, not a guess, since Resy itself just told us this is the right listing. */
+  venueUrl: string;
+}
+
+/**
+ * Resy's canonical URL is /cities/<city-slug>/<venue-slug>. The city slug
+ * follows the "<city>-<state>" convention (e.g. "new-york-ny"). Prefer the
+ * hit's own location.url_slug when present; otherwise derive a best-effort
+ * slug from locality + region. Same formula as the resy-mcp reference
+ * implementation this integration was originally validated against.
+ */
+function deriveVenueUrl(hit: ResyVenueHit): string | null {
+  const slug = hit.url_slug ?? hit.venue_url_slug;
+  if (!slug) return null;
+
+  const citySlug =
+    hit.location?.url_slug ??
+    (hit.location?.locality && hit.location?.region
+      ? `${hit.location.locality.toLowerCase().replace(/\s+/g, "-")}-${hit.location.region.toLowerCase().replace(/\s+/g, "-")}`
+      : "new-york-ny");
+
+  return `https://resy.com/cities/${citySlug}/${slug}`;
+}
+
+/** Runs the venue search + confidence check once per rec, cached indefinitely (rarely changes). Shared by searchResyVenue and getResyVenueUrl so both draw from the same cached lookup instead of double-searching. */
+async function resolveResyVenue(recId: string, name: string, lat: number, lng: number): Promise<ResyVenueMatch | null> {
   // lrange(-1, -1) reads the MOST RECENT push -- rpush only appends, so
   // reading index 0 would always return the first-ever write, not the
   // latest cache entry.
   const cached = await getKv().lrange(VENUE_CACHE_KEY(recId), -1, -1);
   if (cached.length > 0) {
-    const parsed = JSON.parse(cached[0]) as { venueId: number | null };
-    return parsed.venueId;
+    const parsed = JSON.parse(cached[0]) as { match: ResyVenueMatch | null };
+    return parsed.match;
   }
 
-  let venueId: number | null = null;
+  let match: ResyVenueMatch | null = null;
   try {
     const struct = {
       availability: false,
@@ -84,15 +113,30 @@ export async function searchResyVenue(recId: string, name: string, lat: number, 
     if (res.ok) {
       const data = (await res.json()) as { search?: { hits?: ResyVenueHit[] } };
       const hit = (data.search?.hits ?? []).find((h) => h.id?.resy && h.name && isConfidentMatch(name, h.name));
-      venueId = hit?.id?.resy ?? null;
+      if (hit?.id?.resy) {
+        const venueUrl = deriveVenueUrl(hit);
+        if (venueUrl) match = { venueId: hit.id.resy, venueUrl };
+      }
     }
   } catch (err) {
     console.warn("[resy] Venue search failed:", err instanceof Error ? err.message : err);
   }
 
   // Cache the miss too (as null) so we don't re-search every request for recs Resy doesn't have.
-  await getKv().rpush(VENUE_CACHE_KEY(recId), JSON.stringify({ venueId }));
-  return venueId;
+  await getKv().rpush(VENUE_CACHE_KEY(recId), JSON.stringify({ match }));
+  return match;
+}
+
+/** Resolves a rec to a Resy venue_id for slot lookups. Returns null on no confident match or any request failure. */
+export async function searchResyVenue(recId: string, name: string, lat: number, lng: number): Promise<number | null> {
+  const match = await resolveResyVenue(recId, name, lat, lng);
+  return match?.venueId ?? null;
+}
+
+/** Resy's own canonical page for a rec's matched venue, for the reservation button -- real, never a guessed URL. Null if no confident match. */
+export async function getResyVenueUrl(recId: string, name: string, lat: number, lng: number): Promise<string | null> {
+  const match = await resolveResyVenue(recId, name, lat, lng);
+  return match?.venueUrl ?? null;
 }
 
 interface ResySlot {
