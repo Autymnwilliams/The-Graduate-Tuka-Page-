@@ -89,9 +89,12 @@ function MapboxMap({ recs, center, hotelName, hotelLogoUrl, selectedRecId, onSel
       style: "mapbox://styles/mapbox/streets-v12",
       center: [center.lng, center.lat],
       zoom: 14,
-      // Single-finger touch drags scroll the page instead of panning the map —
-      // otherwise guests scrolling past the map on mobile get stuck panning it instead.
-      cooperativeGestures: true,
+      // One-finger drag pans the map directly (tasks.md ask). Non-cooperative
+      // mode already captures the drag gesture for panning instead of letting
+      // it fall through to page scroll -- paired with touch-action: none on
+      // the container below so the browser's own native scroll/rubber-band
+      // handling never fights Mapbox's JS-driven pan on iOS.
+      cooperativeGestures: false,
     });
     map.addControl(new mapboxgl.NavigationControl(), "top-right");
     map.on("error", () => setMapFailed(true));
@@ -113,7 +116,7 @@ function MapboxMap({ recs, center, hotelName, hotelLogoUrl, selectedRecId, onSel
       homeEl.appendChild(fallback);
     };
     homeEl.appendChild(logoImg);
-    homeMarkerRef.current = new mapboxgl.Marker({ element: homeEl })
+    homeMarkerRef.current = new mapboxgl.Marker({ element: homeEl, anchor: "bottom" })
       .setLngLat([center.lng, center.lat])
       .addTo(map);
 
@@ -168,5 +171,5 @@ function MapboxMap({ recs, center, hotelName, hotelLogoUrl, selectedRecId, onSel
     return <MapFallback recs={recs} selectedRecId={selectedRecId} onSelectRec={onSelectRec} />;
   }
 
-  return <div ref={containerRef} className="h-full w-full" />;
+  return <div ref={containerRef} className="h-full w-full" style={{ touchAction: "none" }} />;
 }
