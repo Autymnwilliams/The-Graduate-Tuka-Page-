@@ -15,6 +15,8 @@ import { ReservationLink } from "@/components/hotel/ReservationLink";
 import { AvailabilityCalendar } from "@/components/hotel/AvailabilityCalendar";
 import { uberDeepLink } from "@/lib/uber";
 import { getAvailability } from "@/lib/availability";
+import { isRealAvailabilityEnabled, getResyVenueUrl } from "@/lib/resy";
+import { RecDwellTracker } from "@/components/hotel/RecDwellTracker";
 
 export default async function RecPage({
   params,
@@ -52,18 +54,24 @@ export default async function RecPage({
   }
 
   const guestId = cookieStore.get(GUEST_ID_COOKIE)?.value;
-  const [reviews, likeCount, initialLiked, { minutes, mode }, photoUrls, availabilityDays] = await Promise.all([
+  const [reviews, likeCount, initialLiked, { minutes, mode }, photoUrls, availabilityDays, resyVenueUrl] = await Promise.all([
     getReviews(hotelSlug, recId),
     getLikeCount(hotelSlug, recId),
     guestId ? isLikedByGuest(hotelSlug, recId, guestId) : Promise.resolve(false),
     travelTime(hotel.coordinates, rec.coordinates),
     resolveRecPhotoUrls(hotelSlug, rec),
     getAvailability(recId, rec.name, rec.category, rec.coordinates),
+    isRealAvailabilityEnabled() ? getResyVenueUrl(recId, rec.name, rec.coordinates.lat, rec.coordinates.lng) : Promise.resolve(null),
   ]);
   const modeLabel = mode === "drive" ? "drive" : "walk";
+  // Resy's own page for this venue when we have a confident match -- real,
+  // not a guess. Falls back to the Google-search bookingLink otherwise
+  // (never guess a specific wrong OpenTable/Resy URL ourselves).
+  const reservationUrl = resyVenueUrl ?? rec.bookingLink;
 
   return (
     <main className="mx-auto flex w-full max-w-lg flex-1 flex-col px-5 py-4">
+      <RecDwellTracker hotelSlug={hotelSlug} recId={recId} />
       <a href={`/${hotelSlug}`} className="mb-4 inline-block w-fit text-sm text-zinc-500 hover:underline">
         ‹ Back to {hotel.name}
       </a>
@@ -94,6 +102,8 @@ export default async function RecPage({
       <DirectionsLink
         address={rec.address}
         mode={mode}
+        hotelSlug={hotelSlug}
+        recId={recId}
         className="mt-4 flex items-center justify-between rounded-xl bg-[var(--tuka-ink)] px-4 py-3 text-white"
       >
         <span>
@@ -111,7 +121,7 @@ export default async function RecPage({
       </DirectionsLink>
 
       <div className="mt-2 flex gap-2">
-        <ReservationLink hotelSlug={hotelSlug} recId={recId} bookingLink={rec.bookingLink} className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-zinc-300 px-4 py-3 text-sm font-semibold text-zinc-800" />
+        <ReservationLink hotelSlug={hotelSlug} recId={recId} bookingLink={reservationUrl} className="flex flex-1 items-center justify-center gap-2 rounded-xl border border-zinc-300 px-4 py-3 text-sm font-semibold text-zinc-800" />
         <UberButton
           hotelSlug={hotelSlug}
           recId={recId}

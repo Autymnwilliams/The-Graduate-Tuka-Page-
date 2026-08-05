@@ -47,6 +47,16 @@ export function RecDetailSheet({ rec, hotel, onClose }: RecDetailSheetProps) {
           </span>
         </div>
         <p className="mt-3 line-clamp-2 text-sm text-zinc-600">{rec.shortDescription}</p>
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            router.push(`/${hotel.slug}/recs/${rec.id}`);
+          }}
+          className="mt-3 flex items-center gap-1 text-sm font-semibold text-[var(--tuka-ink)]"
+        >
+          See more →
+        </button>
       </div>
     </div>
   );

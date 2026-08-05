@@ -26,21 +26,40 @@ export default async function StaffPage({ params }: { params: Promise<{ hotelSlu
   const signups = events.filter((e) => e.type === "signup_completed").length;
   const reservationClicksByRec = new Map<string, number>();
   const uberClicksByRec = new Map<string, number>();
+  const directionsClicksByRec = new Map<string, number>();
+  const dwellSecondsByRec = new Map<string, number[]>();
   for (const e of events) {
     const recId = (e.data as { recId?: string } | undefined)?.recId;
     if (!recId) continue;
     if (e.type === "reservation_link_clicked") reservationClicksByRec.set(recId, (reservationClicksByRec.get(recId) ?? 0) + 1);
     if (e.type === "uber_requested") uberClicksByRec.set(recId, (uberClicksByRec.get(recId) ?? 0) + 1);
+    if (e.type === "directions_clicked") directionsClicksByRec.set(recId, (directionsClicksByRec.get(recId) ?? 0) + 1);
+    if (e.type === "rec_time_spent") {
+      const seconds = (e.data as { seconds?: number } | undefined)?.seconds;
+      if (typeof seconds === "number") {
+        const list = dwellSecondsByRec.get(recId) ?? [];
+        list.push(seconds);
+        dwellSecondsByRec.set(recId, list);
+      }
+    }
   }
 
   const performance = recStats
-    .map((r) => ({
-      recId: r.recId,
-      name: r.name,
-      likeCount: r.stats.likeCount,
-      reservationClicks: reservationClicksByRec.get(r.recId) ?? 0,
-      uberClicks: uberClicksByRec.get(r.recId) ?? 0,
-    }))
+    .map((r) => {
+      const dwellSamples = dwellSecondsByRec.get(r.recId) ?? [];
+      const avgDwellSeconds = dwellSamples.length
+        ? Math.round(dwellSamples.reduce((sum, s) => sum + s, 0) / dwellSamples.length)
+        : 0;
+      return {
+        recId: r.recId,
+        name: r.name,
+        likeCount: r.stats.likeCount,
+        reservationClicks: reservationClicksByRec.get(r.recId) ?? 0,
+        uberClicks: uberClicksByRec.get(r.recId) ?? 0,
+        directionsClicks: directionsClicksByRec.get(r.recId) ?? 0,
+        avgDwellSeconds,
+      };
+    })
     .sort((a, b) => b.reservationClicks + b.uberClicks - (a.reservationClicks + a.uberClicks));
 
   const totalLikes = recStats.reduce((sum, r) => sum + r.stats.likeCount, 0);

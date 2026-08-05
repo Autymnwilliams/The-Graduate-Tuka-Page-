@@ -17,6 +17,8 @@ export interface RecPerformance {
   likeCount: number;
   reservationClicks: number;
   uberClicks: number;
+  directionsClicks: number;
+  avgDwellSeconds: number;
 }
 
 export interface StaffTabsProps {
@@ -73,10 +75,11 @@ export function StaffTabs({ hotelSlug, kpis, performance, recs, addRecAction, up
           <div className="flex flex-col gap-2">
             {performance.length === 0 && <p className="text-sm text-zinc-500">No recommendations yet.</p>}
             {performance.map((r) => (
-              <div key={r.recId} className="flex items-center justify-between rounded-lg border border-zinc-200 px-3 py-2 text-sm">
+              <div key={r.recId} className="flex items-center justify-between gap-3 rounded-lg border border-zinc-200 px-3 py-2 text-sm">
                 <span className="font-medium text-zinc-800">{r.name}</span>
-                <span className="text-zinc-500">
-                  {r.likeCount} likes · {r.reservationClicks} reservation clicks · {r.uberClicks} Uber clicks
+                <span className="text-right text-xs text-zinc-500">
+                  {r.likeCount} likes · {r.reservationClicks} reservation clicks · {r.uberClicks} Uber clicks · {r.directionsClicks} directions
+                  {r.avgDwellSeconds > 0 && <> · avg {r.avgDwellSeconds}s on page</>}
                 </span>
               </div>
             ))}

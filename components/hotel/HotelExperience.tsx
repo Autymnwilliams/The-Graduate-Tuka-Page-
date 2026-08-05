@@ -11,6 +11,7 @@ import { RecCard } from "./RecCard";
 import { RecDetailSheet } from "./RecDetailSheet";
 import { GateBanner } from "./GateBanner";
 import { ChatWidget } from "./ChatWidget";
+import { CategoryFilter } from "./CategoryFilter";
 
 function matchesQuery(rec: Rec, query: string): boolean {
   const q = query.trim().toLowerCase();
@@ -25,12 +26,16 @@ function matchesQuery(rec: Rec, query: string): boolean {
 
 export function HotelExperience({ hotel }: { hotel: PublicHotel }) {
   const [query, setQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [selectedRecId, setSelectedRecId] = useState<string | null>(null);
   const cardRefs = useRef(new Map<string, HTMLElement>());
 
   const filteredRecs = useMemo(
-    () => hotel.visibleRecs.filter((rec) => matchesQuery(rec, query)),
-    [hotel.visibleRecs, query],
+    () =>
+      hotel.visibleRecs.filter(
+        (rec) => matchesQuery(rec, query) && (!selectedCategory || rec.category === selectedCategory),
+      ),
+    [hotel.visibleRecs, query, selectedCategory],
   );
 
   const selectedRec = selectedRecId
@@ -67,7 +72,13 @@ export function HotelExperience({ hotel }: { hotel: PublicHotel }) {
 
   function handlePinSelect(id: string) {
     track("pin_click", hotel.slug, { recId: id });
-    selectRec(id, true);
+    // Show the mini-preview sheet in place, don't yank the user down to the card list.
+    selectRec(id, false);
+  }
+
+  function handleCategorySelect(category: string | null) {
+    setSelectedCategory(category);
+    if (category) track("search_used", hotel.slug, { category });
   }
 
   return (
@@ -101,6 +112,7 @@ export function HotelExperience({ hotel }: { hotel: PublicHotel }) {
       </div>
 
       <div className="flex flex-1 flex-col gap-3 p-4 sm:p-6">
+        <CategoryFilter categories={hotel.categories} selected={selectedCategory} onSelect={handleCategorySelect} />
         {filteredRecs.length === 0 ? (
           <p className="py-8 text-center text-sm text-zinc-500">
             No recs match &ldquo;{query}&rdquo;.
