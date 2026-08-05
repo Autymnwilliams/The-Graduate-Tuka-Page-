@@ -136,7 +136,7 @@ export default async function RecPage({
         hotelSlug={hotelSlug}
         recId={recId}
         days={availabilityDays}
-        bookingLink={rec.bookingLink}
+        bookingLink={reservationUrl}
       />
 
       <RecGallery
