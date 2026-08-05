@@ -9,6 +9,7 @@
  */
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import twilio from "twilio";
+import { put, del } from "@vercel/blob";
 
 const DEBUG_TOKEN = "03531245bcf2f42d51e2bb88b4892107";
 
@@ -29,6 +30,7 @@ export async function GET(request: Request) {
     GOOGLE_PLACES_API_KEY: !!process.env.GOOGLE_PLACES_API_KEY,
     STAFF_PASSCODE: !!process.env.STAFF_PASSCODE,
     ENABLE_REAL_AVAILABILITY: process.env.ENABLE_REAL_AVAILABILITY === "true",
+    BLOB_READ_WRITE_TOKEN: !!process.env.BLOB_READ_WRITE_TOKEN,
   };
 
   let geminiTest: { ok: boolean; detail: string };
@@ -61,5 +63,18 @@ export async function GET(request: Request) {
     twilioTest = { ok: false, detail: err instanceof Error ? err.message : String(err) };
   }
 
-  return Response.json({ envPresence, geminiTest, twilioTest });
+  let blobTest: { ok: boolean; detail: string };
+  try {
+    if (!process.env.BLOB_READ_WRITE_TOKEN) {
+      blobTest = { ok: false, detail: "BLOB_READ_WRITE_TOKEN not set" };
+    } else {
+      const blob = await put(`debug/${Date.now()}.txt`, "ok", { access: "public" });
+      await del(blob.url);
+      blobTest = { ok: true, detail: "Test upload + delete succeeded" };
+    }
+  } catch (err) {
+    blobTest = { ok: false, detail: err instanceof Error ? err.message : String(err) };
+  }
+
+  return Response.json({ envPresence, geminiTest, twilioTest, blobTest });
 }
