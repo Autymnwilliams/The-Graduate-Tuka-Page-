@@ -28,8 +28,10 @@ export interface UpsertLeadInput {
 interface LeadStore {
   /** Upserts by email (case-insensitive). Returns whether this email had already signed up before. */
   upsertLead(input: UpsertLeadInput): Promise<{ isReturning: boolean }>;
-  /** Looks up a lead by guest cookie id — used by the likes route to personalize the concierge SMS. */
+  /** Looks up a lead by guest cookie id — used by the likes route to personalize the concierge SMS. Requires a phone number to be set. */
   getLeadByGuestId(guestId: string): Promise<Lead | null>;
+  /** Same lookup without requiring a phone number — used for the "welcome back" chat greeting, where a guest may have only given a name so far. */
+  getLeadByGuestIdAny(guestId: string): Promise<Lead | null>;
 }
 
 function normalizeEmail(email: string): string {
@@ -61,6 +63,13 @@ class MemoryLeadStore implements LeadStore {
   async getLeadByGuestId(guestId: string) {
     for (const lead of this.leads.values()) {
       if (lead.guestId === guestId && lead.phone) return lead;
+    }
+    return null;
+  }
+
+  async getLeadByGuestIdAny(guestId: string) {
+    for (const lead of this.leads.values()) {
+      if (lead.guestId === guestId) return lead;
     }
     return null;
   }
@@ -105,6 +114,11 @@ class MongoLeadStore implements LeadStore {
   async getLeadByGuestId(guestId: string) {
     const leads = await this.ready;
     return leads.findOne({ guestId, phone: { $exists: true, $ne: "" } });
+  }
+
+  async getLeadByGuestIdAny(guestId: string) {
+    const leads = await this.ready;
+    return leads.findOne({ guestId });
   }
 }
 
