@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { notFound, redirect } from "next/navigation";
+import Link from "next/link";
 import { getHotelBySlug } from "@/lib/hotels";
 import { getHotelEvents } from "@/lib/analytics";
 import { getRecStats } from "@/lib/recStats";
@@ -67,9 +68,9 @@ export default async function StaffPage({ params }: { params: Promise<{ hotelSlu
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-1 flex-col gap-6 px-5 py-6">
       <div>
-        <a href={`/${hotelSlug}`} className="mb-2 inline-block text-sm text-zinc-500 hover:underline">
+        <Link href={`/${hotelSlug}`} className="mb-2 inline-block text-sm text-zinc-500 hover:underline">
           ‹ Back to {hotel.name}
-        </a>
+        </Link>
         <h1 className="text-2xl font-semibold text-zinc-900">{hotel.name} · Staff</h1>
       </div>
 

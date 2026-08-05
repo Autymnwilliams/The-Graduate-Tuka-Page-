@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { getHotelBySlug } from "@/lib/hotels";
 import { recordEvent } from "@/lib/analytics";
 import { completeSignup } from "./actions";
@@ -23,9 +24,9 @@ export default async function SignupPage({
   return (
     <div className="flex flex-1 flex-col items-center justify-center px-6 py-12">
       <div className="w-full max-w-sm">
-        <a href={`/${hotelSlug}`} className="mb-6 inline-block text-sm text-zinc-500 hover:underline">
+        <Link href={`/${hotelSlug}`} className="mb-6 inline-block text-sm text-zinc-500 hover:underline">
           ‹ Back to {hotel.name}
-        </a>
+        </Link>
         <h1 className="text-xl font-semibold text-zinc-900">Unlock the full list</h1>
         <p className="mt-1 text-sm text-zinc-600">
           Sign up for Tuka to see every pick {hotel.name} has curated for you — free.
