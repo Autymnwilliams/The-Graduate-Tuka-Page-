@@ -34,19 +34,61 @@ export function isRealAvailabilityEnabled(): boolean {
   return process.env.ENABLE_REAL_AVAILABILITY === "true";
 }
 
+/**
+ * Only these categories are ever plausibly Resy-bookable venues. Attempting
+ * a match for a park, museum, landmark, or shop was matching on generic
+ * shared words (see isConfidentMatch) and confidently linking guests to a
+ * completely unrelated restaurant's reservation page -- worse than the
+ * Google-search fallback, which at least always searches the right name.
+ */
+const RESY_ELIGIBLE_CATEGORIES = new Set(["dining", "coffee", "nightlife"]);
+
+export function isResyEligibleCategory(category: string): boolean {
+  return RESY_ELIGIBLE_CATEGORIES.has(category.toLowerCase());
+}
+
+/** Generic hospitality words that appear across countless unrelated venues -- "Cafe", "Lounge", "Kitchen" etc. must never be the sole basis for a match. */
+const GENERIC_VENUE_WORDS = new Set([
+  "cafe",
+  "coffee",
+  "lounge",
+  "kitchen",
+  "bar",
+  "restaurant",
+  "house",
+  "grill",
+  "bistro",
+  "tavern",
+  "room",
+  "club",
+  "bakery",
+  "eatery",
+  "diner",
+  "chicago",
+  "the",
+  "and",
+]);
+
 function normalize(name: string): string[] {
   return name
     .toLowerCase()
     .replace(/[^a-z0-9\s]/g, " ")
     .split(/\s+/)
-    .filter((t) => t.length >= 4);
+    .filter((t) => t.length >= 4 && !GENERIC_VENUE_WORDS.has(t));
 }
 
-/** Only treat a search hit as "the same restaurant" if they share a distinctive word — guards against confidently showing the wrong venue's availability. */
+/**
+ * Requires every one of the rec's distinctive (non-generic) name tokens to
+ * appear in the hit's name -- not just any single shared word. A rec whose
+ * name is entirely generic words (e.g. just "Cafe") has no distinctive
+ * tokens left and can never confidently match anything, which is the
+ * correct, conservative outcome.
+ */
 function isConfidentMatch(recName: string, hitName: string): boolean {
-  const recTokens = new Set(normalize(recName));
-  const hitTokens = normalize(hitName);
-  return hitTokens.some((t) => recTokens.has(t));
+  const recTokens = normalize(recName);
+  if (recTokens.length === 0) return false;
+  const hitTokens = new Set(normalize(hitName));
+  return recTokens.every((t) => hitTokens.has(t));
 }
 
 interface ResyVenueHit {
