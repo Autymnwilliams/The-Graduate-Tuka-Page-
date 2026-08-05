@@ -20,15 +20,37 @@ export function ChatWidget({ hotel }: { hotel: PublicHotel }) {
   const [handoffPhone, setHandoffPhone] = useState("");
   const [handoffStatus, setHandoffStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
-  function openChat() {
+  const genericGreeting = `Hi! I'm the digital concierge for ${hotel.name}. I can help you book a table or appointment at one of our recommended spots — want me to help you book somewhere, or is there something else I can help with?`;
+
+  async function fetchGreeting(): Promise<string> {
+    try {
+      const res = await fetch(`/api/chat/greeting?hotelSlug=${encodeURIComponent(hotel.slug)}`);
+      if (res.ok) {
+        const data = (await res.json()) as { kind: "liked" | "returning" | "none"; recNames?: string[]; name?: string | null };
+        if (data.kind === "liked" && data.recNames?.[0]) {
+          return `I see you liked ${data.recNames[0]} — want me to book something there, or suggest similar spots?`;
+        }
+        if (data.kind === "returning") {
+          return data.name ? `Welcome back, ${data.name}! Want to pick up where we left off?` : "Welcome back! Want to pick up where we left off?";
+        }
+      }
+    } catch {
+      // Fall through to the time-of-day / generic greeting below.
+    }
+
+    // Guest's own device clock -- their actual local time, more correct here than guessing the hotel's timezone server-side.
+    const hour = new Date().getHours();
+    if (hour >= 17 && hour <= 22) {
+      return "Looking for dinner spots tonight? I can help you book something.";
+    }
+    return genericGreeting;
+  }
+
+  async function openChat() {
     setOpen((v) => !v);
     if (messages.length === 0) {
-      setMessages([
-        {
-          role: "bot",
-          text: `Hi! I'm the digital concierge for ${hotel.name}. I can help you book a table or appointment at one of our recommended spots — want me to help you book somewhere, or is there something else I can help with?`,
-        },
-      ]);
+      const text = await fetchGreeting();
+      setMessages([{ role: "bot", text }]);
     }
   }
 

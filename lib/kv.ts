@@ -15,6 +15,7 @@ interface KvClient {
   srem(key: string, member: string): Promise<number>;
   sismember(key: string, member: string): Promise<boolean>;
   scard(key: string): Promise<number>;
+  smembers(key: string): Promise<string[]>;
   /** Deletes every list key starting with prefix. Used to invalidate stale cached matches (e.g. lib/resy.ts's venue cache) after a matching-logic change. */
   delByPrefix(prefix: string): Promise<number>;
 }
@@ -68,6 +69,10 @@ class MemoryKv implements KvClient {
 
   async scard(key: string) {
     return this.sets.get(key)?.size ?? 0;
+  }
+
+  async smembers(key: string) {
+    return [...(this.sets.get(key) ?? [])];
   }
 
   async delByPrefix(prefix: string) {
@@ -158,6 +163,12 @@ class MongoKv implements KvClient {
     const sets = await this.setsReady;
     const doc = await sets.findOne({ _id: key });
     return doc?.values.length ?? 0;
+  }
+
+  async smembers(key: string) {
+    const sets = await this.setsReady;
+    const doc = await sets.findOne({ _id: key });
+    return doc?.values ?? [];
   }
 
   async delByPrefix(prefix: string) {
