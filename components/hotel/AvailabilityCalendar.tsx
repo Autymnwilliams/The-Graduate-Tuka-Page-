@@ -15,9 +15,8 @@ export function AvailabilityCalendar({ hotelSlug, recId, days, bookingLink }: Av
   const [selectedIdx, setSelectedIdx] = useState(0);
   const selectedDay = days[selectedIdx];
 
-  function handleSlotClick(time: string) {
+  function trackSlotClick(time: string) {
     track("reservation_link_clicked", hotelSlug, { recId, requestedTime: time });
-    if (bookingLink) window.open(bookingLink, "_blank", "noopener,noreferrer");
   }
 
   return (
@@ -53,21 +52,29 @@ export function AvailabilityCalendar({ hotelSlug, recId, days, bookingLink }: Av
       </div>
 
       <div className="mt-3 grid grid-cols-3 gap-2 sm:grid-cols-4">
-        {selectedDay?.slots.map((slot) => (
-          <button
-            key={slot.time}
-            type="button"
-            disabled={!slot.available}
-            onClick={() => handleSlotClick(slot.time)}
-            className={`rounded-lg px-2 py-2 text-xs font-semibold ${
-              slot.available
-                ? "bg-emerald-100 text-emerald-800 hover:bg-emerald-200"
-                : "cursor-not-allowed bg-red-50 text-red-300"
-            }`}
-          >
-            {slot.time}
-          </button>
-        ))}
+        {selectedDay?.slots.map((slot) =>
+          slot.available && bookingLink ? (
+            <a
+              key={slot.time}
+              href={bookingLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackSlotClick(slot.time)}
+              className="rounded-lg bg-emerald-100 px-2 py-2 text-center text-xs font-semibold text-emerald-800 hover:bg-emerald-200"
+            >
+              {slot.time}
+            </a>
+          ) : (
+            <button
+              key={slot.time}
+              type="button"
+              disabled
+              className="cursor-not-allowed rounded-lg bg-red-50 px-2 py-2 text-xs font-semibold text-red-300"
+            >
+              {slot.time}
+            </button>
+          ),
+        )}
       </div>
     </div>
   );
