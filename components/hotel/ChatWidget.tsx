@@ -20,9 +20,22 @@ export function ChatWidget({ hotel }: { hotel: PublicHotel }) {
   const [handoffPhone, setHandoffPhone] = useState("");
   const [handoffStatus, setHandoffStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
+  function openChat() {
+    setOpen((v) => !v);
+    if (messages.length === 0) {
+      setMessages([
+        {
+          role: "bot",
+          text: `Hi! I'm the digital concierge for ${hotel.name}. I can help you book a table or appointment at one of our recommended spots — want me to help you book somewhere, or is there something else I can help with?`,
+        },
+      ]);
+    }
+  }
+
   async function send() {
     const text = input.trim();
     if (!text || sending) return;
+    const history = messages;
     setMessages((prev) => [...prev, { role: "user", text }]);
     setInput("");
     setSending(true);
@@ -31,7 +44,11 @@ export function ChatWidget({ hotel }: { hotel: PublicHotel }) {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ hotelSlug: hotel.slug, message: text }),
+        body: JSON.stringify({
+          hotelSlug: hotel.slug,
+          message: text,
+          history: history.map(({ role, text }) => ({ role, text })),
+        }),
       });
       if (!res.ok) {
         setMessages((prev) => [...prev, { role: "bot", text: "Sorry, I couldn't respond just now." }]);
@@ -73,9 +90,6 @@ export function ChatWidget({ hotel }: { hotel: PublicHotel }) {
           </div>
 
           <div className="flex-1 overflow-y-auto p-3">
-            {messages.length === 0 && (
-              <p className="text-sm text-zinc-400">Ask about places to go near {hotel.name}…</p>
-            )}
             {messages.map((m, i) => (
               <div key={i} className={`mb-2 flex ${m.role === "user" ? "justify-end" : "justify-start"}`}>
                 <div
@@ -150,7 +164,7 @@ export function ChatWidget({ hotel }: { hotel: PublicHotel }) {
       )}
       <button
         type="button"
-        onClick={() => setOpen((v) => !v)}
+        onClick={openChat}
         className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--tuka-ink)] shadow-[0_4px_16px_rgba(0,0,0,0.25)]"
         aria-label="Chat with your digital concierge"
       >
