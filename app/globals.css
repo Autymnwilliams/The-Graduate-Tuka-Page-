@@ -91,7 +91,7 @@ a {
   border: 2px solid white;
 }
 
-.tuka-map-marker__home-initial {
+.tuka-map-marker__home-fallback {
   display: flex;
   height: 52px;
   width: 52px;
@@ -101,8 +101,36 @@ a {
   border: 2px solid white;
   background: var(--tuka-ink, #17223b);
   color: var(--tuka-gold, #efc75e);
-  font-size: 22px;
-  font-weight: 700;
+}
+
+/* Mapbox's default zoom controls are a generic, cramped little square --
+   redesigned to match the app's rounded/shadowed visual language and be
+   easier to tap on mobile. */
+.mapboxgl-ctrl-group {
+  border-radius: 14px !important;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18) !important;
+  border: none !important;
+}
+
+.mapboxgl-ctrl-group button {
+  width: 40px !important;
+  height: 40px !important;
+}
+
+@media (max-width: 640px) {
+  .mapboxgl-ctrl-group button {
+    width: 44px !important;
+    height: 44px !important;
+  }
+}
+
+.mapboxgl-ctrl-group button + button {
+  border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+.mapboxgl-ctrl-group button:hover {
+  background-color: var(--tuka-gold, #efc75e) !important;
 }
 
 .no-scrollbar::-webkit-scrollbar {
