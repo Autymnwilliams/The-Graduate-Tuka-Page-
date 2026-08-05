@@ -18,8 +18,19 @@ export function proxy(request: NextRequest) {
 
   if (!isSubdomain) return NextResponse.next();
 
-  const subdomain = hostname.slice(0, -(`.${ROOT_DOMAIN}`.length));
   const { pathname } = request.nextUrl;
+
+  // Static files (favicon aside, already excluded below) live at the public/
+  // root -- /tuka-logo.png, /file.svg, etc. -- and have no [hotelSlug] route
+  // to rewrite into. Any request whose last path segment has a file
+  // extension is a static asset, not a page; serve it as-is instead of
+  // prefixing it into a 404. (Confirmed via production logs: /tuka-logo.png
+  // was 404ing on every *.tuka.world subdomain because it was being rewritten
+  // to /{subdomain}/tuka-logo.png.)
+  const isStaticAsset = /\.[a-zA-Z0-9]+$/.test(pathname);
+  if (isStaticAsset) return NextResponse.next();
+
+  const subdomain = hostname.slice(0, -(`.${ROOT_DOMAIN}`.length));
 
   // Every internal link (rec cards, back links, signup) is an absolute href
   // like /{hotelSlug}/recs/{recId} — the same ones used for path-based
