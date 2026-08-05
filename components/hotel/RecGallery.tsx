@@ -57,7 +57,7 @@ export function RecGallery({
               key={src}
               src={src}
               alt={`${alt} photo ${i + 1}`}
-              className="h-full w-full shrink-0 snap-center object-cover"
+              className="h-full w-full shrink-0 snap-center object-contain"
               onError={() => setErroredIndexes((prev) => new Set(prev).add(i))}
             />
           ),

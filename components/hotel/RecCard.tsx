@@ -26,7 +26,7 @@ export function RecCard({ hotelSlug, rec, isSelected, onSelect, cardRef }: RecCa
         src={rec.photoUrls[0]}
         alt={rec.name}
         category={rec.category}
-        className="h-20 w-20 shrink-0 rounded-xl bg-zinc-200 object-cover"
+        className="h-20 w-20 shrink-0 rounded-xl bg-zinc-200 object-contain"
       />
       <div className="min-w-0 flex-1">
         <div className="flex items-start justify-between gap-2">
