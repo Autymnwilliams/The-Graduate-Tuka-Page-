@@ -16,7 +16,7 @@ import { ReservationLink } from "@/components/hotel/ReservationLink";
 import { AvailabilityCalendar } from "@/components/hotel/AvailabilityCalendar";
 import { uberDeepLink } from "@/lib/uber";
 import { getAvailability } from "@/lib/availability";
-import { isRealAvailabilityEnabled, getResyVenueUrl } from "@/lib/resy";
+import { isRealAvailabilityEnabled, isResyEligibleCategory, getResyVenueUrl } from "@/lib/resy";
 import { RecDwellTracker } from "@/components/hotel/RecDwellTracker";
 
 export default async function RecPage({
@@ -62,7 +62,9 @@ export default async function RecPage({
     travelTime(hotel.coordinates, rec.coordinates),
     resolveRecPhotoUrls(hotelSlug, rec),
     getAvailability(recId, rec.name, rec.category, rec.coordinates),
-    isRealAvailabilityEnabled() ? getResyVenueUrl(recId, rec.name, rec.coordinates.lat, rec.coordinates.lng) : Promise.resolve(null),
+    isRealAvailabilityEnabled() && isResyEligibleCategory(rec.category)
+      ? getResyVenueUrl(recId, rec.name, rec.coordinates.lat, rec.coordinates.lng)
+      : Promise.resolve(null),
   ]);
   const modeLabel = mode === "drive" ? "drive" : "walk";
   // Resy's own page for this venue when we have a confident match -- real,

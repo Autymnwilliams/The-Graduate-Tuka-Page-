@@ -1,4 +1,4 @@
-import { isRealAvailabilityEnabled, searchResyVenue, getResySlots } from "./resy";
+import { isRealAvailabilityEnabled, isResyEligibleCategory, searchResyVenue, getResySlots } from "./resy";
 import type { Coordinates } from "./types";
 
 /**
@@ -77,9 +77,10 @@ export async function getAvailability(
   category: string,
   coordinates: Coordinates,
 ): Promise<DayAvailability[]> {
-  const venueId = isRealAvailabilityEnabled()
-    ? await searchResyVenue(recId, name, coordinates.lat, coordinates.lng)
-    : null;
+  const venueId =
+    isRealAvailabilityEnabled() && isResyEligibleCategory(category)
+      ? await searchResyVenue(recId, name, coordinates.lat, coordinates.lng)
+      : null;
 
   const days: DayAvailability[] = [];
   for (let i = 0; i < DAYS_AHEAD; i++) {
