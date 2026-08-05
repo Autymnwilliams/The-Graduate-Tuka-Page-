@@ -99,7 +99,19 @@ function MapboxMap({ recs, center, hotelName, hotelLogoUrl, selectedRecId, onSel
 
     const homeEl = document.createElement("div");
     homeEl.className = "tuka-map-marker tuka-map-marker--home";
-    homeEl.innerHTML = `<img src="${hotelLogoUrl}" alt="${hotelName}" />`;
+    const logoImg = document.createElement("img");
+    logoImg.src = hotelLogoUrl;
+    logoImg.alt = hotelName;
+    logoImg.onerror = () => {
+      // No logo file at this URL yet -- show the hotel's initial instead of
+      // a broken image icon shrinking down to the bare gold circle.
+      logoImg.remove();
+      const fallback = document.createElement("span");
+      fallback.className = "tuka-map-marker__home-initial";
+      fallback.textContent = hotelName.trim().charAt(0).toUpperCase();
+      homeEl.appendChild(fallback);
+    };
+    homeEl.appendChild(logoImg);
     homeMarkerRef.current = new mapboxgl.Marker({ element: homeEl })
       .setLngLat([center.lng, center.lat])
       .addTo(map);
