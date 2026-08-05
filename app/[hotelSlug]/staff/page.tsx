@@ -7,8 +7,24 @@ import { staffCookieName, STAFF_COOKIE_VALUE } from "@/lib/staffAuth";
 import { StaffTabs } from "@/components/hotel/StaffTabs";
 import { addRec, deleteRec, updateRec, uploadRecPhotos, deleteRecPhoto } from "./actions";
 
-export default async function StaffPage({ params }: { params: Promise<{ hotelSlug: string }> }) {
+const ERROR_MESSAGES: Record<string, string> = {
+  "missing-fields": "Couldn't save — name, category, address, latitude, and longitude are required.",
+  "no-photos": "No photos were selected.",
+  "not-an-image": "One of the selected files isn't an image.",
+  "photo-too-large": "One of the selected photos is over the 8MB limit.",
+  "rec-not-found": "That recommendation no longer exists — refresh and try again.",
+  "upload-failed": "Photo upload failed. This usually means blob storage isn't configured for this environment (BLOB_READ_WRITE_TOKEN missing/invalid).",
+};
+
+export default async function StaffPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ hotelSlug: string }>;
+  searchParams: Promise<{ error?: string; uploaded?: string }>;
+}) {
   const { hotelSlug } = await params;
+  const { error, uploaded } = await searchParams;
   const hotel = await getHotelBySlug(hotelSlug);
   if (!hotel) notFound();
 
@@ -72,6 +88,17 @@ export default async function StaffPage({ params }: { params: Promise<{ hotelSlu
         </a>
         <h1 className="text-2xl font-semibold text-zinc-900">{hotel.name} · Staff</h1>
       </div>
+
+      {error && (
+        <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800">
+          {ERROR_MESSAGES[error] ?? "Something went wrong — please try again."}
+        </div>
+      )}
+      {!error && uploaded && (
+        <div className="rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
+          {uploaded} photo{uploaded === "1" ? "" : "s"} uploaded.
+        </div>
+      )}
 
       <StaffTabs
         hotelSlug={hotelSlug}

@@ -80,16 +80,26 @@ export async function uploadRecPhotos(hotelSlug: string, recId: string, formData
   const rec = hotel?.recs.find((r) => r.id === recId);
   if (!rec) redirect(`/${hotelSlug}/staff?error=rec-not-found`);
 
-  const uploaded = await Promise.all(
-    files.map((file) => {
-      const ext = file.name.includes(".") ? file.name.slice(file.name.lastIndexOf(".")) : "";
-      return put(`hotels/${hotelSlug}/recs/${recId}/${randomUUID()}${ext}`, file, { access: "public" });
-    }),
-  );
+  let uploaded: { url: string }[];
+  try {
+    uploaded = await Promise.all(
+      files.map((file) => {
+        const ext = file.name.includes(".") ? file.name.slice(file.name.lastIndexOf(".")) : "";
+        return put(`hotels/${hotelSlug}/recs/${recId}/${randomUUID()}${ext}`, file, { access: "public" });
+      }),
+    );
+  } catch (err) {
+    // Most common cause: BLOB_READ_WRITE_TOKEN missing/invalid in this
+    // environment -- surfaces as a thrown error from @vercel/blob's put(),
+    // which would otherwise crash to Next's generic error page and look
+    // to staff like the button "did nothing."
+    console.error("[uploadRecPhotos] Blob upload failed:", err instanceof Error ? err.message : err);
+    redirect(`/${hotelSlug}/staff?error=upload-failed`);
+  }
 
   const photoUrls = [...rec.photoUrls, ...uploaded.map((b) => b.url)];
   await getHotelStore().updateRec(hotelSlug, recId, { photoUrls });
-  redirect(`/${hotelSlug}/staff`);
+  redirect(`/${hotelSlug}/staff?uploaded=${uploaded.length}`);
 }
 
 export async function deleteRecPhoto(hotelSlug: string, recId: string, photoUrl: string) {
