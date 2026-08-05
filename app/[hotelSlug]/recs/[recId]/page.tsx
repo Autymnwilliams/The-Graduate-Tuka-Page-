@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { getHotelBySlug, isRecVisible, resolveRecPhotoUrls } from "@/lib/hotels";
 import { unlockCookieName, GATE_DISABLED } from "@/lib/unlock";
 import { GUEST_ID_COOKIE } from "@/lib/guest";
@@ -46,9 +47,9 @@ export default async function RecPage({
         >
           Sign up to see it
         </a>
-        <a href={`/${hotelSlug}`} className="text-sm text-zinc-500 hover:underline">
+        <Link href={`/${hotelSlug}`} className="text-sm text-zinc-500 hover:underline">
           ‹ Back to {hotel.name}
-        </a>
+        </Link>
       </main>
     );
   }
@@ -72,9 +73,9 @@ export default async function RecPage({
   return (
     <main className="mx-auto flex w-full max-w-lg flex-1 flex-col px-5 py-4">
       <RecDwellTracker hotelSlug={hotelSlug} recId={recId} />
-      <a href={`/${hotelSlug}`} className="mb-4 inline-block w-fit text-sm text-zinc-500 hover:underline">
+      <Link href={`/${hotelSlug}`} className="mb-4 inline-block w-fit text-sm text-zinc-500 hover:underline">
         ‹ Back to {hotel.name}
-      </a>
+      </Link>
 
       <span className="w-fit rounded-full bg-[var(--tuka-gold)] px-3 py-1 text-xs font-semibold tracking-wide text-[var(--tuka-ink)] uppercase">
         {categoryLabel(rec.category)}
