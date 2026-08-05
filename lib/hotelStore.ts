@@ -42,6 +42,15 @@ interface HotelStore {
   setTheme(slug: string, theme: HotelTheme): Promise<Hotel | null>;
   /** Drops the stored record so the next getHotel() reseeds fresh from data/hotels/${slug}.json. */
   resetHotel(slug: string): Promise<void>;
+  /**
+   * Non-destructive counterpart to resetHotel: fills in bookingLink (by rec
+   * id) from data/hotels/${slug}.json wherever the stored rec's bookingLink
+   * is currently empty, and leaves everything else -- staff-added recs,
+   * uploaded photos, edited fields -- untouched. Needed because the store
+   * only seeds a hotel from disk once; JSON edits made after that first
+   * seed (like the bulk bookingLink additions) are otherwise invisible.
+   */
+  backfillBookingLinks(slug: string): Promise<{ updated: number }>;
 }
 
 function buildRec(input: NewRecInput): Rec {
@@ -129,6 +138,23 @@ class MemoryHotelStore implements HotelStore {
   async resetHotel(slug: string): Promise<void> {
     this.hotels.delete(slug);
   }
+
+  async backfillBookingLinks(slug: string): Promise<{ updated: number }> {
+    const hotel = await this.getHotel(slug);
+    const seed = await readSeedFile(slug);
+    if (!hotel || !seed) return { updated: 0 };
+
+    const seedById = new Map(seed.recs.map((r) => [r.id, r]));
+    let updated = 0;
+    for (const rec of hotel.recs) {
+      const seedRec = seedById.get(rec.id);
+      if (!rec.bookingLink && seedRec?.bookingLink) {
+        rec.bookingLink = seedRec.bookingLink;
+        updated++;
+      }
+    }
+    return { updated };
+  }
 }
 
 /**
@@ -207,6 +233,31 @@ class MongoHotelStore implements HotelStore {
   async resetHotel(slug: string): Promise<void> {
     const hotels = await this.ready;
     await hotels.deleteOne({ slug });
+  }
+
+  async backfillBookingLinks(slug: string): Promise<{ updated: number }> {
+    const hotel = await this.getHotel(slug);
+    const seed = await readSeedFile(slug);
+    if (!hotel || !seed) return { updated: 0 };
+
+    const seedById = new Map(seed.recs.map((r) => [r.id, r]));
+    let updated = 0;
+    for (const rec of hotel.recs) {
+      const seedRec = seedById.get(rec.id);
+      if (!rec.bookingLink && seedRec?.bookingLink) {
+        rec.bookingLink = seedRec.bookingLink;
+        updated++;
+      }
+    }
+    if (updated === 0) return { updated: 0 };
+
+    // Single whole-array write of the in-JS-merged recs -- safe because
+    // `hotel` above came from this same getHotel() call, so it already
+    // reflects any staff-added recs/edits; this only changed the
+    // bookingLink fields that were empty.
+    const hotels = await this.ready;
+    await hotels.updateOne({ slug }, { $set: { recs: hotel.recs } });
+    return { updated };
   }
 }
 
