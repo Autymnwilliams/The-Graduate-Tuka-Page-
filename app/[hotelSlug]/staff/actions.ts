@@ -41,6 +41,7 @@ function recInputFromForm(formData: FormData): NewRecInput {
       .map((t) => t.trim())
       .filter(Boolean),
     bookingLink: String(formData.get("bookingLink") ?? "").trim() || undefined,
+    hours: String(formData.get("hours") ?? "").trim() || undefined,
     staffNote: String(formData.get("staffNote") ?? "").trim() || undefined,
     staffName: String(formData.get("staffName") ?? "").trim() || undefined,
   };

@@ -28,6 +28,7 @@ export interface NewRecInput {
   priceLevel: string;
   tags: string[];
   bookingLink?: string;
+  hours?: string;
   staffNote?: string;
   staffName?: string;
 }
@@ -51,6 +52,8 @@ interface HotelStore {
    * seed (like the bulk bookingLink additions) are otherwise invisible.
    */
   backfillBookingLinks(slug: string): Promise<{ updated: number }>;
+  /** Same non-destructive backfill pattern as backfillBookingLinks, for the `hours` field. */
+  backfillHours(slug: string): Promise<{ updated: number }>;
 }
 
 function buildRec(input: NewRecInput): Rec {
@@ -65,6 +68,7 @@ function buildRec(input: NewRecInput): Rec {
     priceLevel: input.priceLevel,
     tags: input.tags,
     bookingLink: input.bookingLink || undefined,
+    hours: input.hours || undefined,
     staffNote: input.staffNote || undefined,
     staffName: input.staffName || undefined,
   };
@@ -85,6 +89,7 @@ function applyPatch(rec: Rec, patch: RecPatch): Rec {
     tags: patch.tags ?? rec.tags,
     photoUrls: patch.photoUrls ?? rec.photoUrls,
     bookingLink: patch.bookingLink !== undefined ? patch.bookingLink || undefined : rec.bookingLink,
+    hours: patch.hours !== undefined ? patch.hours || undefined : rec.hours,
     staffNote: patch.staffNote !== undefined ? patch.staffNote || undefined : rec.staffNote,
     staffName: patch.staffName !== undefined ? patch.staffName || undefined : rec.staffName,
   };
@@ -150,6 +155,23 @@ class MemoryHotelStore implements HotelStore {
       const seedRec = seedById.get(rec.id);
       if (!rec.bookingLink && seedRec?.bookingLink) {
         rec.bookingLink = seedRec.bookingLink;
+        updated++;
+      }
+    }
+    return { updated };
+  }
+
+  async backfillHours(slug: string): Promise<{ updated: number }> {
+    const hotel = await this.getHotel(slug);
+    const seed = await readSeedFile(slug);
+    if (!hotel || !seed) return { updated: 0 };
+
+    const seedById = new Map(seed.recs.map((r) => [r.id, r]));
+    let updated = 0;
+    for (const rec of hotel.recs) {
+      const seedRec = seedById.get(rec.id);
+      if (!rec.hours && seedRec?.hours) {
+        rec.hours = seedRec.hours;
         updated++;
       }
     }
@@ -255,6 +277,27 @@ class MongoHotelStore implements HotelStore {
     // `hotel` above came from this same getHotel() call, so it already
     // reflects any staff-added recs/edits; this only changed the
     // bookingLink fields that were empty.
+    const hotels = await this.ready;
+    await hotels.updateOne({ slug }, { $set: { recs: hotel.recs } });
+    return { updated };
+  }
+
+  async backfillHours(slug: string): Promise<{ updated: number }> {
+    const hotel = await this.getHotel(slug);
+    const seed = await readSeedFile(slug);
+    if (!hotel || !seed) return { updated: 0 };
+
+    const seedById = new Map(seed.recs.map((r) => [r.id, r]));
+    let updated = 0;
+    for (const rec of hotel.recs) {
+      const seedRec = seedById.get(rec.id);
+      if (!rec.hours && seedRec?.hours) {
+        rec.hours = seedRec.hours;
+        updated++;
+      }
+    }
+    if (updated === 0) return { updated: 0 };
+
     const hotels = await this.ready;
     await hotels.updateOne({ slug }, { $set: { recs: hotel.recs } });
     return { updated };

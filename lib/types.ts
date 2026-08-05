@@ -27,6 +27,8 @@ export interface Rec {
   isFeatured?: boolean;
   /** Link to the restaurant/venue's own booking page. Tuka never books reservations itself. */
   bookingLink?: string;
+  /** Free-text display hours (e.g. "Daily 6am-11pm"), shown instead of the booking/reservation UI for categories that don't take reservations (parks, museums, landmarks). */
+  hours?: string;
 }
 
 /** Full hotel record as stored on disk. Never send this whole object to the client. */
