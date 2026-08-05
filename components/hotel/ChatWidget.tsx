@@ -30,9 +30,10 @@ export function ChatWidget({ hotel }: { hotel: PublicHotel }) {
         if (data.kind === "liked" && data.recNames?.[0]) {
           return `I see you liked ${data.recNames[0]} — want me to book something there, or suggest similar spots?`;
         }
-        if (data.kind === "returning") {
-          return data.name ? `Welcome back, ${data.name}! Want to pick up where we left off?` : "Welcome back! Want to pick up where we left off?";
-        }
+        // "returning" (welcome-back greeting) intentionally disabled for now
+        // (tasks.md) -- falls through to the time-of-day/generic greeting
+        // below. The /api/chat/greeting endpoint still computes and returns
+        // it, this just doesn't act on it.
       }
     } catch {
       // Fall through to the time-of-day / generic greeting below.
