@@ -41,6 +41,8 @@ interface HotelStore {
   updateRec(slug: string, recId: string, patch: RecPatch): Promise<Hotel | null>;
   deleteRec(slug: string, recId: string): Promise<Hotel | null>;
   setTheme(slug: string, theme: HotelTheme): Promise<Hotel | null>;
+  /** Same "already-seeded, need to push a corrected field" need as setTheme -- for the hotel's own coordinates. */
+  setCoordinates(slug: string, coordinates: Hotel["coordinates"]): Promise<Hotel | null>;
   /** Drops the stored record so the next getHotel() reseeds fresh from data/hotels/${slug}.json. */
   resetHotel(slug: string): Promise<void>;
   /**
@@ -137,6 +139,13 @@ class MemoryHotelStore implements HotelStore {
     const hotel = await this.getHotel(slug);
     if (!hotel) return null;
     hotel.theme = theme;
+    return hotel;
+  }
+
+  async setCoordinates(slug: string, coordinates: Hotel["coordinates"]): Promise<Hotel | null> {
+    const hotel = await this.getHotel(slug);
+    if (!hotel) return null;
+    hotel.coordinates = coordinates;
     return hotel;
   }
 
@@ -249,6 +258,16 @@ class MongoHotelStore implements HotelStore {
 
     const hotels = await this.ready;
     await hotels.updateOne({ slug }, { $set: { theme } });
+    return hotel;
+  }
+
+  async setCoordinates(slug: string, coordinates: Hotel["coordinates"]): Promise<Hotel | null> {
+    const hotel = await this.getHotel(slug);
+    if (!hotel) return null;
+    hotel.coordinates = coordinates;
+
+    const hotels = await this.ready;
+    await hotels.updateOne({ slug }, { $set: { coordinates } });
     return hotel;
   }
 

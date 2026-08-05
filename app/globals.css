@@ -73,6 +73,17 @@ a {
   z-index: 10;
 }
 
+/*
+ * Root element Mapbox positions directly (it overwrites this element's
+ * inline `transform` for translate positioning, which is why the pin's
+ * own rotate() must live on the inner .tuka-map-marker--home instead --
+ * see the comment in MapSection.tsx where this element is built).
+ */
+.tuka-map-marker-home-wrapper {
+  position: relative;
+  cursor: pointer;
+}
+
 .tuka-map-marker--home {
   /* Actual teardrop pin shape (rotated square), not a circle -- stands out
      clearly from rec pins with a gold ring, stronger shadow, and stays

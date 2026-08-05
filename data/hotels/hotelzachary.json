@@ -6,8 +6,8 @@
   "logoUrl": "/assets/hotelzachary/logo.png",
   "heroImageUrl": "/assets/hotelzachary/hero.jpg",
   "coordinates": {
-    "lat": 41.947,
-    "lng": -87.654
+    "lat": 41.9477,
+    "lng": -87.6573
   },
   "theme": {
     "ink": "#14233e",
