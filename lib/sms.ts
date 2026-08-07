@@ -1,5 +1,6 @@
 import twilio from "twilio";
 import type { Hotel, Rec } from "./types";
+import { isOptedOut } from "./smsOptOut";
 
 /**
  * Env var names match backend_main's config/twilio.js for consistency
@@ -29,6 +30,14 @@ export async function sendSms(to: string, body: string): Promise<void> {
   const c = getClient();
   if (!c || !FROM_NUMBER) {
     console.warn("[sms] Skipped send — Twilio not fully configured.");
+    return;
+  }
+  // Required for the privacy policy's "Reply STOP to opt out" disclosure to
+  // actually be true, and expected by carriers for A2P approval -- checked
+  // here, not per-caller, so every send path (concierge text, chat handoff,
+  // future recap SMS) is covered without having to remember to add it.
+  if (await isOptedOut(to)) {
+    console.warn("[sms] Skipped send — recipient has opted out:", to);
     return;
   }
   await c.messages.create({ to, from: FROM_NUMBER, body });
