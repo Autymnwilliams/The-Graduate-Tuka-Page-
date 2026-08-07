@@ -24,9 +24,15 @@ export async function POST(request: Request) {
     return Response.json({ error: "Invalid request" }, { status: 400 });
   }
 
-  const { hotelSlug, phone } = body as Record<string, unknown>;
+  const { hotelSlug, phone, consent } = body as Record<string, unknown>;
   if (typeof hotelSlug !== "string" || typeof phone !== "string" || !phone.trim()) {
     return Response.json({ error: "hotelSlug and phone are required" }, { status: 400 });
+  }
+  // Enforced server-side, not just via the disabled button client-side --
+  // a direct API call could otherwise bypass the consent checkbox entirely,
+  // which would make the opt-in evidence given to carriers untrue.
+  if (consent !== true) {
+    return Response.json({ error: "SMS consent is required" }, { status: 400 });
   }
 
   const hotel = await getHotelBySlug(hotelSlug);

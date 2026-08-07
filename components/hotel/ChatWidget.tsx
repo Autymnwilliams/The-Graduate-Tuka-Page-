@@ -18,6 +18,7 @@ export function ChatWidget({ hotel }: { hotel: PublicHotel }) {
 
   const [handoffOpen, setHandoffOpen] = useState(false);
   const [handoffPhone, setHandoffPhone] = useState("");
+  const [handoffConsent, setHandoffConsent] = useState(false);
   const [handoffStatus, setHandoffStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   const genericGreeting = `Hi! I'm the digital concierge for ${hotel.name}. I can help you book a table or appointment at one of our recommended spots — want me to help you book somewhere, or is there something else I can help with?`;
@@ -89,13 +90,13 @@ export function ChatWidget({ hotel }: { hotel: PublicHotel }) {
 
   async function sendHandoff() {
     const phone = handoffPhone.trim();
-    if (!phone || handoffStatus === "sending") return;
+    if (!phone || !handoffConsent || handoffStatus === "sending") return;
     setHandoffStatus("sending");
     try {
       const res = await fetch("/api/chat/handoff", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ hotelSlug: hotel.slug, phone }),
+        body: JSON.stringify({ hotelSlug: hotel.slug, phone, consent: handoffConsent }),
       });
       setHandoffStatus(res.ok ? "sent" : "error");
     } catch {
@@ -142,24 +143,46 @@ export function ChatWidget({ hotel }: { hotel: PublicHotel }) {
                 Sent! Keep chatting here, or watch your texts — either works.
               </p>
             ) : (
-              <div className="flex gap-2 pb-2">
-                <input
-                  value={handoffPhone}
-                  onChange={(e) => setHandoffPhone(e.target.value)}
-                  onKeyDown={(e) => e.key === "Enter" && sendHandoff()}
-                  type="tel"
-                  placeholder="Your phone number"
-                  // text-base (16px), not text-xs -- anything under 16px makes iOS Safari auto-zoom in on focus, which is what was breaking the page alignment/zoom on mobile.
-                  className="flex-1 rounded-full border border-zinc-300 px-3 py-1.5 text-base outline-none focus:border-[var(--tuka-ink)]"
-                />
-                <button
-                  type="button"
-                  onClick={sendHandoff}
-                  disabled={handoffStatus === "sending"}
-                  className="rounded-full bg-[var(--tuka-gold)] px-3 py-1.5 text-xs font-semibold text-[var(--tuka-ink)] disabled:opacity-60"
-                >
-                  {handoffStatus === "sending" ? "…" : "Text me"}
-                </button>
+              <div className="flex flex-col gap-2 pb-2">
+                <div className="flex gap-2">
+                  <input
+                    value={handoffPhone}
+                    onChange={(e) => setHandoffPhone(e.target.value)}
+                    onKeyDown={(e) => e.key === "Enter" && sendHandoff()}
+                    type="tel"
+                    placeholder="Your phone number"
+                    // text-base (16px), not text-xs -- anything under 16px makes iOS Safari auto-zoom in on focus, which is what was breaking the page alignment/zoom on mobile.
+                    className="flex-1 rounded-full border border-zinc-300 px-3 py-1.5 text-base outline-none focus:border-[var(--tuka-ink)]"
+                  />
+                  <button
+                    type="button"
+                    onClick={sendHandoff}
+                    disabled={!handoffConsent || handoffStatus === "sending"}
+                    className="rounded-full bg-[var(--tuka-gold)] px-3 py-1.5 text-xs font-semibold text-[var(--tuka-ink)] disabled:opacity-60"
+                  >
+                    {handoffStatus === "sending" ? "…" : "Text me"}
+                  </button>
+                </div>
+                <label className="flex items-start gap-2 px-1 text-[11px] leading-snug text-zinc-500">
+                  <input
+                    type="checkbox"
+                    checked={handoffConsent}
+                    onChange={(e) => setHandoffConsent(e.target.checked)}
+                    className="mt-0.5 h-3.5 w-3.5 shrink-0"
+                  />
+                  <span>
+                    I agree to receive text messages from Tuka. Message frequency varies, msg &amp; data rates may
+                    apply. Reply STOP to opt out.{" "}
+                    <a href="/terms" target="_blank" rel="noopener noreferrer" className="underline">
+                      Terms
+                    </a>{" "}
+                    &amp;{" "}
+                    <a href="/privacy" target="_blank" rel="noopener noreferrer" className="underline">
+                      Privacy Policy
+                    </a>
+                    .
+                  </span>
+                </label>
               </div>
             )}
             {handoffStatus === "error" && (
