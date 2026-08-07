@@ -9,7 +9,7 @@ import { addOptOut, removeOptOut } from "@/lib/smsOptOut";
  * POST /api/sms/inbound.
  */
 const STOP_KEYWORDS = new Set(["STOP", "STOPALL", "UNSUBSCRIBE", "CANCEL", "END", "QUIT"]);
-const START_KEYWORDS = new Set(["START", "YES", "UNSTOP"]);
+const START_KEYWORDS = new Set(["START", "YES", "UNSTOP", "TUKA"]);
 const HELP_KEYWORDS = new Set(["HELP", "INFO"]);
 
 function twiml(message?: string): Response {
@@ -47,16 +47,18 @@ export async function POST(request: Request) {
 
   if (STOP_KEYWORDS.has(body)) {
     await addOptOut(from);
-    return twiml("You've been unsubscribed from Tuka concierge texts and won't receive more messages. Reply START to resubscribe.");
+    return twiml("Tuka: You're unsubscribed and won't receive more messages. Reply START to opt back in.");
   }
 
   if (START_KEYWORDS.has(body)) {
     await removeOptOut(from);
-    return twiml("You're resubscribed to Tuka concierge texts. Reply STOP at any time to opt out.");
+    return twiml(
+      "Tuka: You're opted in to concierge text messages. Msg frequency varies, msg & data rates may apply. For help, reply HELP. To opt out, reply STOP.",
+    );
   }
 
   if (HELP_KEYWORDS.has(body)) {
-    return twiml("Tuka concierge: message frequency varies. Msg & data rates may apply. Reply STOP to opt out. Contact support@thecirclesearch.com for help.");
+    return twiml("Tuka: Msg frequency varies, msg & data rates may apply. To opt out, reply STOP. Contact support@thecirclesearch.com for help.");
   }
 
   // Anything else -- no auto-reply, this endpoint isn't a full bidirectional chat loop.
