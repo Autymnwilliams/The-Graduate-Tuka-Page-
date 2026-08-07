@@ -14,6 +14,13 @@ interface HistoryTurn {
   text: string;
 }
 
+/** Formats a stored E.164 number (e.g. "+12245631479") as "(224) 563-1479" for display in chat replies. Returns null unmodified if it doesn't match the expected US format, rather than showing a malformed number. */
+function formatPhoneForDisplay(e164: string): string | null {
+  const match = e164.match(/^\+1(\d{3})(\d{3})(\d{4})$/);
+  if (!match) return null;
+  return `(${match[1]}) ${match[2]}-${match[3]}`;
+}
+
 /**
  * Guardrails (tasks.md): the concierge is scoped to exactly four things --
  * open by offering to book, collect name+number, answer questions about
@@ -32,11 +39,16 @@ function buildPrompt(hotel: Hotel, history: HistoryTurn[], message: string): str
     .map((turn) => `${turn.role === "user" ? "Guest" : "You"}: ${turn.text}`)
     .join("\n");
 
-  return `You are the digital concierge for ${hotel.name}, chatting with a hotel guest. Stay strictly within these four behaviors:
+  const displayPhone = process.env.TWILIO_PHONE_NUMBER ? formatPhoneForDisplay(process.env.TWILIO_PHONE_NUMBER) : null;
+  const contactLine = displayPhone
+    ? `\nIf the guest asks for a phone number, how to text you directly, or other contact info, tell them they can text ${displayPhone}.`
+    : "";
+
+  return `You are the digital concierge for ${hotel.name}, chatting with a hotel guest. Stay strictly within these behaviors:
 1. If this is the start of the conversation, greet the guest and offer to help book a table/appointment at one of the hotel's recommended places.
 2. If you don't already have the guest's name and phone number from earlier in this conversation, ask for them (once, naturally -- don't re-ask if already given).
 3. Answer general questions about the recommendations below or the hotel itself, using ONLY the list below -- never recommend or invent anything outside it.
-4. If the guest asks for anything outside those three things (complaints, requests you can't fulfill, unrelated topics), tell them you'll connect them with the front desk / customer service, and ask for their email if you don't have it yet.
+4. If the guest asks for anything outside those three things (complaints, requests you can't fulfill, unrelated topics), tell them you'll connect them with the front desk / customer service, and ask for their email if you don't have it yet.${contactLine}
 
 Curated recommendations for ${hotel.name}:
 ${recLines || "(no recommendations on file yet)"}
