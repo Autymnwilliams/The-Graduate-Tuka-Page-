@@ -11,12 +11,18 @@ interface ChatMessage {
 }
 
 export function ChatWidget({ hotel }: { hotel: PublicHotel }) {
-  const [open, setOpen] = useState(false);
+  // Open (and the SMS opt-in section within it) by default -- not just
+  // toggled on client-side after mount. A useEffect-based toggle only ever
+  // applies post-hydration, so the server-rendered HTML (what a crawler-
+  // style A2P campaign verification would see, not just a human clicking
+  // through in a real browser) would never actually contain the consent
+  // checkbox. Starting true here means it's present in the initial render.
+  const [open, setOpen] = useState(true);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
 
-  const [handoffOpen, setHandoffOpen] = useState(false);
+  const [handoffOpen, setHandoffOpen] = useState(true);
   const [handoffPhone, setHandoffPhone] = useState("");
   const [handoffConsent, setHandoffConsent] = useState(false);
   const [handoffStatus, setHandoffStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
@@ -56,14 +62,9 @@ export function ChatWidget({ hotel }: { hotel: PublicHotel }) {
     }
   }
 
-  // Auto-open on first load, with the SMS opt-in section already expanded --
-  // makes the opt-in flow (phone field + consent checkbox) immediately
-  // visible without requiring clicks, per the A2P campaign CTA-verification
-  // rejection. Guests can still close/collapse normally via the existing
-  // toggle button.
+  // Panel starts open (see useState above) -- just need the greeting text
+  // filled in once mounted, since that part is inherently a client fetch.
   useEffect(() => {
-    setOpen(true);
-    setHandoffOpen(true);
     fetchGreeting().then((text) => setMessages((prev) => (prev.length === 0 ? [{ role: "bot", text }] : prev)));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
