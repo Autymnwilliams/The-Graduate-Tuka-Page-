@@ -1,9 +1,8 @@
 "use server";
 
-import { randomUUID } from "crypto";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { put, del } from "@vercel/blob";
+import { uploadImageBuffer, deleteImageByUrl } from "@/lib/cloudinary";
 import { getHotelStore, type NewRecInput, type RecPatch } from "@/lib/hotelStore";
 import { checkStaffPasscode, staffCookieName, STAFF_COOKIE_VALUE, UNLOCK_COOKIE_MAX_AGE_SECONDS } from "@/lib/staffAuth";
 
@@ -84,17 +83,17 @@ export async function uploadRecPhotos(hotelSlug: string, recId: string, formData
   let uploaded: { url: string }[];
   try {
     uploaded = await Promise.all(
-      files.map((file) => {
-        const ext = file.name.includes(".") ? file.name.slice(file.name.lastIndexOf(".")) : "";
-        return put(`hotels/${hotelSlug}/recs/${recId}/${randomUUID()}${ext}`, file, { access: "public" });
+      files.map(async (file) => {
+        const buffer = Buffer.from(await file.arrayBuffer());
+        return uploadImageBuffer(buffer, `hotel-pilot/${hotelSlug}/${recId}`);
       }),
     );
   } catch (err) {
-    // Most common cause: BLOB_READ_WRITE_TOKEN missing/invalid in this
-    // environment -- surfaces as a thrown error from @vercel/blob's put(),
+    // Most common cause: CLOUDINARY_* env vars missing/invalid in this
+    // environment -- surfaces as a thrown error from the upload stream,
     // which would otherwise crash to Next's generic error page and look
     // to staff like the button "did nothing."
-    console.error("[uploadRecPhotos] Blob upload failed:", err instanceof Error ? err.message : err);
+    console.error("[uploadRecPhotos] Cloudinary upload failed:", err instanceof Error ? err.message : err);
     redirect(`/${hotelSlug}/staff?error=upload-failed`);
   }
 
@@ -110,6 +109,6 @@ export async function deleteRecPhoto(hotelSlug: string, recId: string, photoUrl:
 
   const photoUrls = rec.photoUrls.filter((u) => u !== photoUrl);
   await getHotelStore().updateRec(hotelSlug, recId, { photoUrls });
-  await del(photoUrl).catch(() => {});
+  await deleteImageByUrl(photoUrl).catch(() => {});
   redirect(`/${hotelSlug}/staff`);
 }
