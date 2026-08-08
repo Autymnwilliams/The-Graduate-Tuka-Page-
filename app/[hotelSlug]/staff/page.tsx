@@ -1,10 +1,9 @@
-import { cookies } from "next/headers";
 import { notFound, redirect } from "next/navigation";
 import Link from "next/link";
 import { getHotelBySlug } from "@/lib/hotels";
 import { getHotelEvents } from "@/lib/analytics";
 import { getRecStats } from "@/lib/recStats";
-import { staffCookieName, STAFF_COOKIE_VALUE } from "@/lib/staffAuth";
+import { checkHotelStaffAuth } from "@/lib/hotelStaffAuth";
 import { StaffTabs } from "@/components/hotel/StaffTabs";
 import { addRec, deleteRec, updateRec, uploadRecPhotos, deleteRecPhoto } from "./actions";
 
@@ -29,8 +28,8 @@ export default async function StaffPage({
   const hotel = await getHotelBySlug(hotelSlug);
   if (!hotel) notFound();
 
-  const cookieStore = await cookies();
-  if (cookieStore.get(staffCookieName(hotelSlug))?.value !== STAFF_COOKIE_VALUE) {
+  const staffAuth = await checkHotelStaffAuth(hotelSlug);
+  if (!staffAuth) {
     redirect(`/${hotelSlug}/staff/login`);
   }
 

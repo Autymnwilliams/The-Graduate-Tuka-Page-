@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { SignInButton, UserButton, useUser } from "@clerk/nextjs";
 import type { PublicHotel } from "@/lib/types";
 import { track } from "@/lib/analytics-client";
 
@@ -11,6 +12,7 @@ interface ChatMessage {
 }
 
 export function ChatWidget({ hotel }: { hotel: PublicHotel }) {
+  const { isSignedIn } = useUser();
   const [open, setOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [input, setInput] = useState("");
@@ -108,9 +110,21 @@ export function ChatWidget({ hotel }: { hotel: PublicHotel }) {
     <div className="fixed right-4 bottom-4 z-40 flex flex-col items-end">
       {open && (
         <div className="mb-2 flex max-h-[70dvh] w-80 max-w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-[0_8px_30px_rgba(0,0,0,0.18)]">
-          <div className="flex items-center gap-2 bg-[var(--tuka-ink)] px-4 py-3 text-sm font-semibold text-white">
-            <img src="/tuka-logo.png" alt="" className="h-5 w-5 rounded-full" />
-            Ask your digital concierge
+          <div className="flex items-center justify-between gap-2 bg-[var(--tuka-ink)] px-4 py-3 text-sm font-semibold text-white">
+            <div className="flex items-center gap-2">
+              <img src="/tuka-logo.png" alt="" className="h-5 w-5 rounded-full" />
+              Ask your digital concierge
+            </div>
+            {/* Optional -- browsing/chatting fully works signed out via the existing anonymous guest cookie. Signing in just links future activity to a real, shared Tuka account instead. */}
+            {isSignedIn ? (
+              <UserButton appearance={{ elements: { avatarBox: "h-6 w-6" } }} />
+            ) : (
+              <SignInButton mode="modal">
+                <button type="button" className="text-xs font-normal text-white/70 hover:text-white hover:underline">
+                  Sign in
+                </button>
+              </SignInButton>
+            )}
           </div>
 
           <div className="flex-1 overflow-y-auto p-3">

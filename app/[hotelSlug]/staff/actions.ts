@@ -1,30 +1,10 @@
 "use server";
 
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { uploadImageBuffer, deleteImageByUrl } from "@/lib/cloudinary";
 import { getHotelStore, type NewRecInput, type RecPatch } from "@/lib/hotelStore";
-import { checkStaffPasscode, staffCookieName, STAFF_COOKIE_VALUE, UNLOCK_COOKIE_MAX_AGE_SECONDS } from "@/lib/staffAuth";
 
 const MAX_PHOTO_BYTES = 8 * 1024 * 1024;
-
-export async function staffLogin(hotelSlug: string, formData: FormData) {
-  const passcode = String(formData.get("passcode") ?? "");
-
-  if (!checkStaffPasscode(passcode)) {
-    redirect(`/${hotelSlug}/staff/login?error=1`);
-  }
-
-  const cookieStore = await cookies();
-  cookieStore.set(staffCookieName(hotelSlug), STAFF_COOKIE_VALUE, {
-    maxAge: UNLOCK_COOKIE_MAX_AGE_SECONDS,
-    path: "/",
-    httpOnly: true,
-    sameSite: "lax",
-  });
-
-  redirect(`/${hotelSlug}/staff`);
-}
 
 function recInputFromForm(formData: FormData): NewRecInput {
   return {
