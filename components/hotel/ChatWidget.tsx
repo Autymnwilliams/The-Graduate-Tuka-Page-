@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { PublicHotel } from "@/lib/types";
 import { track } from "@/lib/analytics-client";
 
@@ -55,6 +55,18 @@ export function ChatWidget({ hotel }: { hotel: PublicHotel }) {
       setMessages([{ role: "bot", text }]);
     }
   }
+
+  // Auto-open on first load, with the SMS opt-in section already expanded --
+  // makes the opt-in flow (phone field + consent checkbox) immediately
+  // visible without requiring clicks, per the A2P campaign CTA-verification
+  // rejection. Guests can still close/collapse normally via the existing
+  // toggle button.
+  useEffect(() => {
+    setOpen(true);
+    setHandoffOpen(true);
+    fetchGreeting().then((text) => setMessages((prev) => (prev.length === 0 ? [{ role: "bot", text }] : prev)));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   async function send() {
     const text = input.trim();
