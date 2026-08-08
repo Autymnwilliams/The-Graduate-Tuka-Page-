@@ -8,7 +8,10 @@ import { addOptOut, removeOptOut } from "@/lib/smsOptOut";
  * In" webhook (Console > Phone Numbers > your number > Messaging) at
  * POST /api/sms/inbound.
  */
-const STOP_KEYWORDS = new Set(["STOP", "STOPALL", "UNSUBSCRIBE", "CANCEL", "END", "QUIT"]);
+// Keeping this list in sync with exactly what's declared in the Twilio A2P
+// campaign registration -- Twilio's reviewers/automation text the number
+// and compare the actual reply against what's registered.
+const STOP_KEYWORDS = new Set(["STOP", "STOPALL", "UNSUBSCRIBE", "CANCEL", "END", "QUIT", "OPTOUT", "REVOKE"]);
 const START_KEYWORDS = new Set(["START", "YES", "UNSTOP", "TUKA"]);
 const HELP_KEYWORDS = new Set(["HELP", "INFO"]);
 
@@ -47,7 +50,7 @@ export async function POST(request: Request) {
 
   if (STOP_KEYWORDS.has(body)) {
     await addOptOut(from);
-    return twiml("Tuka: You're unsubscribed and won't receive more messages. Reply START to opt back in.");
+    return twiml("You have successfully been unsubscribed. You will not receive any more messages from this number. Reply START to resubscribe.");
   }
 
   if (START_KEYWORDS.has(body)) {
@@ -58,7 +61,7 @@ export async function POST(request: Request) {
   }
 
   if (HELP_KEYWORDS.has(body)) {
-    return twiml("Tuka: Msg frequency varies, msg & data rates may apply. To opt out, reply STOP. Contact support@thecirclesearch.com for help.");
+    return twiml("Reply STOP to unsubscribe. Msg&Data Rates May Apply.");
   }
 
   // Anything else -- no auto-reply, this endpoint isn't a full bidirectional chat loop.
