@@ -50,7 +50,10 @@ export async function POST(request: Request) {
 
   if (STOP_KEYWORDS.has(body)) {
     await addOptOut(from);
-    return twiml("You have successfully been unsubscribed. You will not receive any more messages from this number. Reply START to resubscribe.");
+    // Brand name required (A2P rejection 30887: opt-out message must
+    // include acknowledgement, confirmation no further messages will be
+    // sent, AND the brand name).
+    return twiml("Tuka: You have successfully been unsubscribed. You will not receive any more messages from this number. Reply START to resubscribe.");
   }
 
   if (START_KEYWORDS.has(body)) {
@@ -61,7 +64,10 @@ export async function POST(request: Request) {
   }
 
   if (HELP_KEYWORDS.has(body)) {
-    return twiml("Reply STOP to unsubscribe. Msg&Data Rates May Apply.");
+    // Brand name + contact required (A2P rejection 30890: HELP reply must
+    // include brand name, phone number, or email so end users know who
+    // they're talking to and how to reach a human).
+    return twiml("Tuka: For help, contact support@thecirclesearch.com. Reply STOP to unsubscribe. Msg & data rates may apply.");
   }
 
   // Anything else -- no auto-reply, this endpoint isn't a full bidirectional chat loop.
