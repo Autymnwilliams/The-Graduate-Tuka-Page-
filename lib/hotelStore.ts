@@ -200,8 +200,13 @@ class MongoHotelStore implements HotelStore {
     const client = new MongoClient(uri);
     this.ready = client
       .connect()
-      .then((c) => c.db())
-      .then((db) => db.collection<Hotel>("hotels"));
+      // Explicit "test" (not client.db() with no args) -- this is
+      // backend_main's actual shared database (its own connection string
+      // also has no db name segment, defaulting to Mongo's "test"), and
+      // "pilot_hotels" (not "hotels") avoids colliding with backend_main's
+      // own internal hotel-discovery collection of the same name.
+      .then((c) => c.db("test"))
+      .then((db) => db.collection<Hotel>("pilot_hotels"));
   }
 
   async getHotel(slug: string): Promise<Hotel | null> {
